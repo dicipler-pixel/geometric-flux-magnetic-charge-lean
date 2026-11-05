@@ -1,0 +1,6 @@
+FalseControls/monopole_wrong_derivative_sign.lean:7:2: error: Type mismatch: After simplification, term
+  hasDerivAt_proj_θ θ φ 0 0
+ has type
+  HasDerivAt (fun t => proj (nvec t φ) 0 0) (sin ↑θ / 2) θ
+but is expected to have type
+  HasDerivAt (fun t => proj (nvec t φ) 0 0) (-sin ↑θ / 2) θ

@@ -1,0 +1,6 @@
+FalseControls/stance_02_ExistenceWithoutBridge.lean:5:2: error: Type mismatch
+  h
+has type
+  GeometricallyCharged r
+but is expected to have type
+  MagneticallyCharged r

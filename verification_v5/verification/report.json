@@ -1,0 +1,336 @@
+{
+  "axiom_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "axioms": {
+    "MonopoleStance.admissibility_is_restriction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.berry_curvature": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.berry_curvature_eq_zero_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.berry_curvature_from_derivatives": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.bridge_record_exists": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.bridge_transfers_charge": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.complement_curvature": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.continuous_omega": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.coordFlux_eq_sphereFlux": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.curvature_formula": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.derivedCurvatureCompl_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.derivedCurvature_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.derived_compl_flux": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.derived_curvature_unit_flux": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.flux_is_transition_jump": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.flux_one_at_every_cut": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.formal_stance": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.gauge_coefficient_difference": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.hasDerivAt_compl_\u03b8": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.hasDerivAt_compl_\u03c6": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.hasDerivAt_nvec_\u03b81": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.hasDerivAt_nvec_\u03b82": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.hasDerivAt_nvec_\u03b83": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.hasDerivAt_nvec_\u03c61": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.hasDerivAt_nvec_\u03c62": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.hasDerivAt_nvec_\u03c63": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.hasDerivAt_proj_comp": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.hasDerivAt_proj_\u03b8": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.hasDerivAt_proj_\u03c6": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.lowerProjector_eq_proj": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.lowerProjector_hermitian": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.lowerProjector_idempotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.lowerProjector_trace": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.matrix_to_integer": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.no_continuous_Pauli_axis_extension": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.no_continuous_jump_extension": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.no_global_regular_gauge": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.no_unconditional_absence_inference": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.no_unconditional_existence_inference": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.north_derivative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.omega_nonzero_normalizedFlux": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.omega_polar_integral": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.omega_sphereFlux": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.omega_unit_normalizedFlux": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.opposite_flux_cancels": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.pauli_comm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.proj_affine": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.proj_nvec_idempotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.radialFlux_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.radialFlux_nonzero_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.same_geometry_opposite_magnetic_status": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.south_derivative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.total_chern_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.triple_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.unit_geometry_compatible_with_both_records": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MonopoleStance.unit_geometry_zero_flux_excludes_bridge": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "false_controls": {
+    "monopole_wrong_derivative_sign": "rejected",
+    "monopole_wrong_factor": "rejected",
+    "seam_flux_two": "rejected",
+    "stance_01_UnitFluxZero": "rejected",
+    "stance_02_ExistenceWithoutBridge": "rejected",
+    "stance_03_AbsenceWithoutBridge": "rejected",
+    "stance_04_ZeroUnitTransfersCharge": "rejected",
+    "stance_05_OriginStillProjector": "rejected",
+    "stance_06_GaugeDifferenceZero": "rejected",
+    "topology_global_gauge": "rejected",
+    "topology_total_chern_two": "rejected"
+  },
+  "lean": "Lean (version 4.34.1, x86_64-unknown-linux-gnu, commit 5045d0056413266e57c625dcd7c365b10e377c52, Release)",
+  "modules": {
+    "FluxCharge.Bridge": {
+      "file": "FluxCharge/Bridge.lean",
+      "sha256": "b97c48ab61b037a77ae48a0a9496762a887eeb80d37d256e3ba1689e6e78ee0c",
+      "theorems": 9
+    },
+    "FluxCharge.Extension": {
+      "file": "FluxCharge/Extension.lean",
+      "sha256": "bb1b2edb9fdf42c446ae65873e0f1901c0e8aaf84b40a865f04de0b85e1bc101",
+      "theorems": 2
+    },
+    "FluxCharge.Geometry": {
+      "file": "FluxCharge/Geometry.lean",
+      "sha256": "3d2e08f0441eb5ca33fc4521d26599c44ccfad23acfe9dd049b827d6165de860",
+      "theorems": 13
+    },
+    "FluxCharge.Monopole": {
+      "file": "FluxCharge/Monopole.lean",
+      "sha256": "ae938dc3dfa720c2b7f57f0e6869d9b2ffeb7f0ef9061058077af1aae6805561",
+      "theorems": 17
+    },
+    "FluxCharge.Seam": {
+      "file": "FluxCharge/Seam.lean",
+      "sha256": "62dc125cc67fb6c78e8bc9beac302b8ca798adfad56a5fba86e5ae2323349614",
+      "theorems": 6
+    },
+    "FluxCharge.Topology": {
+      "file": "FluxCharge/Topology.lean",
+      "sha256": "33d80b1e8a9d24f155721aa43be5533d76e0f7be4884215a0b51e860643887c1",
+      "theorems": 9
+    }
+  },
+  "theorems": 56
+}

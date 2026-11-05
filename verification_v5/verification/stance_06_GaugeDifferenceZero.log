@@ -1,0 +1,3 @@
+FalseControls/stance_06_GaugeDifferenceZero.lean:3:77: error: unsolved goals
+theta : ℝ
+⊢ False

@@ -1,0 +1,56 @@
+⚠ [8924/8931] Built FluxCharge.Monopole (8.1s)
+warning: FluxCharge/Monopole.lean:64:24: This simp argument is unused:
+  Matrix.mul_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [pauli, cross, Fin.sum_univ_two]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FluxCharge/Monopole.lean:64:42: This simp argument is unused:
+  Fin.sum_univ_two
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [pauli, cross, Matrix.mul_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FluxCharge/Monopole.lean:80:47: This simp argument is unused:
+  Matrix.mul_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [proj, dproj, dot, cross, Matrix.trace, Fin.sum_univ_two]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8925/8931] Built FluxCharge.Geometry (5.1s)
+warning: FluxCharge/Geometry.lean:26:48: This simp argument is unused:
+  Complex.star_def
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [lowerProjector, Matrix.conjTranspose, Complex.ext_iff]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FluxCharge/Geometry.lean:104:8: This simp argument is unused:
+  mul_ne_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Real.pi_ne_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8926/8931] Built FluxCharge.Seam (4.2s)
+warning: FluxCharge/Seam.lean:36:67: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: FluxCharge/Seam.lean:36:67: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [8927/8931] Built FluxCharge.Bridge (4.7s)
+warning: FluxCharge/Bridge.lean:29:8: This simp argument is unused:
+  mul_ne_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+✔ [8928/8931] Built FluxCharge.Extension (5.2s)
+✔ [8929/8931] Built FluxCharge.Topology (4.2s)
+✔ [8930/8931] Built FluxCharge (3.1s)
+Build completed successfully (8931 jobs).
