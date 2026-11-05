@@ -3,8 +3,8 @@
 # From Geometric Flux to Magnetic Charge — Lean proofs
 
 [![Lean proof check](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml)
-![Lean](https://img.shields.io/badge/Lean-v4.34.1%20%2B%20v4.19.0-blue)
-![Theorems](https://img.shields.io/badge/theorems-17%20%2B%2024-2EA043)
+![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
+![Theorems](https://img.shields.io/badge/theorems-47-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -23,17 +23,38 @@ Physical Bridge* (version 4, 5 November 2026, research draft) and its two Lean d
 * **Read the paper:** [`paper/Geometric_Flux_and_Magnetic_Charge_v4.pdf`](paper/Geometric_Flux_and_Magnetic_Charge_v4.pdf)
   (11 pages), or the [HTML version](paper/Geometric_Flux_and_Magnetic_Charge_v4.html). Source and
   build scripts are in [`paper/`](paper/).
-* **Two Lean developments, two toolchains.** They are separate Lake projects, not one importable
-  library, and their counts are not added together as one claim:
+* **One Lean library, one chain from the matrix to the integer.** Everything the paper marks as
+  Lean-checked now lives in the single Lean v4.34.1 library `FluxCharge`:
 
-| Folder | What | Lean | Theorems | False controls |
-| :--- | :--- | :--- | ---: | ---: |
-| [`FluxCharge/`](FluxCharge/) | the Berry derivation: Pauli curvature end to end | v4.34.1 | 17 | 2 |
-| [`monopole_stance/`](monopole_stance/) | the original package: projector, flux, gauges, axis obstruction, and the bridge as a hypothesis | v4.19.0 | 24 | 6 |
+| Module | What | Theorems |
+| :--- | :--- | ---: |
+| `FluxCharge.Monopole` | the Berry derivation: curvature from the actual derivatives of P is `sin θ / 2` | 17 |
+| `FluxCharge.Geometry` | ported original: projector algebra, flux integrals, gauges, radial flux | 13 |
+| `FluxCharge.Bridge` | ported original: charge records, the bridge as a hypothesis | 9 |
+| `FluxCharge.Extension` | ported original: no continuous axis extension | 2 |
+| `FluxCharge.Seam` | **the join** (below) | 6 |
+| | **total**, with 9 false controls | **47** |
 
-`monopole_stance/` is the original archive, copied unchanged, with its own pinned Mathlib
-commit, its own `scripts/verify.py` and its recorded `verification/` evidence. Its scope is in
-[`monopole_stance/README.md`](monopole_stance/README.md).
+### The seam (`FluxCharge/Seam.lean`)
+
+* `lowerProjector_eq_proj`: the original package's `lowerProjector x y z` and the derivation's
+  `proj (x, y, z)` are the same matrix.
+* `proj_nvec_idempotent`: along the sphere, the derived projector is a genuine projector.
+* `derivedCurvature_eq`: the curvature built from Lean's `deriv` of the projector entries is
+  `sin θ / 2` at every (θ, φ).
+* `derived_curvature_unit_flux`: integrated over the coordinate rectangle, that derived curvature
+  has normalized flux exactly **1**.
+* `matrix_to_integer`: the three together, in one statement.
+
+Before v5 the paper joined the 17-theorem derivation and the 24-theorem flux package in writing.
+That join is now a checked theorem. Only the physical bridge F_B = κ f*Ω, the bundle and the
+Chern-class interpretation remain written mathematics, as the paper says.
+
+* **The original archive.** [`monopole_stance/`](monopole_stance/) keeps the original Lean v4.19.0
+  package exactly as it was verified, with its own pinned Mathlib, `verify.py` and evidence. The
+  port in `FluxCharge/` changes content in one place only: `Geometry` takes `omega` from
+  `Monopole`, where it is derived, instead of defining it. Two port fixes are proof-script only:
+  `north/south_derivative` without `convert`, and a limit lemma pinned to ℝ.
 
 ## The Berry derivation (`FluxCharge/`)
 
