@@ -22,7 +22,8 @@ theorem no_continuous_jump_extension (f : ℝ → ℝ)
   rw [hpos] at hz
   have eq0 : f 0 = 0 := tendsto_nhds_unique hz tendsto_const_nhds
   have hlim : Tendsto (fun n : ℕ => -(1 / ((n:ℝ) + 1))) atTop (𝓝 0) := by
-    simpa using tendsto_one_div_add_atTop_nhds_zero_nat.neg
+    have h := tendsto_one_div_add_atTop_nhds_zero_nat.neg
+    rwa [neg_zero] at h
   have ho := hf.tendsto.comp hlim
   have hneg : (fun n : ℕ => f (-(1 / ((n:ℝ) + 1)))) = (fun _ => 1) := by
     funext n
