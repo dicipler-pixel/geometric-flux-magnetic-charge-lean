@@ -1,23 +1,20 @@
 import FluxCharge.Seam
 
 /-!
-# Why the integer is topological
+# Pole obstruction, latitude-cut independence and derived band-flux cancellation
 
-Three statements that go one step below "the flux is 1":
+* `no_global_regular_gauge` rules out a real primitive of ω with equal endpoint values at
+  0 and π. This is the scalar pole obstruction for the axisymmetric coefficient ansatz;
+  arbitrary sphere one-forms and their regularity are not encoded.
+* `flux_is_transition_jump` and `flux_one_at_every_cut` identify the split polar integral
+  with the fixed north/south coefficient difference, equal to 1 at every real cut. This is
+  latitude-cut independence, not general coordinate or gauge invariance.
+* Actual entrywise derivatives of `1 − P` give the opposite curvature and normalized flux
+  −1. `total_chern_zero` states cancellation of normalized real fluxes; its historical name
+  does not denote a constructed Chern class.
 
-* `no_global_regular_gauge` : no single potential `a` with `a' = ω` takes the same value at the
-  two poles. A regular global gauge would force the flux to be 0. The unit flux therefore forces
-  two charts (Dirac's argument in miniature).
-* `flux_is_transition_jump` : for every cut θ₀, the total flux equals the jump
-  `a_N(θ₀) − a_S(θ₀)` between the north and south gauge coefficients, and that jump is 1
-  (`flux_one_at_every_cut`). The integer lives in the transition between the charts, not in a
-  coordinate choice.
-* `derivedCurvatureCompl_eq`, `total_chern_zero` : the complementary band's curvature, built from
-  the actual derivatives of `1 − P`, is `−sin θ / 2`. Its normalized flux is `−1`, so the two
-  bands' fluxes sum to 0.
-
-Not proved here: the line bundle and its Chern class as a topological invariant, the physical
-pullback, or any electromagnetic identification.
+The eigenline bundle, Chern class, general coordinate/gauge invariance, spatial pullback
+and electromagnetic identification remain outside this formalization.
 -/
 
 namespace MonopoleStance
@@ -30,8 +27,8 @@ theorem continuous_omega : Continuous omega := by
   unfold omega
   exact Real.continuous_sin.div_const 2
 
-/-- **No single regular gauge.** No potential with derivative `ω` takes equal values at the two
-poles (in particular, none vanishes at both). -/
+/-- **Pole obstruction.** No real primitive of `ω` takes equal values at 0 and π.
+This scalar statement does not quantify over arbitrary sphere one-forms. -/
 theorem no_global_regular_gauge :
     ¬ ∃ a : ℝ → ℝ, (∀ θ, HasDerivAt a (omega θ) θ) ∧ a 0 = a Real.pi := by
   rintro ⟨a, ha, hpole⟩
@@ -40,8 +37,8 @@ theorem no_global_regular_gauge :
   rw [omega_polar_integral] at h
   linarith
 
-/-- **The flux is the gauge jump at any cut.** Integrating ω on the north cap with `a_N` and on
-the south cap with `a_S` gives `a_N(θ₀) − a_S(θ₀)`, whatever the cut θ₀. -/
+/-- **Latitude-cut independence for the fixed coefficients.** The split polar integral equals
+`a_N(θ₀) − a_S(θ₀)`. Cap language applies for cuts in [0, π]; the identity holds for all real cuts. -/
 theorem flux_is_transition_jump (θ₀ : ℝ) :
     (∫ θ in (0:ℝ)..θ₀, omega θ) + (∫ θ in θ₀..Real.pi, omega θ) =
       northCoefficient θ₀ - southCoefficient θ₀ := by
@@ -113,7 +110,8 @@ theorem derived_compl_flux : coordFlux derivedCurvatureCompl / (2 * Real.pi) = -
   have hs : sphereFlux (fun θ => -omega θ) = -sphereFlux omega := by linarith
   rw [hs, neg_div, h1]
 
-/-- **Total Chern number zero.** The two bands' derived fluxes cancel exactly. -/
+/-- **Derived band-flux cancellation.** The normalized real fluxes sum to zero.
+The historical theorem name does not assert a formal Chern-class construction. -/
 theorem total_chern_zero :
     coordFlux derivedCurvature / (2 * Real.pi) + coordFlux derivedCurvatureCompl / (2 * Real.pi) = 0 := by
   rw [derived_curvature_unit_flux, derived_compl_flux]
@@ -122,3 +120,4 @@ theorem total_chern_zero :
 end
 
 end MonopoleStance
+

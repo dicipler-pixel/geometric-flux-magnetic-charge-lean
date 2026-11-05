@@ -2,7 +2,7 @@ import FluxCharge.Monopole
 import FluxCharge.Geometry
 
 /-!
-# The seam: one checked chain from the Pauli matrix to the integer
+# The seam: one checked chain from the Pauli matrix to normalized flux 1
 
 `FluxCharge.Monopole` derives the curvature `sin θ / 2` from the actual derivatives of the
 lower Pauli projector `proj (n(θ, φ))`. `FluxCharge.Geometry` (the ported original package)
@@ -17,6 +17,7 @@ integrates `omega θ = sin θ / 2` to unit normalized flux, using its own encodi
                                derived curvature has normalized flux exactly 1;
 * `matrix_to_integer`       : the three statements together.
 
+The value 1 is an equality of real integrals, not a general quantization theorem.
 Not proved here: the line bundle, its Chern class as a topological invariant, the physical
 pullback, and any electromagnetic identification. The bridge stays a hypothesis
 (`ElectromagneticBridge` in `FluxCharge.Bridge`).
@@ -76,7 +77,7 @@ theorem derived_curvature_unit_flux : coordFlux derivedCurvature / (2 * Real.pi)
   rw [e, coordFlux_eq_sphereFlux]
   exact omega_unit_normalizedFlux
 
-/-- **From the matrix to the integer, in one statement.** Along the sphere the projector is a
+/-- **From the matrix to normalized real flux 1.** Along the sphere the projector is a
 projector, its derived curvature is `sin θ / 2`, and the derived curvature has normalized
 flux 1. -/
 theorem matrix_to_integer :
@@ -88,3 +89,4 @@ theorem matrix_to_integer :
 end
 
 end MonopoleStance
+
