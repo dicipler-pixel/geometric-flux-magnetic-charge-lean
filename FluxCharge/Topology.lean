@@ -98,7 +98,7 @@ theorem derivedCurvatureCompl_eq (θ φ : ℝ) : derivedCurvatureCompl θ φ = -
     exact (hasDerivAt_compl_φ θ φ i j).deriv
   simp only [derivedCurvatureCompl]
   rw [hV, hW, neg_mul_neg, neg_mul_neg, complement_curvature, triple_product]
-  simp [omega]
+  simp [omega, Complex.sin_ofReal_re]
 
 /-- The complementary band has normalized flux −1. -/
 theorem derived_compl_flux : coordFlux derivedCurvatureCompl / (2 * Real.pi) = -1 := by
