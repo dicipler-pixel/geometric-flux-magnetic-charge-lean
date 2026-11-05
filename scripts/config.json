@@ -3,11 +3,27 @@
     {
       "module": "FluxCharge.Monopole",
       "path": "FluxCharge/Monopole.lean"
+    },
+    {
+      "module": "FluxCharge.Geometry",
+      "path": "FluxCharge/Geometry.lean"
+    },
+    {
+      "module": "FluxCharge.Bridge",
+      "path": "FluxCharge/Bridge.lean"
+    },
+    {
+      "module": "FluxCharge.Extension",
+      "path": "FluxCharge/Extension.lean"
+    },
+    {
+      "module": "FluxCharge.Seam",
+      "path": "FluxCharge/Seam.lean"
     }
   ],
-  "expected_theorems": 17,
-  "expected_false_controls": 2,
+  "expected_theorems": 47,
+  "expected_false_controls": 9,
   "root_imports": [
-    "FluxCharge.Monopole"
+    "FluxCharge"
   ]
 }
