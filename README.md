@@ -85,5 +85,14 @@ lake build
 python3 scripts/verify.py
 ```
 
-Prepared with AI assistance (Claude, Anthropic; and ChatGPT for the note's drafting). The ideas
-and direction are the author's.
+## Credits
+
+* **Direction, ideas and responsibility for the work:** Jeromie Beasley.
+* **ChatGPT (OpenAI):** drafting of the note *From Geometric Flux to Magnetic Charge*, the original
+  monopole package, and the entrywise derivative theorems and `berry_curvature_from_derivatives`.
+* **Claude (Anthropic):** the first version of `Monopole.lean`, the chain-rule lemma
+  `hasDerivAt_proj_comp`, the wrong-sign false control, independent review, and setting up
+  this repository.
+
+The AI systems worked under the author's direction. Every proof here is checked by Lean, not
+taken on trust from any of them.
