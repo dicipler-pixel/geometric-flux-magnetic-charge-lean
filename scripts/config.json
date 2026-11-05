@@ -1,0 +1,13 @@
+{
+  "modules": [
+    {
+      "module": "FluxCharge.Monopole",
+      "path": "FluxCharge/Monopole.lean"
+    }
+  ],
+  "expected_theorems": 17,
+  "expected_false_controls": 2,
+  "root_imports": [
+    "FluxCharge.Monopole"
+  ]
+}
