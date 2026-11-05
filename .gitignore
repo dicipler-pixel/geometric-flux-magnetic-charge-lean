@@ -1,5 +1,5 @@
 .lake/
-build.log
-verification/
+/build.log
+/verification/
 __pycache__/
-lake-manifest.json
+/lake-manifest.json

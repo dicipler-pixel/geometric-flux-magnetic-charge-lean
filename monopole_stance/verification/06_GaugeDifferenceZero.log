@@ -1,0 +1,3 @@
+negative_controls/06_GaugeDifferenceZero.lean:3:77: error: unsolved goals
+theta : ℝ
+⊢ False

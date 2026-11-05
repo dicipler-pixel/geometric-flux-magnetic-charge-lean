@@ -1,0 +1,6 @@
+negative_controls/02_ExistenceWithoutBridge.lean:5:2: error: type mismatch
+  h
+has type
+  GeometricallyCharged r : Prop
+but is expected to have type
+  MagneticallyCharged r : Prop

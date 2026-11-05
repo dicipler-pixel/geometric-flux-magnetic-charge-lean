@@ -1,0 +1,4 @@
+negative_controls/04_ZeroUnitTransfersCharge.lean:5:35: error: unsolved goals
+r : ChargeRecord
+h : ElectromagneticBridge 0 r
+⊢ False

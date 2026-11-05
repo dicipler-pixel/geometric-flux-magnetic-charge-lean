@@ -1,0 +1,3 @@
+negative_controls/05_OriginStillProjector.lean:3:80: error: unsolved goals
+case h
+⊢ False

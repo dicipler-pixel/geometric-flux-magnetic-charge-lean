@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Jeromie Beasley">
+  <meta name="author" content="GPT (OpenAI)">
+  <meta name="author" content="Claude (Anthropic)">
+  <title>From Geometric Flux to Magnetic Charge</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+  <style type="text/css">:root{color-scheme:light}body{max-width:860px;margin:32px auto;padding:0 22px;color:#17222c;background:#fff;font:18px/1.65 Georgia,'Times New Roman',serif}header{text-align:center;border-bottom:1px solid #d7dfe5;padding-bottom:20px;margin-bottom:25px}h1,h2,h3{line-height:1.25;color:#143c50}h1.title{font-size:2.05em}h2{margin-top:2em}h3{font-size:1.12em}p.author,p.date{margin:.4em}a{color:#165b7d}nav#TOC{font:15px/1.65 system-ui,sans-serif;background:#f1f5f7;padding:14px 22px;border-radius:6px}table{border-collapse:collapse;width:100%;font-size:.87em;display:table}td,th{padding:10px 12px;border-bottom:1px solid #ccd6de;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:#eef3f6}code{font-size:.82em;overflow-wrap:anywhere;white-space:normal}div.theorem,div.proposition,div.definition{border-left:3px solid #397c98;padding:1px 16px;background:#f7fafb;margin:1.3em 0}div.proof{margin:.8em 0 1.7em}figure{margin:24px 0}figure img{width:100%;height:auto}figcaption{font-size:.84em;line-height:1.5;color:#354751}math[display=block]{display:block;max-width:100%;overflow-x:auto;overflow-y:hidden;padding:10px 0}span.eqnumber{float:right;font-size:.85em;padding-left:10px}.equation{clear:both}section.abstract{font-size:.94em}#TOC ul{padding-left:20px}.references{font-size:.9em}@media(max-width:600px){body{font-size:17px;padding:0 14px}h1.title{font-size:1.7em}table{font-size:.74em}td,th{padding:6px}math[display=block]{font-size:.9em}}@media print{body{max-width:none;margin:0;font-size:11pt}nav#TOC{display:none}a{color:inherit}div.theorem,div.proposition{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">From Geometric Flux to Magnetic Charge</h1>
+<p class="author">Jeromie Beasley</p>
+<p class="author">GPT (OpenAI)</p>
+<p class="author">Claude (Anthropic)</p>
+<p class="date">Version 4.0 — 5 November 2026<br>
+Research note / draft for review</p>
+<p><strong>AI assistance.</strong> Jeromie Beasley, GPT (OpenAI), and
+Claude (Anthropic) collaborated on the mathematics, drafting, Lean
+development, review and typesetting. GPT and Claude are AI systems. This
+draft has not been independently peer reviewed.</p>
+<div class="abstract">
+<div class="abstract-title">Abstract</div>
+<p>A parameter-space monopole becomes a magnetic-charge statement only
+through a map to physical space and an identification of the measured
+field. We make that distinction concrete for the lower eigenprojector of
+a two-level Pauli Hamiltonian. A Lean module proves the Pauli
+commutator, the projector’s exact affine increment, six
+direction-component derivatives, a general entrywise chain rule, both
+projector derivative specializations, and the curvature built from those
+actual derivatives, giving
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Ω</mi><mrow><mi>θ</mi><mi>ϕ</mi></mrow></msub><mo>=</mo><mo>sin</mo><mi>θ</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\Omega_{\theta\phi}=\sin\theta/2</annotation></semantics></math>.
+Earlier checked modules integrate this coefficient to unit normalized
+flux, verify the two local coefficient identities, and prove the
+axis-extension obstruction. We then state the physical bridge
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>B</mi></msub><mo>=</mo><mi>κ</mi><msup><mi>f</mi><mo>*</mo></msup><mi>Ω</mi></mrow><annotation encoding="application/x-tex">F_B=\kappa f^*\Omega</annotation></semantics></math>,
+which gives
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Φ</mi><mi>B</mi></msub><mo>=</mo><mn>2</mn><mi>π</mi><mi>κ</mi><mo>deg</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">\Phi_B=2\pi\kappa\deg f</annotation></semantics></math>
+under the usual degree formula. Simple numerical records expose
+precisely which implication depends on that bridge. The resulting
+argument connects the explicit matrix calculation to its flux and keeps
+the physical coupling visible. Bundle construction, Chern-class
+identification and the physical pullback remain ordinary written
+mathematics.</p>
+</div>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#from-a-projector-to-a-physical-question" id="toc-from-a-projector-to-a-physical-question">From a projector to a
+physical question</a></li>
+<li><a href="#conventions-and-domains" id="toc-conventions-and-domains">Conventions and domains</a></li>
+<li><a href="#projector-algebra-and-derived-curvature" id="toc-projector-algebra-and-derived-curvature">Projector algebra and
+derived curvature</a></li>
+<li><a href="#two-charts-and-the-meaning-of-the-integer" id="toc-two-charts-and-the-meaning-of-the-integer">Two charts and the
+meaning of the integer</a></li>
+<li><a href="#an-extension-obstruction-at-the-degeneracy" id="toc-an-extension-obstruction-at-the-degeneracy">An extension
+obstruction at the degeneracy</a></li>
+<li><a href="#the-electromagnetic-bridge" id="toc-the-electromagnetic-bridge">The electromagnetic bridge</a>
+<ul>
+<li><a href="#a-spatial-domain-and-a-map" id="toc-a-spatial-domain-and-a-map">A spatial domain and a map</a></li>
+<li><a href="#an-explicit-exterior-field" id="toc-an-explicit-exterior-field">An explicit exterior field</a></li>
+</ul></li>
+<li><a href="#charge-transfer-with-an-explicit-bridge" id="toc-charge-transfer-with-an-explicit-bridge">Charge transfer with an
+explicit bridge</a></li>
+<li><a href="#the-limits-of-a-no-flux-argument" id="toc-the-limits-of-a-no-flux-argument">The limits of a no-flux
+argument</a></li>
+<li><a href="#relation-to-projector-transport-and-retained-information" id="toc-relation-to-projector-transport-and-retained-information">Relation
+to projector transport and retained information</a></li>
+<li><a href="#sec:formal" id="toc-sec:formal">Formal verification and
+reproducibility</a></li>
+<li><a href="#what-the-checked-calculation-adds" id="toc-what-the-checked-calculation-adds">What the checked calculation
+adds</a></li>
+<li><a href="#sec:map" id="toc-sec:map">Complete declaration-to-claim
+map</a>
+<ul>
+<li><a href="#new-matrix-curvature-module-17-declarations" id="toc-new-matrix-curvature-module-17-declarations">New
+matrix-curvature module: 17 declarations</a></li>
+</ul></li>
+<li><a href="#combined-formal-statement" id="toc-combined-formal-statement">Combined formal statement</a></li>
+<li><a href="#data-code-and-assistance" id="toc-data-code-and-assistance">Data, code and assistance</a></li>
+</ul>
+</nav>
+<p><strong>Keywords:</strong> Berry curvature; Pauli projector; magnetic
+monopole; first Chern number; physical identification; Lean 4.</p>
+<h1 id="from-a-projector-to-a-physical-question">From a projector to a
+physical question</h1>
+<p>Start with an eigenline that changes as the Hamiltonian changes. Its
+curvature records the geometry of that family. Integrating the curvature
+can retain an integer even though no magnetic field in physical space
+has yet been specified. The question is what carries that integer from
+one domain to the other.</p>
+<p>The two-level Pauli example lets us follow each step explicitly:
+matrix, derivative, curvature, flux, and physical interpretation. The
+new formal step in this revision is the matrix-to-curvature calculation.
+Its sign and factor of one half follow from checked algebra and
+trigonometric derivatives. The calculation supplies the coefficient
+integrated by the earlier development.</p>
+<p>The underlying geometry is classical. Dirac’s construction concerns
+electromagnetic phase and magnetic charge <span class="citation" data-cites="dirac"></span>; Berry and Simon describe eigenstate phase
+and line-bundle geometry <span class="citation" data-cites="berry simon"></span>; Wu and Yang explain the global
+connection picture <span class="citation" data-cites="wuyang"></span>.
+The example also appears in the author’s IQGT manuscript, Appendix B
+<span class="citation" data-cites="iqgt"></span>. This note’s
+contribution is a reproducible formal calculation and a clear account of
+the physical identification it needs.</p>
+<p>We mark checked components and written proofs separately. The
+declaration map in Appendix <a href="#sec:map">A</a> gives the exact
+formal coverage. All physical interpretations use the domains,
+conventions and hypotheses stated below.</p>
+<h1 id="conventions-and-domains">Conventions and domains</h1>
+<p>Let
+<span class="eqnumber">(4)</span><span class="eqnumber">(3)</span><span class="eqnumber">(2)</span><span class="eqnumber">(1)</span><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mn>1</mn></msub><mo>,</mo><msub><mi>σ</mi><mn>2</mn></msub><mo>,</mo><msub><mi>σ</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">\sigma_1,\sigma_2,\sigma_3</annotation></semantics></math>
+be the standard Pauli matrices, satisfying <span id="eq:pauli"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>⋅</mo><mi>σ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>b</mi><mo>⋅</mo><mi>σ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>⋅</mo><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>I</mi><mo>+</mo><mi mathvariant="normal">i</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>×</mo><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mi>σ</mi><mo>,</mo><mspace width="2.0em"></mspace><mo>Tr</mo><msub><mi>σ</mi><mi>j</mi></msub><mo>=</mo><mn>0</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">(a\cdot\sigma)(b\cdot\sigma)=(a\cdot b)I+\mathrm{i}(a\times b)\cdot\sigma,
+ \qquad \operatorname{Tr}\sigma_j=0.</annotation></semantics></math> For
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>∈</mo><msup><mi>ℝ</mi><mn>3</mn></msup><mo>\</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">d\in\mathbb{R}^3\setminus\{0\}</annotation></semantics></math>
+write
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mi>d</mi><mi>/</mi><mrow><mo stretchy="true" form="prefix">|</mo><mi>d</mi><mo stretchy="true" form="postfix">|</mo></mrow></mrow><annotation encoding="application/x-tex">n=d/|d|</annotation></semantics></math>
+and consider <span id="eq:h"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>d</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>d</mi><mo>⋅</mo><mi>σ</mi><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>P</mi><mo>−</mo></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mi>I</mi><mo>−</mo><mi>n</mi><mo>⋅</mo><mi>σ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">H(d)=d\cdot\sigma,\qquad P_-(n)=\tfrac12(I-n\cdot\sigma).</annotation></semantics></math>
+The base space at this stage is Hamiltonian <em>parameter space</em>. On
+its unit sphere use <span id="eq:n"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo>,</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mo>sin</mo><mi>θ</mi><mo>cos</mo><mi>ϕ</mi><mo>,</mo><mo>sin</mo><mi>θ</mi><mo>sin</mo><mi>ϕ</mi><mo>,</mo><mo>cos</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mspace width="1.0em"></mspace><mn>0</mn><mo>≤</mo><mi>θ</mi><mo>≤</mo><mi>π</mi><mo>,</mo><mspace width="1.0em"></mspace><mn>0</mn><mo>≤</mo><mi>ϕ</mi><mo>&lt;</mo><mn>2</mn><mi>π</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">n(\theta,\phi)=(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta),
+ \quad 0\leq\theta\leq\pi,\quad 0\leq\phi&lt;2\pi.</annotation></semantics></math>
+The outward orientation is represented by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">d</mi><mi>θ</mi><mo>∧</mo><mi mathvariant="normal">d</mi><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\mathrm{d}\theta\wedge\mathrm{d}\phi</annotation></semantics></math>
+with its positive
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>sin</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">\sin\theta</annotation></semantics></math>
+surface density. For a normalized local eigenvector
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>u</mi><annotation encoding="application/x-tex">u</annotation></semantics></math>,
+our Berry convention is <span id="eq:berryconv"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi mathvariant="normal">i</mi><msup><mi>u</mi><mo>†</mo></msup><mi mathvariant="normal">d</mi><mi>u</mi><mo>,</mo><mspace width="2.0em"></mspace><mi>Ω</mi><mo>=</mo><mi mathvariant="normal">d</mi><mi>A</mi><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>Ω</mi><mrow><mi>a</mi><mi>b</mi></mrow></msub><mo>=</mo><mi mathvariant="normal">i</mi><mo>Tr</mo><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">(</mo><msub><mi>P</mi><mo>−</mo></msub><mrow><mo stretchy="true" form="prefix">[</mo><msub><mi>∂</mi><mi>a</mi></msub><msub><mi>P</mi><mo>−</mo></msub><mo>,</mo><msub><mi>∂</mi><mi>b</mi></msub><msub><mi>P</mi><mo>−</mo></msub><mo stretchy="true" form="postfix">]</mo></mrow><mo minsize="1.2" maxsize="1.2" stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">A=\mathrm{i}u^\dagger\mathrm{d}u,\qquad \Omega=\mathrm{d}A,
+ \qquad \Omega_{ab}=\mathrm{i}\operatorname{Tr}\bigl(P_-[\partial_aP_-,\partial_bP_-]\bigr).</annotation></semantics></math>
+Changing the sign convention for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+the band, or the orientation changes the corresponding sign. The
+nonvanishing statement is unaffected.</p>
+<p>The magnetic two-form
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>F</mi><mi>B</mi></msub><annotation encoding="application/x-tex">F_B</annotation></semantics></math>
+used later is a dimensionful physical quantity whose surface integral is
+magnetic flux. It is not defined to be
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Ω</mi><annotation encoding="application/x-tex">\Omega</annotation></semantics></math>.
+A coefficient converting between them must carry the requisite units,
+and a map must identify the parameter and spatial domains. We use
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>q</mi><mi>Φ</mi></msub><annotation encoding="application/x-tex">q_\Phi</annotation></semantics></math>
+for a nonzero <em>flux unit</em>; it is not an electric charge.</p>
+<h1 id="projector-algebra-and-derived-curvature">Projector algebra and
+derived curvature</h1>
+<div id="prop:projector" class="proposition">
+<p><strong>Proposition 3.1</strong> (Pauli projector identities).
+<em><span class="eqnumber">(5)</span><span class="nodecor">[Lean-checked components]</span>  For real
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi></mrow><annotation encoding="application/x-tex">x,y,z</annotation></semantics></math>
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>y</mi><mn>2</mn></msup><mo>+</mo><msup><mi>z</mi><mn>2</mn></msup><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x^2+y^2+z^2=1</annotation></semantics></math>,
+the matrix <span id="eq:pentries"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn><mo>−</mo><mi>z</mi></mtd><mtd columnalign="center" style="text-align: center"><mo>−</mo><mi>x</mi><mo>+</mo><mi mathvariant="normal">i</mi><mi>y</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mo>−</mo><mi>x</mi><mo>−</mo><mi mathvariant="normal">i</mi><mi>y</mi></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn><mo>+</mo><mi>z</mi></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">P(x,y,z)=\frac12\begin{pmatrix}
+ 1-z&amp;-x+\mathrm{i}y\\-x-\mathrm{i}y&amp;1+z
+ \end{pmatrix}</annotation></semantics></math> is Hermitian and
+idempotent and has trace one.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> Conjugation exchanges the off-diagonal entries. Put
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mi>n</mi><mo>⋅</mo><mi>σ</mi></mrow><annotation encoding="application/x-tex">N=n\cdot\sigma</annotation></semantics></math>.
+Equation <a href="#eq:pauli">(1)</a> gives
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>N</mi><mn>2</mn></msup><mo>=</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">N^2=I</annotation></semantics></math>,
+so
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>P</mi><mn>2</mn></msup><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>I</mi><mo>−</mo><mn>2</mn><mi>N</mi><mo>+</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>4</mn><mo>=</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">P^2=(I-2N+N^2)/4=P</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>Tr</mo><mi>P</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\operatorname{Tr}P=1</annotation></semantics></math>.
+The companion development proves these three matrix identities directly
+in fixed coordinates over
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℂ</mi><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math>;
+it does not rely on an assumed matrix identity named <a href="#eq:pauli">(1)</a>. ◻</p>
+</div>
+<p>In ordinary finite-dimensional spectral theory these identities
+specify an orthogonal rank-one projector. Moreover,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><msub><mi>P</mi><mo>−</mo></msub><mo>=</mo><mo>−</mo><mrow><mo stretchy="true" form="prefix">|</mo><mi>d</mi><mo stretchy="true" form="postfix">|</mo></mrow><msub><mi>P</mi><mo>−</mo></msub></mrow><annotation encoding="application/x-tex">HP_-=-|d|P_-</annotation></semantics></math>
+follows directly from <a href="#eq:h">(2)</a>. The rank conclusion and
+this eigenvalue relation are written consequences here, not additional
+checked declarations.</p>
+<div id="prop:curvature" class="proposition">
+<p><strong>Proposition 3.2</strong> (Berry curvature of the lower
+eigenline). <em><span class="eqnumber">(6)</span><span class="nodecor">[Lean-checked components]</span> 
+With the convention <a href="#eq:berryconv">(4)</a>, <span id="eq:omega"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Ω</mi><mrow><mi>a</mi><mi>b</mi></mrow></msub><mo>=</mo><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><mi>n</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>∂</mi><mi>a</mi></msub><mi>n</mi><mo>×</mo><msub><mi>∂</mi><mi>b</mi></msub><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><mi>Ω</mi><mo>=</mo><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><mo>sin</mo><mi>θ</mi><mspace width="0.167em"></mspace><mi mathvariant="normal">d</mi><mi>θ</mi><mo>∧</mo><mi mathvariant="normal">d</mi><mi>ϕ</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">\Omega_{ab}=\tfrac12 n\cdot(\partial_a n\times\partial_b n),
+ \qquad \Omega=\tfrac12\sin\theta\,\mathrm{d}\theta\wedge\mathrm{d}\phi.</annotation></semantics></math></em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> Set
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><msub><mi>∂</mi><mi>a</mi></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">a=\partial_a n</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><msub><mi>∂</mi><mi>b</mi></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">b=\partial_b n</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mi>a</mi><mo>×</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">c=a\times b</annotation></semantics></math>.
+Differentiating
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mo>−</mo></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>I</mi><mo>−</mo><mi>n</mi><mo>⋅</mo><mi>σ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">P_-=(I-n\cdot\sigma)/2</annotation></semantics></math>
+and using <a href="#eq:pauli">(1)</a> gives
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">[</mo><msub><mi>∂</mi><mi>a</mi></msub><msub><mi>P</mi><mo>−</mo></msub><mo>,</mo><msub><mi>∂</mi><mi>b</mi></msub><msub><mi>P</mi><mo>−</mo></msub><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mrow><mo stretchy="true" form="prefix">[</mo><mi>a</mi><mo>⋅</mo><mi>σ</mi><mo>,</mo><mi>b</mi><mo>⋅</mo><mi>σ</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mfrac><mi mathvariant="normal">i</mi><mn>2</mn></mfrac><mi>c</mi><mo>⋅</mo><mi>σ</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">[\partial_aP_-,\partial_bP_-]=\frac14[a\cdot\sigma,b\cdot\sigma]
+ =\frac{\mathrm{i}}{2}c\cdot\sigma.</annotation></semantics></math>
+Since
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>Tr</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo>⋅</mo><mi>σ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>c</mi><mo>⋅</mo><mi>σ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>2</mn><mi>n</mi><mo>⋅</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">\operatorname{Tr}((n\cdot\sigma)(c\cdot\sigma))=2n\cdot c</annotation></semantics></math>,
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>Tr</mo><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">(</mo><msub><mi>P</mi><mo>−</mo></msub><mrow><mo stretchy="true" form="prefix">[</mo><msub><mi>∂</mi><mi>a</mi></msub><msub><mi>P</mi><mo>−</mo></msub><mo>,</mo><msub><mi>∂</mi><mi>b</mi></msub><msub><mi>P</mi><mo>−</mo></msub><mo stretchy="true" form="postfix">]</mo></mrow><mo minsize="1.2" maxsize="1.2" stretchy="false" form="postfix">)</mo><mo>=</mo><mo>−</mo><mfrac><mi mathvariant="normal">i</mi><mn>2</mn></mfrac><mi>n</mi><mo>⋅</mo><mi>c</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">\operatorname{Tr}\bigl(P_-[\partial_aP_-,\partial_bP_-]\bigr)
+ =-\frac{\mathrm{i}}{2}n\cdot c.</annotation></semantics></math>
+Multiplication by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">i</mi><annotation encoding="application/x-tex">\mathrm{i}</annotation></semantics></math>
+proves the first formula. For <a href="#eq:n">(3)</a>, direct
+differentiation gives
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∂</mi><mi>θ</mi></msub><mi>n</mi><mo>×</mo><msub><mi>∂</mi><mi>ϕ</mi></msub><mi>n</mi><mo>=</mo><mo>sin</mo><mi>θ</mi><mspace width="0.167em"></mspace><mi>n</mi></mrow><annotation encoding="application/x-tex">\partial_\theta n\times\partial_\phi n=\sin\theta\,n</annotation></semantics></math>,
+yielding the second. ◻</p>
+</div>
+<p>The new module <code>IqgtGrassmannian/Monopole.lean</code> checks
+this calculation in fixed
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2\times2</annotation></semantics></math>
+complex matrices. It proves the commutator for arbitrary real vectors,
+the exact increment
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo>+</mo><mi>h</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mi>P</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>h</mi><mi>D</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><mi>D</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>−</mo><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><mi>a</mi><mo>⋅</mo><mi>σ</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">P(n+ha)-P(n)=hD(a),\qquad D(a)=-\tfrac12a\cdot\sigma,</annotation></semantics></math>
+and the trace identity
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">i</mi><mo>Tr</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">[</mo><mi>D</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mi>D</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">]</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>n</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>×</mo><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\mathrm{i}\operatorname{Tr}(P(n)[D(a),D(b)])=n\cdot(a\times b)/2</annotation></semantics></math>.
+Six <code>HasDerivAt</code> theorems identify the components of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∂</mi><mi>θ</mi></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\partial_\theta n</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∂</mi><mi>ϕ</mi></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\partial_\phi n</annotation></semantics></math>.
+The general lemma <code>hasDerivAt_proj_comp</code> differentiates every
+entry of the affine Pauli matrix formula along an arbitrary real path
+with differentiable components. Its two specializations
+<code>hasDerivAt_proj_theta</code> and <code>hasDerivAt_proj_phi</code>
+then prove, for every pair of matrix indices,
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi mathvariant="normal">d</mi><mrow><mi mathvariant="normal">d</mi><mi>θ</mi></mrow></mfrac><mi>P</mi><msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo>,</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mi>D</mi><msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>∂</mi><mi>θ</mi></msub><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mi mathvariant="normal">d</mi><mrow><mi mathvariant="normal">d</mi><mi>ϕ</mi></mrow></mfrac><mi>P</mi><msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo>,</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mi>D</mi><msub><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>∂</mi><mi>ϕ</mi></msub><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mi>i</mi><mi>j</mi></mrow></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">\frac{\mathrm{d}}{\mathrm{d}\theta}P(n(\theta,\phi))_{ij}=D(\partial_\theta n)_{ij},
+ \qquad
+ \frac{\mathrm{d}}{\mathrm{d}\phi}P(n(\theta,\phi))_{ij}=D(\partial_\phi n)_{ij}.</annotation></semantics></math>
+These are derivatives of complex-valued entry functions, requiring no
+choice of a matrix norm. Finally,
+<code>berry_curvature_from_derivatives</code> builds the two derivative
+matrices entry by entry using Lean’s <code>deriv</code> operator and
+proves that their matrix-trace curvature equals
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>sin</mo><mi>θ</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\omega(\theta)=\sin\theta/2</annotation></semantics></math>.
+The derivative link and final trace calculation are thus joined by a
+checked theorem. The table transliterates the Unicode direction
+characters in the derivative theorem names. An exterior-form
+construction remains outside the module.</p>
+<p>The new and original projects use the same explicit projector entries
+and the same scalar formula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>sin</mo><mi>θ</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\omega(\theta)=\sin\theta/2</annotation></semantics></math>.
+They are verified in separately pinned environments. Their
+identification here is by the displayed formulas; this release does not
+claim a cross-project Lean import theorem.</p>
+<div id="prop:flux" class="proposition">
+<p><strong>Proposition 3.3</strong> (Normalized flux). <em><span class="eqnumber">(8)</span><span class="eqnumber">(7)</span><span class="nodecor">[Lean-checked components]</span>  Define the iterated
+coordinate flux and its normalization by <span id="eq:fluxdef"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℱ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>f</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mrow><mn>2</mn><mi>π</mi></mrow></msubsup><mspace width="-0.167em"></mspace><mi mathvariant="normal">d</mi><mi>ϕ</mi><msubsup><mo>∫</mo><mn>0</mn><mi>π</mi></msubsup><mi>f</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.167em"></mspace><mi mathvariant="normal">d</mi><mi>θ</mi><mo>,</mo><mspace width="2.0em"></mspace><mi>𝒩</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>f</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mrow><mi>ℱ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>f</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mrow><mn>2</mn><mi>π</mi></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal F(f)=\int_0^{2\pi}\!\mathrm{d}\phi\int_0^\pi f(\theta)\,\mathrm{d}\theta,
+ \qquad \mathcal N(f)=\frac{\mathcal F(f)}{2\pi}.</annotation></semantics></math>
+For
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>sin</mo><mi>θ</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\omega(\theta)=\sin\theta/2</annotation></semantics></math>,
+<span id="eq:unit"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∫</mo><mn>0</mn><mi>π</mi></msubsup><mi>ω</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.167em"></mspace><mi mathvariant="normal">d</mi><mi>θ</mi><mo>=</mo><mn>1</mn><mo>,</mo><mspace width="1.0em"></mspace><mi>ℱ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>ω</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>2</mn><mi>π</mi><mo>,</mo><mspace width="1.0em"></mspace><mi>𝒩</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>ω</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>1</mn><mo>≠</mo><mn>0</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">\int_0^\pi\omega(\theta)\,\mathrm{d}\theta=1,\quad
+ \mathcal F(\omega)=2\pi,\quad \mathcal N(\omega)=1\neq0.</annotation></semantics></math></em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> The first integral equals
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mrow><mo stretchy="true" form="prefix">[</mo><mo>−</mo><mo>cos</mo><mi>θ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">]</mo></mrow><mn>0</mn><mi>π</mi></msubsup><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">[-\cos\theta/2]_0^\pi=1</annotation></semantics></math>.
+Integration in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
+gives
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>π</mi></mrow><annotation encoding="application/x-tex">2\pi</annotation></semantics></math>,
+and division by the nonzero number
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>π</mi></mrow><annotation encoding="application/x-tex">2\pi</annotation></semantics></math>
+gives one. Lean uses Mathlib’s interval integral of sine and exact real
+arithmetic. ◻</p>
+</div>
+<p>There is no additional surface Jacobian to insert into <a href="#eq:fluxdef">(7)</a>: the coefficient in <a href="#eq:omega">(6)</a> already contains
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>sin</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">\sin\theta</annotation></semantics></math>.
+Multiplying it by another
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>sin</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">\sin\theta</annotation></semantics></math>
+would compute a different integral.</p>
+<h1 id="two-charts-and-the-meaning-of-the-integer">Two charts and the
+meaning of the integer</h1>
+<p>The familiar local eigenvectors make the geometric interpretation
+explicit. On the sphere with the south pole removed, and with the north
+pole removed, respectively, take <span class="eqnumber">(10)</span><span class="eqnumber">(9)</span><span id="eq:states"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mi>N</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi mathvariant="normal">i</mi><mi>ϕ</mi></mrow></msup><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>u</mi><mi>S</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mo>−</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msup><mi>e</mi><mrow><mi mathvariant="normal">i</mi><mi>ϕ</mi></mrow></msup><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">u_N=\begin{pmatrix}-e^{-\mathrm{i}\phi}\sin(\theta/2)\\\cos(\theta/2)\end{pmatrix},
+ \qquad
+ u_S=\begin{pmatrix}-\sin(\theta/2)\\e^{\mathrm{i}\phi}\cos(\theta/2)\end{pmatrix}.</annotation></semantics></math>
+They satisfy
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><msub><mi>u</mi><mrow><mi>N</mi><mo>,</mo><mi>S</mi></mrow></msub><mo>=</mo><mo>−</mo><msub><mi>u</mi><mrow><mi>N</mi><mo>,</mo><mi>S</mi></mrow></msub></mrow><annotation encoding="application/x-tex">H(n)u_{N,S}=-u_{N,S}</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mi>S</mi></msub><mo>=</mo><msup><mi>e</mi><mrow><mi mathvariant="normal">i</mi><mi>ϕ</mi></mrow></msup><msub><mi>u</mi><mi>N</mi></msub></mrow><annotation encoding="application/x-tex">u_S=e^{\mathrm{i}\phi}u_N</annotation></semantics></math>
+on the overlap. Computing <a href="#eq:berryconv">(4)</a> gives <span id="eq:charts"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>N</mi></msub><mo>=</mo><msub><mi>a</mi><mi>N</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.167em"></mspace><mi mathvariant="normal">d</mi><mi>ϕ</mi><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>a</mi><mi>N</mi></msub><mo>=</mo><mfrac><mrow><mn>1</mn><mo>−</mo><mo>cos</mo><mi>θ</mi></mrow><mn>2</mn></mfrac><mo>;</mo><mspace width="2.0em"></mspace><msub><mi>A</mi><mi>S</mi></msub><mo>=</mo><msub><mi>a</mi><mi>S</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.167em"></mspace><mi mathvariant="normal">d</mi><mi>ϕ</mi><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>a</mi><mi>S</mi></msub><mo>=</mo><mo>−</mo><mfrac><mrow><mn>1</mn><mo>+</mo><mo>cos</mo><mi>θ</mi></mrow><mn>2</mn></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">A_N=a_N(\theta)\,\mathrm{d}\phi,\quad a_N=\frac{1-\cos\theta}{2};
+ \qquad A_S=a_S(\theta)\,\mathrm{d}\phi,\quad a_S=-\frac{1+\cos\theta}{2}.</annotation></semantics></math>
+The apparent polar-coordinate singularity of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">d</mi><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\mathrm{d}\phi</annotation></semantics></math>
+is cancelled by its coefficient at the included pole. The opposite pole
+is excluded from the respective chart. These are local descriptions of
+one connection, rather than one globally defined scalar potential on the
+entire sphere.</p>
+<div id="prop:charts" class="proposition">
+<p><strong>Proposition 4.1</strong> (Local coefficient identities).
+<em><span class="nodecor">[Lean-checked components]</span>  For every
+real
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math>,
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>N</mi></msub><mi>′</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mi>a</mi><mi>S</mi></msub><mi>′</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>ω</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>a</mi><mi>N</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><msub><mi>a</mi><mi>S</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>1</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">a_N'(\theta)=a_S'(\theta)=\omega(\theta),\qquad a_N(\theta)-a_S(\theta)=1.</annotation></semantics></math></em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> Differentiate <a href="#eq:charts">(10)</a> and
+subtract the two coefficients. These scalar derivative and equality
+statements are precisely the checked claims. ◻</p>
+</div>
+<p>The line bundle assembled from <span class="eqnumber">(12)</span><a href="#eq:states">(9)</a> has the
+usual first-Chern interpretation <span id="eq:chern"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><msub><mi>P</mi><mo>−</mo></msub><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>π</mi></mrow></mfrac><msub><mo>∫</mo><msup><mi>S</mi><mn>2</mn></msup></msub><mi>Ω</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">c_1[P_-]=\frac1{2\pi}\int_{S^2}\Omega=1</annotation></semantics></math>
+with the specified convention. The transition phase on the equator has
+winding one. This is the standard eigenline-bundle interpretation,
+explained in writing using the local charts and classical connection
+theory <span class="citation" data-cites="simon wuyang"></span>. The
+companion code does not construct that bundle, its transition-function
+winding, or its Chern class. In particular, its name
+<code>normalizedFlux</code> denotes the real-valued expression in <a href="#eq:fluxdef">(7)</a>, not a formal Chern-class definition.</p>
+<figure id="fig:curvature">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABjIAAAINCAYAAACUOeajAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjEwLjgsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvwVt1zgAAAAlwSFlzAAAbrwAAG68BXhqRHAABAABJREFUeJzs3XdcU9f7B/BPCCPsPVQUUJEhTsRVWxW1bqtVWzsdbbXaYWvt+HX7rd2t2lZtba2j09Zav1Zw1L0H4IoKTqYgS/YKJOf3B5IvmAQDJBDg837Ji5hz7rlPBnCfPPeeIxFCCBAREREREREREREREZkgs6YOgIiIiIiIiIiIiIiISBcWMoiIiIiIiIiIiIiIyGSxkEFERERERERERERERCaLhQwiIiIiIiIiIiIiIjJZLGQQEREREREREREREZHJYiGDiIiIiIiIiIiIiIhMFgsZRERERERERERERERksljIICIiIiIiIiIiIiIik8VCBhERERERERERERERmSwWMoiIiIiIiIiIiIiIyGSxkEFERERERERERERERCaLhQwiIiIiIiIiIiIiIjJZLGQQEREREREREREREZHJYiGDiIiIiIiIiIiIiIhMFgsZRERERERERERERERksljIICIiIiIiIiIiIiIik8VCBhERERERERERERERmSwWMgxkz549Bhvr1KlTyM3NNdh4RERERETUPBkyzwCYaxARERFR88RCRgPl5uZi0qRJmDZtmsHGPHbsGDp27Ii///7bYGMCQFZWFj7//HOMGDEC3t7ekMlksLW1hY+PD0aOHIl33nkHe/fuRUVFhUH3S83T/v37IZFIanwlJCQ0dVgNNn/+fDg6OmLDhg1NHQoRERGRTtryjJdeeqnGsZmvr2+dxzVErpGQkKBxnFj9q6XR9nj379/f1GFRM1ZRUYFly5YhNDQUdnZ2sLa2hp+fH6ZMmYLDhw+r+/3zzz8YPnw4XFxcYGlpibZt22L48OFYu3YtMjIyEBQUhKCgIGRkZBgsNmONS0RE1FAsZDRAVlYWBgwYgFOnTiE6Otpg4z733HN47rnnMHnyZHz99dcGGfOLL76An58fvvzyS/Tr1w9r1qzBsWPHsGvXLrz77rswMzPD4sWLMWzYMHh5eWHlypUG2W9zU/3D+9YuLCwMcrkcO3fubOpQDGrNmjXIz8/Hr7/+qrV9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GSLVkJubi+DgYCgUCsTFxcHNzc3g+3j77bfx4Ycf4tNPP8Vrr71m8PGJyDDOnz+Pbt26ITIyUj1VFxEREVF9NEaeATDXMEW3bt2Cq6srgMp1HTp37tzEEdWNg4MDCgoKsGvXLoNPKURERETENTLqycnJCX///TdKSkrwxBNPGHwu1d27d+Ozzz7D5MmTsXDhQoOOTUSG9cMPP6Bjx44YNWpUU4dCREREzZyx8wyAuUZTOX36dI119+4UHR0NoHLNNlMrYsTHx+Pdd99FRUWF1vbLly+joKAAlpaWXHuAiIiIjIKFjAbo37+/epHr6ovPNdT27dsxfvx4zJo1C7/99pveC28RkfHt378fc+bMUf8/NzcX69atwwsvvMCfVSIiIjIIY+UZAHONpnT27Fm8/vrrOHbsmEabUqlUFzkWLFjQ2KHdVWJiIj744ANs3LhRa/vHH38MAHj66aebZHFrIiIiavnMmzqA5q5///44f/48PvnkE4ONWVhYiK1bt/JyXCITlJKSgh9++AF9+vRB9+7dsXjxYri4uNQobhARERE1lDHyDIC5himYMGECXnvtNfTv3x+2tra4evUqli9fjkOHDuGRRx7BK6+80tQh6vT0008jLi4OQ4YMgZOTE5KTk7FmzRps2bIFQ4cOxRdffNHUIRIREVELxTUyiIjqYP/+/Xj22WeRmJgICwsL9O/fH9988w0CAgKaOjQiIiIiMmH5+fnYsmULtm7divPnzyM9PR35+flwcXFBnz59MGvWLEyePLmpw9SqtLQUkZGR+Oeff3Dq1Cmkp6cjJycHDg4O6NGjBx577DHMmDEDUqm0qUMlIiKiFoqFDCIiIiIiIiIiIiIiMlmcEJWIiIiIiIiIiIiIiEwWCxlERERERERERERERGSyWMggIiIiIiIiIiIiIiKTxUIGERERERERERERERGZLBYyiIiIiIiIiIiIiIjIZLGQQUREREREREREREREJouFDCIiIiIiIiIiIiIiMlksZOhJIpFAIpE0dRhERERERNSCMM8gIiIiIro7FjKIiMgkFBYWorCwsKnDICJqkfj7lYiIWivmGURExtOYv19ZyCAiIiIiIiIiIiIiIpPFQgYREREREREREREREZksFjKIiIiIiIiIiIiIiMhksZBBREREREREREREREQmi4UMIiIiIiIiIiIiIiIyWSxkEBERERERERERERGRyWIhg4iIiIiIiIiIiIiITBYLGUREREREREREREREZLJYyCAiIiIiIiIiIiIiIpPFQgYREREREREREREREZksFjKIiIiIiIiIiIiIiMhksZBBREREREREREREREQmi4UMIiIiIiIiIiIiIiIyWSxkEBERERERERERERGRyWIhg4iIiIiIiIiIiIiITBYLGUREREREREREREREZLJYyCAiIiIiomZFpVJhxYoVcHBwgEQiQUJCgsHGTk1Nxfz589GpUyfIZDJ4enpi3Lhx2Llzp8H2QUREREREdcNCBhERERERNRsXLlzAoEGD8Pzzz6OgoMCgYx8/fhwhISH44Ycf8Oyzz+LgwYNYuXIlkpOTMWrUKLz55psG3R8REREREemHhQwiIiIiImoW3nvvPfTu3RtSqRRvvPGGQcfOzMzE+PHjkZOTg99++w2vvvoq+vbti8mTJ+PgwYNo3749Pv74Y6xfv96g+yUiIiIiortjIYOIiIiIiJqFZcuWYenSpTh48CACAgIMOvZ//vMfZGVloV+/fpg4cWKNNkdHR/zf//0fAOD1119HSUmJQfdNRERERES1YyGDiIiIiIiahYsXL2LevHmQSCQGHVehUODnn38GAEyePFlrn6r709PTERERYdD9ExERERFR7VjIICIiIiKiZqFdu3ZGGffIkSPIy8sDAISFhWnt4+HhgQ4dOgAAIiMjjRIHERERERFpZ97UARARERERETWlc+fOqW/7+vrq7Ofr64ukpKQa/YmIiIiITJUQAooKJUoV5ShWlKOkTIHS8gooKpSoUCpRXqFEuVKF8ooKlCtVlfcpVSivar99X4VSBQEBlUpA3B5XJQTKysrw6uT7G+WxsJBBREREREStWlJSkvq2u7u7zn5VbcnJyUaPiYiIiIhaHyEECksVKCwpRX5JKQpKypBfXIr84tu3S0pRUFKKguJS5BeXoaC0FEWlCpQoyiu/yspRolCgVFGBYoUCJWXlUAlh1JhZyCAiIiIiImoEBQUF6tsymUxnv6q2/Px8vcfWdz2PESNG6N1v3rx5Ne5buXIldu3apdf2Dz/8MKZNm1bjvg8//BDR0dF6bT937lzcf3/NZPWVV17B9evX9dr+zTff1Ji+a9asWcjJydFr+y+++AKdOnWqcd+kSZP02hYAfvzxR7i4uKj/f+vWLTz11FN6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">
+<figcaption>Exact analytic functions in the two-level example. (a) The
+polar integral of the displayed curvature coefficient is one. (b) The
+two local connection coefficients have the same derivative and differ by
+one. The plots illustrate formulas, not measured data; their scalar
+identities are checked in Lean.</figcaption>
+</figure>
+<p>The complementary upper eigenline has
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mo>+</mo></msub><mo>=</mo><mi>I</mi><mo>−</mo><msub><mi>P</mi><mo>−</mo></msub></mrow><annotation encoding="application/x-tex">P_+=I-P_-</annotation></semantics></math>.
+Its derivatives negate those of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>P</mi><mo>−</mo></msub><annotation encoding="application/x-tex">P_-</annotation></semantics></math>,
+and the trace of a commutator is zero. Consequently
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">i</mi><mo>Tr</mo><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">(</mo><msub><mi>P</mi><mo>+</mo></msub><mrow><mo stretchy="true" form="prefix">[</mo><msub><mi>∂</mi><mi>a</mi></msub><msub><mi>P</mi><mo>+</mo></msub><mo>,</mo><msub><mi>∂</mi><mi>b</mi></msub><msub><mi>P</mi><mo>+</mo></msub><mo stretchy="true" form="postfix">]</mo></mrow><mo minsize="1.2" maxsize="1.2" stretchy="false" form="postfix">)</mo><mo>=</mo><mo>−</mo><msub><mi>Ω</mi><mrow><mi>a</mi><mi>b</mi></mrow></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathrm{i}\operatorname{Tr}\bigl(P_+[\partial_aP_+,\partial_bP_+]\bigr)=-\Omega_{ab}.</annotation></semantics></math>
+Thus the full two-band bundle is trivial and its summed curvature
+vanishes, while either selected eigenline can have nonzero flux. Lean
+checks the integral cancellation
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℱ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>ω</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>ℱ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><mi>ω</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\mathcal F(\omega)+\mathcal F(-\omega)=0</annotation></semantics></math>.
+The new module also checks the complement-projector trace identity,
+<code>complement_curvature</code>; the original integral theorem checks
+cancellation of the two supplied coefficients. Triviality of an ambient
+space cannot be substituted for triviality of each subbundle.</p>
+<h1 id="an-extension-obstruction-at-the-degeneracy">An extension
+obstruction at the degeneracy</h1>
+<p>At
+<span class="eqnumber">(13)</span><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">d=0</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>d</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">H(d)</annotation></semantics></math>
+has no isolated lower eigenline. The obstruction can be seen without any
+Chern-class machinery. Restricting the normalized direction to the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>-axis
+gives <span id="eq:axis"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mo>−</mo></msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>P</mi><mo>−</mo></msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">P_-(0,0,1)=\begin{pmatrix}0&amp;0\\0&amp;1\end{pmatrix},\qquad
+ P_-(0,0,-1)=\begin{pmatrix}1&amp;0\\0&amp;0\end{pmatrix}.</annotation></semantics></math></p>
+<div id="thm:axis" class="theorem">
+<p><strong>Theorem 5.1</strong> (No continuous axis extension). <em><span class="nodecor">[Lean-checked components]</span>  Suppose
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mi>ℝ</mi><mo>→</mo><msub><mi>M</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>ℂ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">F:\mathbb{R}\to M_2(\mathbb{C})</annotation></semantics></math>
+satisfies
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mi>P</mi><mo>−</mo></msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">F(t)=P_-(0,0,1)</annotation></semantics></math>
+for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">t&gt;0</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mi>P</mi><mo>−</mo></msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">F(t)=P_-(0,0,-1)</annotation></semantics></math>
+for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">t&lt;0</annotation></semantics></math>.
+Then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>
+is not continuous at zero.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> The real part of its
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0,0)</annotation></semantics></math>
+entry is zero on the positive half-axis and one on the negative
+half-axis. Along
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mi>m</mi></msub><mo>=</mo><mn>1</mn><mi>/</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>m</mi><mo>+</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">t_m=1/(m+1)</annotation></semantics></math>
+it tends to zero, and along
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msub><mi>t</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">-t_m</annotation></semantics></math>
+it tends to one. Both input sequences tend to zero. Continuity and
+uniqueness of limits would force
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>00</mn></msub></mrow><annotation encoding="application/x-tex">F(0)_{00}</annotation></semantics></math>
+to have real part both zero and one, a contradiction. Lean proves the
+scalar jump obstruction and then applies it to the matrix
+coordinate. ◻</p>
+</div>
+<p>Any continuous three-dimensional extension of the normalized family
+that agrees with these axis values would restrict to such a continuous
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>;
+hence it cannot exist. That restriction argument and the
+three-dimensional spectral-family construction are stated in writing,
+while Theorem <a href="#thm:axis">5.1</a> is the exact checked result.
+This is a parameter-space degeneracy obstruction, not an electromagnetic
+source equation.</p>
+<h1 id="the-electromagnetic-bridge">The electromagnetic bridge</h1>
+<h2 id="a-spatial-domain-and-a-map">A spatial domain and a map</h2>
+<p>Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Σ</mi><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math>
+be a closed oriented physical spatial surface. A map
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>Σ</mi><mo>→</mo><msup><mi>S</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">f:\Sigma\to S^2</annotation></semantics></math>
+specifies how its points sample the Hamiltonian directions. It produces
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi><mo>*</mo></msup><mi>Ω</mi></mrow><annotation encoding="application/x-tex">f^*\Omega</annotation></semantics></math>,
+but this pullback is still an eigenstate-geometric two-form unless it is
+identified with the electromagnetic field measured by a stated
+probe.</p>
+<p>A particularly transparent sufficient identification is <span class="eqnumber">(14)</span><span id="eq:physicalbridge"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>B</mi></msub><msub><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">|</mo><mi>Σ</mi></msub><mo>=</mo><mi>κ</mi><msup><mi>f</mi><mo>*</mo></msup><mi>Ω</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">F_B\big|_\Sigma=\kappa f^*\Omega,</annotation></semantics></math>
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>κ</mi><annotation encoding="application/x-tex">\kappa</annotation></semantics></math>
+is a nonzero dimensional coefficient. This equality is an additional
+hypothesis. A physical derivation must specify the coupling that makes
+the two curvatures the same observable, with consistent gauge
+transformations and normalization. Merely giving both quantities a
+connection or curvature notation does not supply that derivation.</p>
+<div id="prop:pullback" class="proposition">
+<p><strong>Proposition 6.1</strong> (Conditional pullback flux). <em><span class="eqnumber">(15)</span><span class="nodecor">[Written proof; not formalized here]</span>  If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi><mo>≃</mo><msup><mi>S</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\Sigma\simeq S^2</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>f</mi><annotation encoding="application/x-tex">f</annotation></semantics></math>
+is smooth of degree
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>,
+and <a href="#eq:physicalbridge">(14)</a> holds, then <span id="eq:degreeflux"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Φ</mi><mi>B</mi></msub><mo>:=</mo><msub><mo>∫</mo><mi>Σ</mi></msub><msub><mi>F</mi><mi>B</mi></msub><mo>=</mo><mn>2</mn><mi>π</mi><mi>κ</mi><mi>d</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">\Phi_B:=\int_\Sigma F_B=2\pi\kappa d.</annotation></semantics></math>
+More generally, put
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>π</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><msub><mo>∫</mo><mi>Σ</mi></msub><msup><mi>f</mi><mo>*</mo></msup><mi>Ω</mi></mrow><annotation encoding="application/x-tex">n=(2\pi)^{-1}\int_\Sigma f^*\Omega</annotation></semantics></math>
+whenever this record is justified. Then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Φ</mi><mi>B</mi></msub><mo>=</mo><msub><mi>q</mi><mi>Φ</mi></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\Phi_B=q_\Phi n</annotation></semantics></math>
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>Φ</mi></msub><mo>=</mo><mn>2</mn><mi>π</mi><mi>κ</mi></mrow><annotation encoding="application/x-tex">q_\Phi=2\pi\kappa</annotation></semantics></math>.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> The integral of the pullback of an oriented
+top-degree form under a smooth sphere map multiplies the integral by its
+degree. Apply that standard degree formula to <a href="#eq:unit">(8)</a>
+and multiply by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>κ</mi><annotation encoding="application/x-tex">\kappa</annotation></semantics></math>.
+The second assertion is substitution. Neither the degree formula nor the
+pullback construction is formalized in the archive. ◻</p>
+</div>
+<p>A constant map has
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">d=0</annotation></semantics></math>,
+even though the original parameter-sphere eigenline has
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">c_1=1</annotation></semantics></math>.
+An orientation-preserving degree-one map retains the unit normalized
+flux. Specifying a domain map is therefore essential even before
+specifying the electromagnetic coupling.</p>
+<p>For a probe of nonzero signed electric charge
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>e</mi><annotation encoding="application/x-tex">e</annotation></semantics></math>,
+a conventionally compatible physical identification of its dimensionless
+connection can set
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mi>ℏ</mi><mi>/</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">\kappa=\hbar/e</annotation></semantics></math>.
+Under that <em>additional identification</em>, <a href="#eq:degreeflux">(15)</a> reads
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Φ</mi><mi>B</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>h</mi><mi>/</mi><mi>e</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">\Phi_B=(h/e)d</annotation></semantics></math>.
+This illustrates the usual Dirac flux unit; it neither derives the
+identification from the two-level projector nor reports an observed
+monopole. We keep flux separate from magnetic-source conventions that
+introduce factors such as
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>μ</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\mu_0</annotation></semantics></math>.</p>
+<h2 id="an-explicit-exterior-field">An explicit exterior field</h2>
+<p>As a written example on punctured Euclidean space, choose
+<span class="eqnumber">(16)</span><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>x</mi><mi>/</mi><mrow><mo stretchy="true" form="prefix">|</mo><mi>x</mi><mo stretchy="true" form="postfix">|</mo></mrow></mrow><annotation encoding="application/x-tex">f(x)=x/|x|</annotation></semantics></math>
+and impose <a href="#eq:physicalbridge">(14)</a>. The associated radial
+magnetic field is <span id="eq:radial"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mi>κ</mi><mn>2</mn></mfrac><mfrac><mover><mi>x</mi><mo accent="true">̂</mo></mover><msup><mrow><mo stretchy="true" form="prefix">|</mo><mi>x</mi><mo stretchy="true" form="postfix">|</mo></mrow><mn>2</mn></msup></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mi>x</mi><mo>≠</mo><mn>0</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">B(x)=\frac{\kappa}{2}\frac{\widehat x}{|x|^2},\qquad x\neq0.</annotation></semantics></math>
+Its flux is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>π</mi><mi>κ</mi></mrow><annotation encoding="application/x-tex">2\pi\kappa</annotation></semantics></math>
+through every centered sphere. This is the standard monopole exterior
+geometry, smooth away from the missing origin. It is a valid
+mathematical example conditional on the imposed field identification; it
+does not provide a nonsingular core, a source dynamics, or an empirical
+realization.</p>
+<p>The exact formalized calculation is narrower. For the supplied
+unit-sphere density
+<span class="eqnumber">(17)</span><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>sin</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">g\sin\theta</annotation></semantics></math>,
+Lean proves <span id="eq:radialflux"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℱ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>g</mi><mo>sin</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>4</mn><mi>π</mi><mi>g</mi><mo>,</mo><mspace width="2.0em"></mspace><mi>ℱ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>g</mi><mo>sin</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>≠</mo><mn>0</mn><mspace width="0.222em"></mspace><mo>⇔</mo><mspace width="0.222em"></mspace><mi>g</mi><mo>≠</mo><mn>0</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal F(g\sin\theta)=4\pi g,\qquad
+ \mathcal F(g\sin\theta)\neq0\ \Longleftrightarrow\ g\neq0.</annotation></semantics></math>
+Taking
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>=</mo><mi>κ</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">g=\kappa/2</annotation></semantics></math>
+reproduces the flux of <a href="#eq:radial">(16)</a>. The code does not
+construct a spatial vector field or prove its Maxwell equations.</p>
+<h1 id="charge-transfer-with-an-explicit-bridge">Charge transfer with an
+explicit bridge</h1>
+<p>A small numerical model isolates the role of the bridge.</p>
+<div id="def:record" class="definition">
+<p><span class="eqnumber">(18)</span><strong>Definition 7.1</strong> (Charge record). A record is a pair
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo>,</mo><mi>Φ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∈</mo><mi>ℤ</mi><mo>×</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">r=(n,\Phi)\in\mathbb{Z}\times\mathbb{R}</annotation></semantics></math>.
+Write
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.222em"></mspace><mo>⇔</mo><mspace width="0.222em"></mspace><mi>n</mi><mo>≠</mo><mn>0</mn><mo>,</mo><mspace width="2.0em"></mspace><mi>M</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.222em"></mspace><mo>⇔</mo><mspace width="0.222em"></mspace><mi>Φ</mi><mo>≠</mo><mn>0</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">G(r)\ \Longleftrightarrow\ n\neq0,\qquad
+ M(r)\ \Longleftrightarrow\ \Phi\neq0.</annotation></semantics></math>
+For a specified flux unit
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>q</mi><mi>Φ</mi></msub><annotation encoding="application/x-tex">q_\Phi</annotation></semantics></math>,
+define the bridge predicate <span id="eq:recordbridge"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>q</mi><mi>Φ</mi></msub><mo>,</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.222em"></mspace><mo>⇔</mo><mspace width="0.222em"></mspace><mi>Φ</mi><mo>=</mo><msub><mi>q</mi><mi>Φ</mi></msub><mi>n</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">E(q_\Phi,r)\ \Longleftrightarrow\ \Phi=q_\Phi n.</annotation></semantics></math></p>
+</div>
+<p>Here
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
+is supplied as an integer; the type itself proves no integrality
+theorem. The code uses “magnetically charged” to mean
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\Phi\neq0</annotation></semantics></math>.
+The physical meaning of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Φ</mi><annotation encoding="application/x-tex">\Phi</annotation></semantics></math>
+comes from the preceding spatial and field identification.</p>
+<div id="thm:counter" class="theorem">
+<p><strong>Theorem 7.2</strong> (Counterassignments without a bridge).
+<em><span class="nodecor">[Lean-checked components]</span>  For every
+integer
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>,
+the records
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>0</mn></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo>,</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">r_0=(n,0)</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>1</mn></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">r_1=(n,1)</annotation></semantics></math>
+have the same geometric coordinate, while
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mi>M</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\neg M(r_0)</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>r</mi><mn>1</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">M(r_1)</annotation></semantics></math>.
+In particular,
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mo>¬</mo><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">(</mo><mo>∀</mo><mi>r</mi><mo>,</mo><mspace width="0.222em"></mspace><mi>G</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⇒</mo><mi>M</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo minsize="1.2" maxsize="1.2" stretchy="false" form="postfix">)</mo><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mo>¬</mo><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">(</mo><mo>∀</mo><mi>r</mi><mo>,</mo><mspace width="0.222em"></mspace><mi>G</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⇒</mo><mo>¬</mo><mi>M</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo minsize="1.2" maxsize="1.2" stretchy="false" form="postfix">)</mo><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+ \neg\bigl(\forall r,\ G(r)\Rightarrow M(r)\bigr),\\
+ \neg\bigl(\forall r,\ G(r)\Rightarrow\neg M(r)\bigr).
+\end{aligned}</annotation></semantics></math></em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> The first assertion is immediate from the
+coordinates. Taking
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n=1</annotation></semantics></math>
+gives a counterexample to either universal implication. Lean supplies
+these explicit witnesses. ◻</p>
+</div>
+<p>The records
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(1,0)</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(1,1)</annotation></semantics></math>
+demonstrate that two freely assigned coordinates carry no relation until
+one is imposed. They are numerical witnesses, not physical solutions.
+Their purpose is to locate the missing premise.</p>
+<div id="thm:transfer" class="theorem">
+<p><strong>Theorem 7.3</strong> (Charge transfer under the bridge).
+<em><span class="eqnumber">(21)</span><span class="nodecor">[Lean-checked components]</span>  If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>Φ</mi></msub><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">q_\Phi\neq0</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>q</mi><mi>Φ</mi></msub><mo>,</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">E(q_\Phi,r)</annotation></semantics></math>,
+then <span id="eq:iff"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.222em"></mspace><mo>⇔</mo><mspace width="0.222em"></mspace><mi>G</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">M(r)\ \Longleftrightarrow\ G(r).</annotation></semantics></math></em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> Substitute
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi><mo>=</mo><msub><mi>q</mi><mi>Φ</mi></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\Phi=q_\Phi n</annotation></semantics></math>.
+Since
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>
+has no zero divisors,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>Φ</mi></msub><mi>n</mi><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">q_\Phi n\neq0</annotation></semantics></math>
+is equivalent to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n\neq0</annotation></semantics></math>
+when
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>Φ</mi></msub><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">q_\Phi\neq0</annotation></semantics></math>.
+The embedding
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi><mo>↪</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Z}\hookrightarrow\mathbb{R}</annotation></semantics></math>
+preserves zero. These are the steps checked by
+<code>bridge_transfers_charge</code>. ◻</p>
+</div>
+<p>The arithmetic is elementary. The physical work lies in deriving the
+bridge for the system and probe under study.</p>
+<p>Two useful companion facts are checked. First, a unit geometric
+record with zero magnetic flux cannot satisfy a nonzero-unit bridge.
+Second, for any chosen
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>q</mi><mi>Φ</mi></msub><annotation encoding="application/x-tex">q_\Phi</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
+there exists the numerical bridge-compatible record
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo>,</mo><msub><mi>q</mi><mi>Φ</mi></msub><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(n,q_\Phi n)</annotation></semantics></math>.
+These are consistency checks for the numerical definitions.</p>
+<h1 id="the-limits-of-a-no-flux-argument">The limits of a no-flux
+argument</h1>
+<p>There is also a precise boundary to an absence claim. If a globally
+defined smooth one-form
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+exists on a closed oriented surface
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Σ</mi><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>B</mi></msub><mo>=</mo><mi mathvariant="normal">d</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">F_B=\mathrm{d}A</annotation></semantics></math>
+there, Stokes’ theorem gives
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo><mi>Σ</mi></msub><msub><mi>F</mi><mi>B</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\int_\Sigma F_B=0</annotation></semantics></math>.
+Likewise, if a smooth closed field extends over a ball bounded by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Σ</mi><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math>,
+its boundary flux vanishes. These are written standard differential-form
+arguments, not theorems in this Lean package.</p>
+<p>Their hypotheses matter. A nontrivial line bundle may require local
+potentials, and a punctured ball need not admit the extension required
+by the second argument. Local closedness
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">d</mi><msub><mi>F</mi><mi>B</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\mathrm{d}F_B=0</annotation></semantics></math>
+on the punctured exterior does not force all closed-surface fluxes there
+to vanish. The local charts in Section 4 demonstrate how a nonzero
+curvature integral can coexist with regular potentials on separate
+patches.</p>
+<p>The code isolates the simplest logical version. Let
+<span class="eqnumber">(22)</span><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mn>0</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">A_0(r)</annotation></semantics></math>
+mean
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\Phi=0</annotation></semantics></math>.
+It proves <span id="eq:admiss"></span>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mo>∀</mo><mi>r</mi><mo>,</mo><mspace width="0.222em"></mspace><msub><mi>A</mi><mn>0</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⇒</mo><mo>¬</mo><mi>M</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="1.0em"></mspace><mtext mathvariant="normal">and</mtext><mspace width="1.0em"></mspace><mo>¬</mo><mrow><mo stretchy="true" form="prefix">(</mo><mo>∀</mo><mi>r</mi><mo>,</mo><mo>¬</mo><mi>M</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">(\forall r,\ A_0(r)\Rightarrow\neg M(r))
+ \quad\text{and}\quad
+ \neg(\forall r,\neg M(r)).</annotation></semantics></math> The first
+statement restricts an admitted class. The second uses a record outside
+that class. Thus imposing zero flux as an admissibility condition is
+different from deriving a universal no-monopole theorem. The numerical
+statement isolates the distinction between restricting a class and
+deriving a property of every member of a physical theory.</p>
+<h1 id="relation-to-projector-transport-and-retained-information">Relation
+to projector transport and retained information</h1>
+<p>The example illustrates a methodological point relevant to a
+transport atlas: identify the object, base space and observation before
+treating two invariants as the same quantity. Several distinctions are
+already visible in this note.</p>
+<div class="center">
+<table style="width:90%;">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 31%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Record</th>
+<th style="text-align: left;">What it retains here</th>
+<th style="text-align: left;">What it does not supply by itself</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Selected projector
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>P</mi><mo>−</mo></msub><annotation encoding="application/x-tex">P_-</annotation></semantics></math></td>
+<td style="text-align: left;">An eigenline at each parameter point</td>
+<td style="text-align: left;">A physical spatial map or EM coupling</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scalar curvature integral</td>
+<td style="text-align: left;">One oriented normalized flux</td>
+<td style="text-align: left;">The full local field or dynamics</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Summed two-band curvature</td>
+<td style="text-align: left;">Cancellation of opposite
+contributions</td>
+<td style="text-align: left;">Vanishing of each selected-band
+contribution</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Geometric integer
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math></td>
+<td style="text-align: left;">One topological/flux label under stated
+assumptions</td>
+<td style="text-align: left;">A dimensional magnetic-flux unit</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Candidate spatial flux
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Φ</mi><annotation encoding="application/x-tex">\Phi</annotation></semantics></math></td>
+<td style="text-align: left;">An integrated physical reading once
+identified</td>
+<td style="text-align: left;">A core solution, particle mass or
+production mechanism</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A scalar summary can discard a distinction retained by a selected
+sector. Here the most immediate example is cancellation of two nonzero
+band fluxes in a trivial ambient bundle. That observation supports
+careful record selection; it does not identify Berry curvature, Hopf
+charge, instanton number or spectral flow with the same electromagnetic
+magnetic charge. Nor does the name “monopole” for an isotropic angular
+moment in a transport expansion perform such an identification.</p>
+<p>For a light-transport, black-hole or neutrino model, the same
+discipline applies: specify the base space, retained sector, observable
+map and coupling before transferring an invariant. The present example
+supplies a worked template for that step.</p>
+<h1 id="sec:formal">Formal verification and reproducibility</h1>
+<p>The evidence comes from two separately pinned developments. The
+original archive contains 24 theorem declarations: 13 in
+<code>Geometry.lean</code>, two in <code>Extension.lean</code>, and nine
+in <code>Bridge.lean</code>. It uses Lean 4.19.0 and Mathlib commit</p>
+<div class="center">
+<p>c44e0c8ee63ca166450922a373c7409c5d26b00b.</p>
+</div>
+<p>Its build, axiom audit and six false controls passed. The controls
+target zero unit flux, either unconditional magnetic inference, omission
+of the nonzero flux unit, idempotence of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">I/2</annotation></semantics></math>,
+and zero chart-coefficient difference. A separate kernel-replay tool was
+not run for this original archive.</p>
+<p>The new <code>Monopole.lean</code> module contains 17 theorem
+declarations in the IQGT repository, branch <code>monopole-berry</code>,
+pinned to Lean 4.34.1. Its repository-wide check covers 111 declarations
+across five modules and eight false controls. It builds the modules,
+replays them using <code>leanchecker</code>, audits every named
+theorem’s axiom dependencies and requires mathematical rejection of each
+false control. The two Pauli controls attempt to replace
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>sin</mo><mi>θ</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\sin\theta/2</annotation></semantics></math>
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>sin</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">\sin\theta</annotation></semantics></math>
+and to reverse the sign of the top-left entry’s
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math>
+derivative. The checked revision is <a href="https://github.com/dicipler-pixel/iqgt-grassmannian-lean/commit/78511277b439ea02e9fb5c292f69503890148e00">commit
+<code>7851127</code></a>; the <a href="https://github.com/dicipler-pixel/iqgt-grassmannian-lean/actions/runs/41979258623">CI
+run and evidence</a> identify the precise build. The module hash and
+resulting report accompany this revision.</p>
+<p>Across both developments the allowed foundational dependencies are
+<code>propext</code>, <code>Classical.choice</code> and
+<code>Quot.sound</code>. The counts describe declarations; the 111
+repository declarations include the new 17 and many IQGT results outside
+this note. They should not be added to the original 24 as though they
+were all claims of this paper.</p>
+<p>The original archive rebuilds with <code>lake exe cache get</code>
+and <code>python3 scripts/verify.py</code>. To reproduce the new check,
+check out the exact IQGT commit recorded with this revision, fetch its
+pinned dependencies and run its verification workflow. The evidence and
+instructions distinguish the two environments and preserve the original
+archive unchanged.</p>
+<h1 id="what-the-checked-calculation-adds">What the checked calculation
+adds</h1>
+<p>The matrix-to-curvature step is now explicit. The lower Pauli matrix
+gives the positive coefficient
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>sin</mo><mi>θ</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\sin\theta/2</annotation></semantics></math>
+in the chosen convention; integrating that coefficient gives unit
+normalized flux. Selecting the complementary band reverses the
+curvature. This is the concrete geometric content that a physical
+application can carry forward.</p>
+<p>The remaining mathematical work has distinct targets. A bundle
+formalization would connect the normalized integral to a first Chern
+class. A pullback formalization would carry the form to a specified
+spatial surface and track its degree. A physical field model would
+establish the coupling
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>B</mi></msub><mo>=</mo><mi>κ</mi><msup><mi>f</mi><mo>*</mo></msup><mi>Ω</mi></mrow><annotation encoding="application/x-tex">F_B=\kappa f^*\Omega</annotation></semantics></math>
+for a stated probe and domain. The checked finite-matrix calculation
+supports these tasks without supplying their hypotheses.</p>
+<p>For the transport atlas, the practical rule is precise: keep the
+invariant with its domain and observation map. Berry flux, Hopf charge,
+instanton number and an
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>ℓ</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\ell=0</annotation></semantics></math>
+transport moment can each be useful while retaining different meanings.
+A successful bridge identifies the relevant structures and units in a
+particular system. That is where a geometric calculation becomes a
+testable magnetic-field claim.</p>
+<h1 id="sec:map">Complete declaration-to-claim map</h1>
+<p>All names below lie in the namespace <code>MonopoleStance</code>. The
+first table lists every declaration in the original archive. The second
+lists all 17 declarations in the new module. Local eigenvector chart
+construction, the Chern-class interpretation, physical pullbacks and
+Stokes arguments remain written mathematics.</p>
+<table style="width:94%;">
+<colgroup>
+<col style="width: 49%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Lean declaration</strong></th>
+<th style="text-align: left;"><strong>Exact role</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Lean declaration</strong></td>
+<td style="text-align: left;"><strong>Exact role</strong></td>
+</tr>
+<tr class="even">
+<td colspan="2" style="text-align: left;"><strong>Geometry: 13
+declarations</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>lowerProjector_hermitian</code></td>
+<td style="text-align: left;">Hermiticity of the explicit matrix.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>lowerProjector_idempotent</code></td>
+<td style="text-align: left;">Idempotence under unit-norm
+hypothesis.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>lowerProjector_trace</code></td>
+<td style="text-align: left;">Trace equals one.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>omega_polar_integral</code></td>
+<td style="text-align: left;">Polar integral of supplied coefficient
+equals one.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>omega_sphereFlux</code></td>
+<td style="text-align: left;">Iterated flux equals
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>π</mi></mrow><annotation encoding="application/x-tex">2\pi</annotation></semantics></math>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>omega_unit_normalizedFlux</code></td>
+<td style="text-align: left;">Normalized flux equals one.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>omega_nonzero_normalizedFlux</code></td>
+<td style="text-align: left;">Same normalized flux is nonzero.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>opposite_flux_cancels</code></td>
+<td style="text-align: left;">Supplied opposite coefficients have
+cancelling integrals.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>north_derivative</code></td>
+<td style="text-align: left;">Derivative of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>a</mi><mi>N</mi></msub><annotation encoding="application/x-tex">a_N</annotation></semantics></math>
+equals
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ω</mi><annotation encoding="application/x-tex">\omega</annotation></semantics></math>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>south_derivative</code></td>
+<td style="text-align: left;">Derivative of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>a</mi><mi>S</mi></msub><annotation encoding="application/x-tex">a_S</annotation></semantics></math>
+equals
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ω</mi><annotation encoding="application/x-tex">\omega</annotation></semantics></math>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>gauge_coefficient_difference</code></td>
+<td style="text-align: left;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>N</mi></msub><mo>−</mo><msub><mi>a</mi><mi>S</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a_N-a_S=1</annotation></semantics></math>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>radialFlux_eq</code></td>
+<td style="text-align: left;">Supplied radial density integrates to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mi>π</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">4\pi g</annotation></semantics></math>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>radialFlux_nonzero_iff</code></td>
+<td style="text-align: left;">That flux is nonzero exactly when
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">g\neq0</annotation></semantics></math>.</td>
+</tr>
+<tr class="even">
+<td colspan="2" style="text-align: left;"><strong>Extension: 2
+declarations</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>no_continuous_jump_extension</code></td>
+<td style="text-align: left;">Distinct constant half-axis values
+preclude continuity.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>no_continuous_Pauli_axis_extension</code></td>
+<td style="text-align: left;">Matrix application using the two pole
+projectors.</td>
+</tr>
+<tr class="odd">
+<td colspan="2" style="text-align: left;"><strong>Bridge: 9
+declarations</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>bridge_transfers_charge</code></td>
+<td style="text-align: left;">Nonzero-unit bridge transfers nonzero
+charge.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>same_geometry_opposite_magnetic_status</code></td>
+<td style="text-align: left;">Same geometric coordinate; zero and unit
+flux.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>unit_geometry_compatible_with_both_records</code></td>
+<td style="text-align: left;">Both assignments at geometric charge
+one.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>no_unconditional_existence_inference</code></td>
+<td style="text-align: left;">Counterexample to universal existence
+inference in the record language.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>no_unconditional_absence_inference</code></td>
+<td style="text-align: left;">Counterexample to universal absence
+inference in the record language.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>unit_geometry_zero_flux_excludes_bridge</code></td>
+<td style="text-align: left;">Unit geometry and zero flux exclude a
+nonzero-unit bridge.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>bridge_record_exists</code></td>
+<td style="text-align: left;">Numerical record
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo>,</mo><msub><mi>q</mi><mi>Φ</mi></msub><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(n,q_\Phi n)</annotation></semantics></math>
+exists.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>admissibility_is_restriction</code></td>
+<td style="text-align: left;">Zero-flux restriction does not cover all
+records.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>formal_stance</code></td>
+<td style="text-align: left;">Conjunction of unit flux, both assignments
+and conditional transfer.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="unnumbered" id="new-matrix-curvature-module-17-declarations">New matrix-curvature
+module: 17 declarations</h2>
+<table style="width:94%;">
+<colgroup>
+<col style="width: 49%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Lean declaration</strong></th>
+<th style="text-align: left;"><strong>Exact role</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Lean declaration</strong></td>
+<td style="text-align: left;"><strong>Exact role</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>pauli_comm</code></td>
+<td style="text-align: left;">Pauli commutator for arbitrary real
+vectors.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>proj_affine</code></td>
+<td style="text-align: left;">Exact affine increment of the projector
+matrix.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>curvature_formula</code></td>
+<td style="text-align: left;">Matrix-trace curvature identity.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>hasDerivAt_nvec_theta1</code></td>
+<td style="text-align: left;">First component of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∂</mi><mi>θ</mi></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\partial_\theta n</annotation></semantics></math>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>hasDerivAt_nvec_theta2</code></td>
+<td style="text-align: left;">Second component of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∂</mi><mi>θ</mi></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\partial_\theta n</annotation></semantics></math>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>hasDerivAt_nvec_theta3</code></td>
+<td style="text-align: left;">Third component of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∂</mi><mi>θ</mi></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\partial_\theta n</annotation></semantics></math>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>hasDerivAt_nvec_phi1</code></td>
+<td style="text-align: left;">First component of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∂</mi><mi>ϕ</mi></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\partial_\phi n</annotation></semantics></math>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>hasDerivAt_nvec_phi2</code></td>
+<td style="text-align: left;">Second component of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∂</mi><mi>ϕ</mi></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\partial_\phi n</annotation></semantics></math>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>hasDerivAt_nvec_phi3</code></td>
+<td style="text-align: left;">Third component of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∂</mi><mi>ϕ</mi></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\partial_\phi n</annotation></semantics></math>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>hasDerivAt_proj_comp</code></td>
+<td style="text-align: left;">Entrywise chain rule along any real path
+with differentiable components.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>hasDerivAt_proj_theta</code></td>
+<td style="text-align: left;">Actual derivative of each projector entry
+in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>hasDerivAt_proj_phi</code></td>
+<td style="text-align: left;">Actual derivative of each projector entry
+in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>berry_curvature_from_derivatives</code></td>
+<td style="text-align: left;">Curvature built from actual entrywise
+derivatives.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>triple_product</code></td>
+<td style="text-align: left;">Spherical triple product equals
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>sin</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">\sin\theta</annotation></semantics></math>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>berry_curvature</code></td>
+<td style="text-align: left;">Trace coefficient equals
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\omega(\theta)</annotation></semantics></math>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>berry_curvature_eq_zero_iff</code></td>
+<td style="text-align: left;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\omega(\theta)=0</annotation></semantics></math>
+iff
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>sin</mo><mi>θ</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\sin\theta=0</annotation></semantics></math>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>complement_curvature</code></td>
+<td style="text-align: left;">Complementary matrix has opposite
+curvature.</td>
+</tr>
+</tbody>
+</table>
+<p>The eight direction-labelled derivative names use the Unicode
+characters
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
+in the Lean source; the table transliterates them for PDF font
+compatibility.</p>
+<h1 id="combined-formal-statement">Combined formal statement</h1>
+<p>The combined theorem, expressed mathematically, is
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"></mtd><mtd columnalign="left" style="text-align: left"><mi>𝒩</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>ω</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>1</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd><mtd columnalign="left" style="text-align: left"><mspace width="1.0em"></mspace><mo>∧</mo><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">[</mo><mrow><mo stretchy="true" form="prefix">(</mo><mo>∃</mo><mi>r</mi><mo>:</mo><mspace width="0.222em"></mspace><mi>n</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>1</mn><mo>∧</mo><mo>¬</mo><mi>M</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mo>∃</mo><mi>r</mi><mo>:</mo><mspace width="0.222em"></mspace><mi>n</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>1</mn><mo>∧</mo><mi>M</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo minsize="1.2" maxsize="1.2" stretchy="false" form="postfix">]</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd><mtd columnalign="left" style="text-align: left"><mspace width="1.0em"></mspace><mo>∧</mo><mo minsize="1.2" maxsize="1.2" stretchy="false" form="prefix">[</mo><mo>∀</mo><msub><mi>q</mi><mi>Φ</mi></msub><mo>≠</mo><mn>0</mn><mspace width="0.222em"></mspace><mo>∀</mo><mi>r</mi><mo>:</mo><mspace width="0.222em"></mspace><mi>E</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>q</mi><mi>Φ</mi></msub><mo>,</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⇒</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>M</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⇔</mo><mi>G</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo minsize="1.2" maxsize="1.2" stretchy="false" form="postfix">]</mo><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+ &amp;\mathcal N(\omega)=1\\[-0.3em]
+ &amp;\quad\land\bigl[(\exists r:\ n(r)=1\land\neg M(r))
+       \land(\exists r:\ n(r)=1\land M(r))\bigr]\\[-0.3em]
+ &amp;\quad\land\bigl[\forall q_\Phi\neq0\ \forall r:\
+ E(q_\Phi,r)\Rightarrow(M(r)\Longleftrightarrow G(r))\bigr].
+\end{aligned}</annotation></semantics></math> The first conjunct
+concerns a real integral. The second concerns freely assigned records.
+No formal map from that integral to the integer field of a record is
+asserted by the conjunction. In the physical application that
+interpretation is an additional construction, discussed in Sections 4
+and 6. The third conjunct is a transfer implication given a bridge.
+Reading all three as one unconditional physical-existence theorem would
+erase their different domains and hypotheses.</p>
+<h1 class="unnumbered" id="data-code-and-assistance">Data, code and
+assistance</h1>
+<p>No experimental dataset is introduced. Figure <a href="#fig:curvature">1</a> plots analytic formulas. The companion
+source, locked build configuration, verification script and logs are
+supplied with this draft. The contributor names and AI disclosure appear
+above the abstract. The new source snapshot and exact CI evidence
+accompany the original proof archive.</p>
+<div class="thebibliography">
+<p><span>9</span> P. A. M. Dirac, “Quantised singularities in the
+electromagnetic field,” <em>Proc. R. Soc. Lond. A</em>
+<strong>133</strong>, 60–72 (1931). <a href="https://doi.org/10.1098/rspa.1931.0130">doi:10.1098/rspa.1931.0130</a>.
+M. V. Berry, “Quantal phase factors accompanying adiabatic changes,”
+<em>Proc. R. Soc. Lond. A</em> <strong>392</strong>, 45–57 (1984). <a href="https://doi.org/10.1098/rspa.1984.0023">doi:10.1098/rspa.1984.0023</a>.
+B. Simon, “Holonomy, the quantum adiabatic theorem, and Berry’s phase,”
+<em>Phys. Rev. Lett.</em> <strong>51</strong>, 2167–2170 (1983). <a href="https://doi.org/10.1103/PhysRevLett.51.2167">doi:10.1103/PhysRevLett.51.2167</a>.
+T. T. Wu and C. N. Yang, “Concept of nonintegrable phase factors and
+global formulation of gauge fields,” <em>Phys. Rev. D</em>
+<strong>12</strong>, 3845–3857 (1975). <a href="https://doi.org/10.1103/PhysRevD.12.3845">doi:10.1103/PhysRevD.12.3845</a>.
+J. Beasley, <em>Intrinsic Quantum Geometric Tensor on the Grassmannian
+and Spectral Lower Bounds on Dissipation</em>, version 7.3.1, author
+manuscript (2026), Appendix B. Supplied manuscript source; no archival
+identifier is asserted here. Lean development team, <em>Lean 4</em>,
+version 4.19.0 (2025), <a href="https://github.com/leanprover/lean4/releases/tag/v4.19.0" class="uri">https://github.com/leanprover/lean4/releases/tag/v4.19.0</a>.
+Exact compiler identification is recorded in the companion verification
+log. Mathlib contributors, <em>Mathlib</em>, revision
+<code>c44e0c8ee63ca166450922a373c7409c5d26b00b</code>, <a href="https://github.com/leanprover-community/mathlib4/tree/v4.19.0" class="uri">https://github.com/leanprover-community/mathlib4/tree/v4.19.0</a>.
+The companion lock file specifies the complete dependency graph.</p>
+</div>
+</body>
+</html>

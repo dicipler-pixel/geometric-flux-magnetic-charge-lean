@@ -1,0 +1,65 @@
+{
+  "lean": "Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)",
+  "theorems": [
+    "bridge_transfers_charge",
+    "same_geometry_opposite_magnetic_status",
+    "unit_geometry_compatible_with_both_records",
+    "no_unconditional_existence_inference",
+    "no_unconditional_absence_inference",
+    "unit_geometry_zero_flux_excludes_bridge",
+    "bridge_record_exists",
+    "admissibility_is_restriction",
+    "formal_stance",
+    "no_continuous_jump_extension",
+    "no_continuous_Pauli_axis_extension",
+    "lowerProjector_hermitian",
+    "lowerProjector_idempotent",
+    "lowerProjector_trace",
+    "omega_polar_integral",
+    "omega_sphereFlux",
+    "omega_unit_normalizedFlux",
+    "omega_nonzero_normalizedFlux",
+    "opposite_flux_cancels",
+    "north_derivative",
+    "south_derivative",
+    "gauge_coefficient_difference",
+    "radialFlux_eq",
+    "radialFlux_nonzero_iff"
+  ],
+  "theorem_count": 24,
+  "allowed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "all_axiom_dependencies_within_allowed": true,
+  "negative_controls": [
+    {
+      "file": "01_UnitFluxZero.lean",
+      "rejected": true
+    },
+    {
+      "file": "02_ExistenceWithoutBridge.lean",
+      "rejected": true
+    },
+    {
+      "file": "03_AbsenceWithoutBridge.lean",
+      "rejected": true
+    },
+    {
+      "file": "04_ZeroUnitTransfersCharge.lean",
+      "rejected": true
+    },
+    {
+      "file": "05_OriginStillProjector.lean",
+      "rejected": true
+    },
+    {
+      "file": "06_GaugeDifferenceZero.lean",
+      "rejected": true
+    }
+  ],
+  "new_axiom_declarations": 0,
+  "proof_holes": 0,
+  "scope": "Concrete matrix/integral/axis-obstruction proofs plus conditional record-language independence; no EM existence theorem."
+}

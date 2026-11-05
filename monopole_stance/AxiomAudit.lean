@@ -1,0 +1,26 @@
+import MonopoleStance
+
+#print axioms MonopoleStance.bridge_transfers_charge
+#print axioms MonopoleStance.same_geometry_opposite_magnetic_status
+#print axioms MonopoleStance.unit_geometry_compatible_with_both_records
+#print axioms MonopoleStance.no_unconditional_existence_inference
+#print axioms MonopoleStance.no_unconditional_absence_inference
+#print axioms MonopoleStance.unit_geometry_zero_flux_excludes_bridge
+#print axioms MonopoleStance.bridge_record_exists
+#print axioms MonopoleStance.admissibility_is_restriction
+#print axioms MonopoleStance.formal_stance
+#print axioms MonopoleStance.no_continuous_jump_extension
+#print axioms MonopoleStance.no_continuous_Pauli_axis_extension
+#print axioms MonopoleStance.lowerProjector_hermitian
+#print axioms MonopoleStance.lowerProjector_idempotent
+#print axioms MonopoleStance.lowerProjector_trace
+#print axioms MonopoleStance.omega_polar_integral
+#print axioms MonopoleStance.omega_sphereFlux
+#print axioms MonopoleStance.omega_unit_normalizedFlux
+#print axioms MonopoleStance.omega_nonzero_normalizedFlux
+#print axioms MonopoleStance.opposite_flux_cancels
+#print axioms MonopoleStance.north_derivative
+#print axioms MonopoleStance.south_derivative
+#print axioms MonopoleStance.gauge_coefficient_difference
+#print axioms MonopoleStance.radialFlux_eq
+#print axioms MonopoleStance.radialFlux_nonzero_iff

@@ -3,8 +3,8 @@
 # From Geometric Flux to Magnetic Charge — Lean proofs
 
 [![Lean proof check](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml)
-![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-17-2EA043)
+![Lean](https://img.shields.io/badge/Lean-v4.34.1%20%2B%20v4.19.0-blue)
+![Theorems](https://img.shields.io/badge/theorems-17%20%2B%2024-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -17,14 +17,31 @@ Jeromie Beasley
 
 ## What this is
 
-The machine-checked part of the note *From Geometric Flux to Magnetic Charge*: the Berry
-curvature of the lower Pauli eigenprojector, computed exactly and end to end.
+The paper *From Geometric Flux to Magnetic Charge: A Checked Pauli Curvature and an Explicit
+Physical Bridge* (version 4, 5 November 2026, research draft) and its two Lean developments.
+
+* **Read the paper:** [`paper/Geometric_Flux_and_Magnetic_Charge_v4.pdf`](paper/Geometric_Flux_and_Magnetic_Charge_v4.pdf)
+  (11 pages), or the [HTML version](paper/Geometric_Flux_and_Magnetic_Charge_v4.html). Source and
+  build scripts are in [`paper/`](paper/).
+* **Two Lean developments, two toolchains.** They are separate Lake projects, not one importable
+  library, and their counts are not added together as one claim:
+
+| Folder | What | Lean | Theorems | False controls |
+| :--- | :--- | :--- | ---: | ---: |
+| [`FluxCharge/`](FluxCharge/) | the Berry derivation: Pauli curvature end to end | v4.34.1 | 17 | 2 |
+| [`monopole_stance/`](monopole_stance/) | the original package: projector, flux, gauges, axis obstruction, and the bridge as a hypothesis | v4.19.0 | 24 | 6 |
+
+`monopole_stance/` is the original archive, copied unchanged, with its own pinned Mathlib
+commit, its own `scripts/verify.py` and its recorded `verification/` evidence. Its scope is in
+[`monopole_stance/README.md`](monopole_stance/README.md).
+
+## The Berry derivation (`FluxCharge/`)
 
 For a unit direction `n(θ, φ)` the lower eigenprojector of `H = n·σ` is `P(n) = ½(I − n·σ)`.
 With the actual derivatives of `θ ↦ P(n(θ, φ))`, the curvature `i Tr(P [∂_θ P, ∂_φ P])` is
 `sin θ / 2`. Over the whole sphere that is a flux of `2π`, i.e. first Chern number 1.
 
-## What is proved (`FluxCharge/Monopole.lean`, 17 theorems)
+### What is proved (`FluxCharge/Monopole.lean`, 17 theorems)
 
 | Result | Theorem |
 | :--- | :--- |
@@ -46,7 +63,9 @@ explicit hypothesis, and it stays one.
 
 ## How it is checked
 
-Every push runs [the proof check](.github/workflows/build.yml):
+Every push runs [the proof check](.github/workflows/build.yml), with one job per development.
+
+**`check` job (FluxCharge, Lean v4.34.1):**
 
 1. build against Lean v4.34.1 and Mathlib v4.34.1;
 2. independent replay of every module in Lean's kernel checker (`leanchecker`);
@@ -58,6 +77,11 @@ Every push runs [the proof check](.github/workflows/build.yml):
 
 The theorem inventory is fixed in [`scripts/config.json`](scripts/config.json).
 
+**`monopole_stance` job (Lean v4.19.0):** fetches the pinned Mathlib cache and runs the original
+`monopole_stance/scripts/verify.py`. That builds the package, rejects any `axiom`, `sorry` or
+`native_decide` in the sources, audits all 24 theorems' axioms (`propext`, `Classical.choice`,
+`Quot.sound` only), and requires all six negative controls to fail.
+
 ## Relation to other work
 
 * **IQGT paper.** The same two-level example appears in Appendix B of *Intrinsic Quantum
@@ -66,11 +90,12 @@ The theorem inventory is fixed in [`scripts/config.json`](scripts/config.json).
   94-theorem Lean record is in
   [iqgt-grassmannian-lean](https://github.com/dicipler-pixel/iqgt-grassmannian-lean) and is
   separate from this repository.
-* **History.** This module was first developed on the `monopole-berry` branch of
-  `iqgt-grassmannian-lean`, at commit `7851127`. It was moved here so that the note has one
-  home and the published IQGT record stays unchanged.
-* **The original monopole package.** The note's earlier 24-declaration Lean package is not yet
-  in this repository, and it is not counted in the 17 above.
+* **History.** The Berry derivation was first developed on the `monopole-berry` branch of
+  `iqgt-grassmannian-lean`. Paper v4 cites that branch's commit
+  [`7851127`](https://github.com/dicipler-pixel/iqgt-grassmannian-lean/commit/78511277b439ea02e9fb5c292f69503890148e00)
+  and its CI run as the checked revision, and that record still stands. `FluxCharge/Monopole.lean`
+  here is byte-for-byte the same file. It was moved here so that the note has one home and the
+  published IQGT record stays unchanged.
 
 ## Licence
 
@@ -80,16 +105,23 @@ Code and proofs: MIT ([`LICENSE`](LICENSE)). Written text: CC BY 4.0
 ## Build it yourself
 
 ```bash
+# the Berry derivation (Lean v4.34.1)
 lake exe cache get
 lake build
+python3 scripts/verify.py
+
+# the original package (Lean v4.19.0)
+cd monopole_stance
+lake exe cache get
 python3 scripts/verify.py
 ```
 
 ## Credits
 
 * **Direction, ideas and responsibility for the work:** Jeromie Beasley.
-* **ChatGPT (OpenAI):** drafting of the note *From Geometric Flux to Magnetic Charge*, the original
-  monopole package, and the entrywise derivative theorems and `berry_curvature_from_derivatives`.
+* **ChatGPT (OpenAI):** drafting of the paper *From Geometric Flux to Magnetic Charge*, the original
+  `monopole_stance` package, and the entrywise derivative theorems and
+  `berry_curvature_from_derivatives`.
 * **Claude (Anthropic):** the first version of `Monopole.lean`, the chain-rule lemma
   `hasDerivAt_proj_comp`, the wrong-sign false control, independent review, and setting up
   this repository.
