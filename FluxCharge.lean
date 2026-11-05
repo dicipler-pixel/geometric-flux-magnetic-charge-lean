@@ -7,3 +7,4 @@ import FluxCharge.Geometry
 import FluxCharge.Bridge
 import FluxCharge.Extension
 import FluxCharge.Seam
+import FluxCharge.Topology

@@ -19,10 +19,14 @@
     {
       "module": "FluxCharge.Seam",
       "path": "FluxCharge/Seam.lean"
+    },
+    {
+      "module": "FluxCharge.Topology",
+      "path": "FluxCharge/Topology.lean"
     }
   ],
-  "expected_theorems": 47,
-  "expected_false_controls": 9,
+  "expected_theorems": 56,
+  "expected_false_controls": 11,
   "root_imports": [
     "FluxCharge"
   ]
