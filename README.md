@@ -4,7 +4,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-47-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-56-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -33,7 +33,8 @@ Physical Bridge* (version 4, 5 November 2026, research draft) and its two Lean d
 | `FluxCharge.Bridge` | ported original: charge records, the bridge as a hypothesis | 9 |
 | `FluxCharge.Extension` | ported original: no continuous axis extension | 2 |
 | `FluxCharge.Seam` | **the join** (below) | 6 |
-| | **total**, with 9 false controls | **47** |
+| `FluxCharge.Topology` | why the integer is topological (below) | 9 |
+| | **total**, with 11 false controls | **56** |
 
 ### The seam (`FluxCharge/Seam.lean`)
 
@@ -45,6 +46,18 @@ Physical Bridge* (version 4, 5 November 2026, research draft) and its two Lean d
 * `derived_curvature_unit_flux`: integrated over the coordinate rectangle, that derived curvature
   has normalized flux exactly **1**.
 * `matrix_to_integer`: the three together, in one statement.
+
+### Why the integer is topological (`FluxCharge/Topology.lean`)
+
+* `no_global_regular_gauge`: no single potential `a` with `a' = ω` takes the same value at both
+  poles. A regular global gauge would make the flux 0, so the unit flux forces two charts. This is
+  Dirac's argument, in miniature.
+* `flux_is_transition_jump`, `flux_one_at_every_cut`: for **every** cut θ₀, the flux equals the
+  jump `a_N(θ₀) − a_S(θ₀)` between the north and south gauges, and that jump is 1. The integer
+  lives in the transition between charts, not in a coordinate choice.
+* `derivedCurvatureCompl_eq`, `derived_compl_flux`, `total_chern_zero`: the other band's
+  curvature, derived from the actual derivatives of `1 − P`, is `−sin θ / 2`. Its flux is −1, so
+  the two bands' fluxes sum to 0.
 
 Before v5 the paper joined the 17-theorem derivation and the 24-theorem flux package in writing.
 That join is now a checked theorem. Only the physical bridge F_B = κ f*Ω, the bundle and the
