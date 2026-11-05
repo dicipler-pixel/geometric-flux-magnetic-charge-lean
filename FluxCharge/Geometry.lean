@@ -76,13 +76,15 @@ def southCoefficient (theta : ℝ) : ℝ := -(1 + Real.cos theta) / 2
 
 theorem north_derivative (theta : ℝ) :
     HasDerivAt northCoefficient (omega theta) theta := by
-  convert ((hasDerivAt_const theta (1:ℝ)).sub (Real.hasDerivAt_cos theta)).div_const 2 using 1
-  simp [northCoefficient, omega]
+  show HasDerivAt (fun t => (1 - Real.cos t) / 2) (omega theta) theta
+  exact (((hasDerivAt_const theta (1:ℝ)).sub (Real.hasDerivAt_cos theta)).div_const 2).congr_deriv
+    (by simp [omega])
 
 theorem south_derivative (theta : ℝ) :
     HasDerivAt southCoefficient (omega theta) theta := by
-  convert (((hasDerivAt_const theta (1:ℝ)).add (Real.hasDerivAt_cos theta)).neg).div_const 2 using 1
-  simp [southCoefficient, omega]
+  show HasDerivAt (fun t => -(1 + Real.cos t) / 2) (omega theta) theta
+  exact ((((hasDerivAt_const theta (1:ℝ)).add (Real.hasDerivAt_cos theta)).neg).div_const 2).congr_deriv
+    (by simp [omega])
 
 theorem gauge_coefficient_difference (theta : ℝ) :
     northCoefficient theta - southCoefficient theta = 1 := by
