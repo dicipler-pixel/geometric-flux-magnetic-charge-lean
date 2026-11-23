@@ -18,10 +18,11 @@ Jeromie Beasley · GPT (OpenAI) · Claude (Anthropic)
 ## What this is
 
 The paper *From Geometric Flux to Magnetic Charge: A Checked Pauli Curvature and an Explicit
-Physical Bridge* (version 5, 5 November 2026, research draft) and its unified Lean development.
+Physical Bridge* (version 6 draft, 23 November 2026) and its unified Lean development. The v5
+paper and the v4 before it remain in the repository as the earlier record.
 
-* **Read the paper:** [`paper/Geometric_Flux_and_Magnetic_Charge_v5.pdf`](paper/Geometric_Flux_and_Magnetic_Charge_v5.pdf)
-  or the [HTML version](paper/Geometric_Flux_and_Magnetic_Charge_v5.html). Source and
+* **Read the draft:** [`paper/Geometric_Flux_and_Magnetic_Charge_v6.pdf`](paper/Geometric_Flux_and_Magnetic_Charge_v6.pdf)
+  or the [HTML version](paper/Geometric_Flux_and_Magnetic_Charge_v6.html). Source and
   build scripts are in [`paper/`](paper/).
 * **One Lean library, one chain from the matrix to the integer.** Everything the paper marks as
   Lean-checked now lives in the single Lean v4.34.1 library `FluxCharge`:

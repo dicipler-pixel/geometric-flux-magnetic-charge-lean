@@ -1,0 +1,46 @@
+=== build start Mon Nov 23 16:19:27 UTC 2026
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: FluxCharge/Bundle.lean:204:4: Unused tactic linter: `push_cast` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: FluxCharge/Bundle.lean:208:63: Variable name `hp` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hp
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FluxCharge/Bundle.lean:215:22: This simp argument is unused:
+  Complex.sub_im
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Complex.add_re, Complex.add_im, Complex.sub_re,
+    Complex.mul_re, Complex.mul_im, Complex.neg_re, Complex.neg_im, Complex.ofReal_re, Complex.ofReal_im, Complex.I_re,
+    Complex.I_im]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FluxCharge/Bundle.lean:221:6: This simp argument is unused:
+  Complex.sub_re
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Complex.add_re, Complex.add_im, Complex.sub_im,
+    Complex.mul_re, Complex.mul_im, Complex.neg_re, Complex.neg_im, Complex.ofReal_re, Complex.ofReal_im, Complex.I_re,
+    Complex.I_im]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FluxCharge/Bundle.lean:217:4: Unused tactic linter: `push_cast` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: FluxCharge/Bundle.lean:223:4: Unused tactic linter: `push_cast` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: FluxCharge/Bundle.lean:534:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+✔ [8930/8932] Built FluxCharge.Topology (8.9s)
+✔ [8931/8932] Built FluxCharge (3.6s)
+Build completed successfully (8932 jobs).
+
+real	10m24.613s
+user	0m33.950s
+sys	1m43.924s
+=== BUILD OK Mon Nov 23 16:29:51 UTC 2026

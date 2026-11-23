@@ -1,11 +1,13 @@
-From Geometric Flux to Magnetic Charge — version 5
+From Geometric Flux to Magnetic Charge — version 6 (draft)
 Jeromie Beasley · GPT (OpenAI) · Claude (Anthropic)
 
-Read paper/Geometric_Flux_and_Magnetic_Charge_v5.pdf or the same-named self-contained HTML.
+Read paper/Geometric_Flux_and_Magnetic_Charge_v6.pdf or the same-named self-contained HTML.
 Rebuild instructions: paper/README_PAPER.md.
-Current Lean project: repository root, Lean 4.34.1; 56 theorem declarations and 11 controls.
+Current Lean project: repository root, Lean 4.34.1; seven modules, 99 theorem declarations and 11 controls.
+New in v6: FluxCharge/Bundle.lean — the two local sections of the lower eigenline, the transition
+function of winding one, and the Berry connections computed from the sections, giving the gauge
+difference 1, curvature sin(theta)/2 and normalized flux 1.
 Historical archive: monopole_stance/, Lean 4.19.0, unchanged.
-Proof source commit: d02b612e508e083e94baaf7d781ef15b76953f68.
-Evidence: verification_v5/. All six proof module hashes match its report.
-The supplied root lake-manifest.json is the exact resolved dependency lock from that CI build.
-Earlier paper versions remain in GitHub history; this package contains v5.
+Evidence: verification_v6/ (local run of scripts/verify.py on 2026-11-23; no CI run yet).
+The supplied root lake-manifest.json is the resolved dependency lock used for that run.
+Earlier paper versions (v4, v5) remain in the repository and in GitHub history.
