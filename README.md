@@ -4,7 +4,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-56-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-99-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -34,7 +34,25 @@ Physical Bridge* (version 5, 5 November 2026, research draft) and its unified Le
 | `FluxCharge.Extension` | ported original: no continuous axis extension | 2 |
 | `FluxCharge.Seam` | **the join** (below) | 6 |
 | `FluxCharge.Topology` | pole obstruction, latitude-cut independence and derived band-flux cancellation | 9 |
-| | **total**, with 11 false controls | **56** |
+| `FluxCharge.Bundle` | **the eigenline bundle in two charts** (below) | 43 |
+| | **total**, with 11 false controls | **99** |
+
+### The eigenline bundle (`FluxCharge/Bundle.lean`)
+
+The sections of paper §4 are now objects, not prose: `uN` and `uS` are unit lower eigenvectors of
+`pauli (nvec θ φ)` (`pauli_mulVec_uN`, `pauli_mulVec_uS`, unit norms `uN_normSq`, `uS_normSq`)
+and lie in the range of the lower projector (`proj_mulVec_uN`, `proj_mulVec_uS`); they are related
+by the transition function, `uS θ φ = e^{iφ} • uN θ φ` (`uS_eq_smul_uN`), whose winding number is
+one (`transitionPhase_winding_integral`, with the literal `+I` normalization refuted as `-1` by
+`transitionPhase_winding_integral_plus_I`). The Berry connections are computed from Lean's `deriv`
+of those actual section components, not supplied: `berryConnection_uN` gives
+`(1 − cos θ)/2`, `berryConnection_uS` gives `−(1 + cos θ)/2`, so `connection_gauge_difference`
+is `A_N − A_S = 1` for one connection read in two charts, `curvature_from_connection` gives
+`dA_N = (sin θ / 2) dθ`, and `chern_number_one` records gauge difference, winding and normalized
+flux all equal to 1. What this does **not** give: an abstract first Chern class or Chern–Weil
+theory, invariance under general coordinate or gauge changes, integer-valuedness of winding
+numbers for arbitrary circle maps, spatial pullbacks with their degree formula, or any
+electromagnetic identification.
 
 ### The seam (`FluxCharge/Seam.lean`)
 
@@ -70,9 +88,11 @@ Physical Bridge* (version 5, 5 November 2026, research draft) and its unified Le
 
 The former written join between the projector derivation and the flux integral is now
 checked inside one library. `matrix_to_integer` proves that the normalized real integral
-equals 1; it is not a general integer-valued quantization theorem. The remaining boundaries
-are the global eigenline bundle and Chern-class identification, general coordinate/gauge
-invariance, pullbacks and their degree formula, and a system-specific physical field
+equals 1; it is not a general integer-valued quantization theorem. `FluxCharge.Bundle` now
+constructs the two local sections, the transition map, its winding and the connections the
+paper describes, so the section-level side of the bundle is checked for this example. The
+remaining boundaries are an abstract Chern class, invariance under general coordinate and gauge
+changes, pullbacks with their degree formula, and a system-specific physical field
 identification such as `F_B = κ f*Ω`. No physical Dirac string or magnetic particle is
 inferred from the parameter-space calculation.
 
@@ -127,7 +147,7 @@ Every push runs [the proof check](.github/workflows/build.yml), with one job per
    derivative sign; doubled derived flux; equal north-coefficient values at both poles;
    and a total two-band flux of 2.
 
-The verification script checks the fixed inventory of **56 theorem declarations and 11 controls**.
+The verification script checks the fixed inventory of **99 theorem declarations and 11 controls**.
 It also rejects control failures caused by broken imports or missing identifiers. The archived
 24 declarations are already included through their port in the 56; they are not 24 additional
 results of the unified library.

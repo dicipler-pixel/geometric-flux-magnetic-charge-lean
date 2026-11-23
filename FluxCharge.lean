@@ -8,3 +8,4 @@ import FluxCharge.Bridge
 import FluxCharge.Extension
 import FluxCharge.Seam
 import FluxCharge.Topology
+import FluxCharge.Bundle

@@ -23,9 +23,13 @@
     {
       "module": "FluxCharge.Topology",
       "path": "FluxCharge/Topology.lean"
+    },
+    {
+      "module": "FluxCharge.Bundle",
+      "path": "FluxCharge/Bundle.lean"
     }
   ],
-  "expected_theorems": 56,
+  "expected_theorems": 99,
   "expected_false_controls": 11,
   "root_imports": [
     "FluxCharge"
