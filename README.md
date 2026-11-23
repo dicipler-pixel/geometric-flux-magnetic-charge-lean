@@ -3,13 +3,13 @@
 # From Geometric Flux to Magnetic Charge — Lean proofs
 
 [![Lean proof check](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml)
-![Lean](https://img.shields.io/badge/Lean-v4.34.1%20%2B%20v4.19.0-blue)
-![Theorems](https://img.shields.io/badge/theorems-17%20%2B%2024-2EA043)
+![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
+![Theorems](https://img.shields.io/badge/theorems-56-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
 
-Jeromie Beasley
+Jeromie Beasley · GPT (OpenAI) · Claude (Anthropic)
 
 </div>
 
@@ -18,28 +18,77 @@ Jeromie Beasley
 ## What this is
 
 The paper *From Geometric Flux to Magnetic Charge: A Checked Pauli Curvature and an Explicit
-Physical Bridge* (version 4, 5 November 2026, research draft) and its two Lean developments.
+Physical Bridge* (version 5, 5 November 2026, research draft) and its unified Lean development.
 
-* **Read the paper:** [`paper/Geometric_Flux_and_Magnetic_Charge_v4.pdf`](paper/Geometric_Flux_and_Magnetic_Charge_v4.pdf)
-  (11 pages), or the [HTML version](paper/Geometric_Flux_and_Magnetic_Charge_v4.html). Source and
+* **Read the paper:** [`paper/Geometric_Flux_and_Magnetic_Charge_v5.pdf`](paper/Geometric_Flux_and_Magnetic_Charge_v5.pdf)
+  or the [HTML version](paper/Geometric_Flux_and_Magnetic_Charge_v5.html). Source and
   build scripts are in [`paper/`](paper/).
-* **Two Lean developments, two toolchains.** They are separate Lake projects, not one importable
-  library, and their counts are not added together as one claim:
+* **One Lean library, one chain from the matrix to the integer.** Everything the paper marks as
+  Lean-checked now lives in the single Lean v4.34.1 library `FluxCharge`:
 
-| Folder | What | Lean | Theorems | False controls |
-| :--- | :--- | :--- | ---: | ---: |
-| [`FluxCharge/`](FluxCharge/) | the Berry derivation: Pauli curvature end to end | v4.34.1 | 17 | 2 |
-| [`monopole_stance/`](monopole_stance/) | the original package: projector, flux, gauges, axis obstruction, and the bridge as a hypothesis | v4.19.0 | 24 | 6 |
+| Module | What | Theorems |
+| :--- | :--- | ---: |
+| `FluxCharge.Monopole` | the Berry derivation: curvature from the actual derivatives of P is `sin θ / 2` | 17 |
+| `FluxCharge.Geometry` | ported original: projector algebra, flux integrals, gauges, radial flux | 13 |
+| `FluxCharge.Bridge` | ported original: charge records, the bridge as a hypothesis | 9 |
+| `FluxCharge.Extension` | ported original: no continuous axis extension | 2 |
+| `FluxCharge.Seam` | **the join** (below) | 6 |
+| `FluxCharge.Topology` | pole obstruction, latitude-cut independence and derived band-flux cancellation | 9 |
+| | **total**, with 11 false controls | **56** |
 
-`monopole_stance/` is the original archive, copied unchanged, with its own pinned Mathlib
-commit, its own `scripts/verify.py` and its recorded `verification/` evidence. Its scope is in
-[`monopole_stance/README.md`](monopole_stance/README.md).
+### The seam (`FluxCharge/Seam.lean`)
+
+* `lowerProjector_eq_proj`: the original package's `lowerProjector x y z` and the derivation's
+  `proj (x, y, z)` are the same matrix.
+* `proj_nvec_idempotent`: along the sphere, the derived projector is a genuine projector.
+* `derivedCurvature_eq`: the curvature built from Lean's `deriv` of the projector entries is
+  `sin θ / 2` at every (θ, φ).
+* `derived_curvature_unit_flux`: integrated over the coordinate rectangle, that derived curvature
+  has normalized flux exactly **1**.
+* `matrix_to_integer`: the three together, in one statement.
+
+### Pole obstruction, latitude-cut independence and derived band-flux cancellation
+
+`FluxCharge/Topology.lean` adds three precise results:
+
+* **Pole obstruction** (`no_global_regular_gauge`): no real function with derivative
+  `ω(θ) = sin θ / 2` everywhere has equal values at `0` and `π`. The fundamental theorem
+  of calculus forces the endpoint difference to be 1. In the axisymmetric ansatz
+  `A = a(θ) dφ`, this is the scalar obstruction underlying the two-patch description.
+  The theorem does not quantify over arbitrary smooth one-forms on the sphere or formalize
+  the implication from smooth pole regularity to coefficient endpoint conditions.
+* **Latitude-cut independence** (`flux_is_transition_jump`, `flux_one_at_every_cut`): for
+  the fixed north and south coefficients, splitting the polar integral at any `θ₀` gives
+  `a_N(θ₀) − a_S(θ₀) = 1`. For `0 ≤ θ₀ ≤ π` these are the two cap contributions;
+  the theorem also holds for every real cut as an oriented interval-integral identity.
+  This checks moving the latitude cut, rather than arbitrary coordinate or gauge changes.
+* **Derived band-flux cancellation** (`derivedCurvatureCompl_eq`, `derived_compl_flux`,
+  `total_chern_zero`): actual entrywise derivatives of `I − P` give curvature `−sin θ / 2`,
+  normalized flux −1, and zero sum with the lower band's +1. Despite its historical name,
+  `total_chern_zero` states an equality of normalized real integrals; it does not construct
+  a Chern class.
+
+The former written join between the projector derivation and the flux integral is now
+checked inside one library. `matrix_to_integer` proves that the normalized real integral
+equals 1; it is not a general integer-valued quantization theorem. The remaining boundaries
+are the global eigenline bundle and Chern-class identification, general coordinate/gauge
+invariance, pullbacks and their degree formula, and a system-specific physical field
+identification such as `F_B = κ f*Ω`. No physical Dirac string or magnetic particle is
+inferred from the parameter-space calculation.
+
+* **The original archive.** [`monopole_stance/`](monopole_stance/) keeps the original Lean v4.19.0
+  package exactly as it was verified, with its own pinned Mathlib, `verify.py` and evidence. The
+  port in `FluxCharge/` changes content in one place only: `Geometry` takes `omega` from
+  `Monopole`, where it is derived, instead of defining it. Two port fixes are proof-script only:
+  `north/south_derivative` without `convert`, and a limit lemma pinned to ℝ.
 
 ## The Berry derivation (`FluxCharge/`)
 
 For a unit direction `n(θ, φ)` the lower eigenprojector of `H = n·σ` is `P(n) = ½(I − n·σ)`.
 With the actual derivatives of `θ ↦ P(n(θ, φ))`, the curvature `i Tr(P [∂_θ P, ∂_φ P])` is
-`sin θ / 2`. Over the whole sphere that is a flux of `2π`, i.e. first Chern number 1.
+`sin θ / 2`. Its coordinate flux is `2π` and its normalized real integral is 1.
+The standard eigenline-bundle interpretation identifies this with first Chern number 1;
+that identification is written mathematics here.
 
 ### What is proved (`FluxCharge/Monopole.lean`, 17 theorems)
 
@@ -54,7 +103,7 @@ With the actual derivatives of `θ ↦ P(n(θ, φ))`, the curvature `i Tr(P [∂
 | `n·(∂_θ n × ∂_φ n) = sin θ` | `triple_product` |
 | curvature `= sin θ / 2` | `berry_curvature` |
 | the same, built from Lean's `deriv` of the actual projector entries | `berry_curvature_from_derivatives` |
-| vanishes only at the poles | `berry_curvature_eq_zero_iff` |
+| scalar coefficient vanishes iff `sin θ = 0` (the poles when `0 ≤ θ ≤ π`) | `berry_curvature_eq_zero_iff` |
 | the complementary band carries the opposite curvature | `complement_curvature` |
 
 **Not proved here:** the line bundle, its Chern class as a topological invariant, any spatial
@@ -71,9 +120,17 @@ Every push runs [the proof check](.github/workflows/build.yml), with one job per
 2. independent replay of every module in Lean's kernel checker (`leanchecker`);
 3. an axiom audit of every named theorem, where only `propext`, `Classical.choice` and
    `Quot.sound` are allowed (so no `sorry`);
-4. two deliberately false statements that must fail for a mathematical reason: the curvature
-   without the ½ (`monopole_wrong_factor`), and the θ-derivative with the wrong sign
-   (`monopole_wrong_derivative_sign`).
+4. **11 deliberately false controls**, each required to fail for a mathematical reason:
+   zero unit flux; unconditional magnetic-existence inference; unconditional magnetic-absence
+   inference; charge transfer with a zero flux unit; idempotence at the degenerate origin;
+   zero chart-coefficient difference; the missing curvature factor ½; the wrong projector
+   derivative sign; doubled derived flux; equal north-coefficient values at both poles;
+   and a total two-band flux of 2.
+
+The verification script checks the fixed inventory of **56 theorem declarations and 11 controls**.
+It also rejects control failures caused by broken imports or missing identifiers. The archived
+24 declarations are already included through their port in the 56; they are not 24 additional
+results of the unified library.
 
 The theorem inventory is fixed in [`scripts/config.json`](scripts/config.json).
 
@@ -128,3 +185,4 @@ python3 scripts/verify.py
 
 The AI systems worked under the author's direction. Every proof here is checked by Lean, not
 taken on trust from any of them.
+

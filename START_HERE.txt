@@ -1,0 +1,11 @@
+From Geometric Flux to Magnetic Charge — version 5
+Jeromie Beasley · GPT (OpenAI) · Claude (Anthropic)
+
+Read paper/Geometric_Flux_and_Magnetic_Charge_v5.pdf or the same-named self-contained HTML.
+Rebuild instructions: paper/README_PAPER.md.
+Current Lean project: repository root, Lean 4.34.1; 56 theorem declarations and 11 controls.
+Historical archive: monopole_stance/, Lean 4.19.0, unchanged.
+Proof source commit: d02b612e508e083e94baaf7d781ef15b76953f68.
+Evidence: verification_v5/. All six proof module hashes match its report.
+The supplied root lake-manifest.json is the exact resolved dependency lock from that CI build.
+Earlier paper versions remain in GitHub history; this package contains v5.

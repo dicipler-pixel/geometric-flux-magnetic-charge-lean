@@ -2,12 +2,12 @@ from pathlib import Path
 import re,subprocess
 from lxml import html,etree
 root=Path(__file__).resolve().parent
-s=(root/'Geometric_Flux_and_Magnetic_Charge_v4.tex').read_text()
-aux=(root/'Geometric_Flux_and_Magnetic_Charge_v4.aux').read_text()
+s=(root/'Geometric_Flux_and_Magnetic_Charge_v5.tex').read_text()
+aux=(root/'Geometric_Flux_and_Magnetic_Charge_v5.aux').read_text()
 labels=dict(re.findall(r'\\newlabel\{([^}]+)\}\{\{([^}]+)\}',aux))
 s=re.sub(r'\\newcommand\{\\leanname\}[^\n]*\n','',s)
 s=re.sub(r'\\leanname\{([^}]+)\}',lambda m:r'\texttt{'+m[1].replace('_',r'\_')+'}',s)
-s=s.replace('figures/curvature_and_gauges.pdf','figures/curvature_and_gauges.png')
+s=s.replace('figures/curvature_and_gauges_v5.pdf','figures/curvature_and_gauges_v5.png')
 # Resolve all labelled references against the authoritative LaTeX .aux numbers.
 s=re.sub(r'\\eqref\{([^}]+)\}',lambda m:r'\hyperref['+m[1]+']{('+labels[m[1]]+')}',s)
 s=re.sub(r'\\ref\{([^}]+)\}',lambda m:r'\hyperref['+m[1]+']{'+labels[m[1]]+'}',s)
@@ -20,8 +20,8 @@ def equation(m):
  return r'\hypertarget{'+key+r'}{}'+ '\n'+r'\begin{equation}'+body+r'\end{equation}'
 s=re.sub(r'\\begin\{equation\}(.*?)\\end\{equation\}',equation,s,flags=re.S)
 (root/'html_source.tex').write_text(s)
-subprocess.run(['pandoc','html_source.tex','--from=latex','--to=html5','--standalone','--mathml','--toc','--toc-depth=2','--css=paper.css','--embed-resources','--metadata','title=From Geometric Flux to Magnetic Charge','--output=Geometric_Flux_and_Magnetic_Charge_v4.html'],cwd=root,check=True)
-p=root/'Geometric_Flux_and_Magnetic_Charge_v4.html'
+subprocess.run(['pandoc','html_source.tex','--from=latex','--to=html5','--standalone','--mathml','--toc','--toc-depth=2','--css=paper.css','--embed-resources','--metadata','title=From Geometric Flux to Magnetic Charge','--output=Geometric_Flux_and_Magnetic_Charge_v5.html'],cwd=root,check=True)
+p=root/'Geometric_Flux_and_Magnetic_Charge_v5.html'
 doc=html.fromstring(p.read_text())
 # Pandoc treats the abstract as title metadata; restore the disclosure before it.
 disclosure=doc.xpath('//body/p[strong[contains(.,"AI assistance")]]')
@@ -54,8 +54,9 @@ for key,num in anchors.items():
   sp=etree.Element('span',{'class':'eqnumber'});sp.text='('+num+')';wrap.insert(0,sp)
 p.write_text('<!DOCTYPE html>\n'+etree.tostring(doc,method='html',encoding='unicode'))
 visible=doc.text_content()
-for required in ['lowerProjector_hermitian','no_continuous_Pauli_axis_extension','formal_stance','bridge_transfers_charge','c44e0c8ee63ca166450922a373c7409c5d26b00b']:
+for required in ['lowerProjector_hermitian','no_continuous_Pauli_axis_extension','formal_stance','bridge_transfers_charge','matrix_to_integer']:
  assert required in visible, required
 assert '[eq:' not in visible
 assert len(doc.xpath('//img'))==1
 print('HTML verified:',len(anchors),'labelled equations;',len(doc.xpath('//math')),'MathML nodes; embedded figure; Lean names present.')
+

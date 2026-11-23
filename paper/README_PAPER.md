@@ -1,31 +1,33 @@
-# From Geometric Flux to Magnetic Charge — version 4
+# From Geometric Flux to Magnetic Charge — version 5
 
 Jeromie Beasley · GPT (OpenAI) · Claude (Anthropic) · 5 November 2026 · Research draft
 
-Open `Geometric_Flux_and_Magnetic_Charge_v4.pdf` for the 11-page paper, or the same-named self-contained HTML for a mobile-readable version with MathML equations.
+Open `Geometric_Flux_and_Magnetic_Charge_v5.pdf` or the self-contained HTML with the same stem. Version 4 files remain as the earlier paper record.
 
-This revision factors both entrywise projector derivative proofs through the reusable `hasDerivAt_proj_comp` lemma. The supplied companion patch contributes the general-lemma implementation and a wrong-sign control. The public derivative statements and end-to-end curvature theorem are unchanged. This release credits Jeromie Beasley, GPT (OpenAI), and Claude (Anthropic); the supplied patch's co-author credit is preserved in the repository.
+Version 5 centres the unified proof chain: explicit projector, actual entrywise derivatives, derived curvature, equality of the matrix encodings, and normalized real flux 1. It adds pole obstruction, latitude-cut independence and derived band-flux cancellation, with their exact scalar and coordinate-integral meanings. Appendix A maps all 56 theorem declarations to their claims.
 
-## Two proof environments
+## One current proof environment
 
-`monopole_stance/` preserves the original Lean 4.19.0 project unchanged: 24 declarations, the exact dependency manifest, the axiom audit and six rejected controls. Its README describes that original project's scope; it predates the new derivation.
+The root `FluxCharge` library uses Lean 4.34.1 and Mathlib v4.34.1: six modules, 56 theorem declarations and 11 false controls. The original 24 declarations are included through their port, rather than additional to the 56. The unchanged `monopole_stance/` project preserves the original Lean 4.19.0 archive.
 
-`berry_derivation/` contains the new 17-theorem module, its two false controls and CI evidence. It belongs to the IQGT project using Lean 4.34.1. The full IQGT repository has 111 audited declarations across five modules and eight false controls; those counts include the new module and the other IQGT work. The two environments are not one importable Lean project. The paper identifies their explicit matrix and scalar formulas in writing and does not claim a cross-project import theorem.
+The paper pins proof commit `d02b612e508e083e94baaf7d781ef15b76953f68` and [successful CI run 42027723304](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/runs/42027723304). The unified job builds, independently replays all six modules, audits every theorem against the three permitted standard axioms, and rejects all 11 controls. `verification_v5/` preserves its report, job log, dependency manifest and downloaded artifact. All six supplied module hashes match the report.
 
-The new module proves the Pauli commutator, the exact affine increment of the projector, the trace formula, six component derivatives, both entrywise projector derivatives, the curvature built from Lean's actual derivatives, the spherical triple product, the curvature coefficient, its scalar zero criterion, and the opposite sign for the complementary projector. It does not construct a bundle, Chern class or physical electromagnetic field.
+## Exact boundaries
 
-## Rebuild the paper
+The pole theorem rules out a scalar primitive with equal values at 0 and π. Its interpretation as an obstruction to a smooth global axisymmetric potential uses a written regularity argument. The cut theorem varies latitude within fixed north/south formulas. The cancellation theorem concerns normalized real integrals, despite the retained name `total_chern_zero`.
 
-Requires Python 3 with NumPy, Matplotlib, SymPy, PyMuPDF and lxml, plus pdfLaTeX and Pandoc.
+The global eigenline bundle, transition winding, Chern-class identification, general coordinate/gauge invariance, spatial pullback and degree formula remain written mathematics. A physical field identification such as `F_B = κ f*Ω` requires additional system-specific input. The note proves neither existence nor absence of a physical magnetic particle.
+
+## Rebuild
+
+Requires Python 3 with NumPy, Matplotlib, SymPy, PyMuPDF and lxml, plus a working pdfLaTeX installation with Latin Modern and Pandoc.
 
 ```sh
-python3 plot_functions.py
-pdflatex -interaction=nonstopmode -halt-on-error Geometric_Flux_and_Magnetic_Charge_v4.tex
-pdflatex -interaction=nonstopmode -halt-on-error Geometric_Flux_and_Magnetic_Charge_v4.tex
-python3 build_html.py
-python3 check_paper.py
+python3 plot_functions_v5.py
+pdflatex -interaction=nonstopmode -halt-on-error Geometric_Flux_and_Magnetic_Charge_v5.tex
+pdflatex -interaction=nonstopmode -halt-on-error Geometric_Flux_and_Magnetic_Charge_v5.tex
+python3 build_html_v5.py
+python3 check_paper_v5.py
 ```
 
-`paper_validation.json` records symbolic calculations and document checks. These supplement the Lean evidence. The PDF was rendered and inspected; references resolve, the figure is embedded, the assistance disclosure precedes the abstract, and no Type 3 fonts or overfull boxes remain.
-
-No Zenodo or journal submission is part of this revision.
+`paper_validation_v5.json` records exact symbolic checks, the full source inventory, PDF/HTML checks and source hashes. It supplements Lean CI. The PDF was rendered and inspected: all theorem names and references are present, all three contributors appear in the byline, the disclosure precedes the abstract, and there are no Type 3 fonts or overfull boxes.

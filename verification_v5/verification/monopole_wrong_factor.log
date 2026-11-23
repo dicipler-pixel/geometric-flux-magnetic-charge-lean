@@ -1,0 +1,3 @@
+FalseControls/monopole_wrong_factor.lean:8:32: error: unsolved goals
+θ φ : ℝ
+⊢ sin ↑θ / 2 = sin ↑θ

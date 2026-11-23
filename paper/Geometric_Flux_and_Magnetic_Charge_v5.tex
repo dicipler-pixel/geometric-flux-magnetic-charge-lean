@@ -3,7 +3,7 @@
 \usepackage{lmodern,microtype}
 \usepackage[margin=0.95in]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{graphicx,booktabs,longtable,array}
+\usepackage{graphicx,booktabs,longtable,array,needspace}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
 \usepackage{fancyhdr}
@@ -11,7 +11,7 @@
 \setlength{\headheight}{14pt}
 \setlength{\parskip}{0.35em}
 \setlength{\parindent}{0pt}
-\setlength{\emergencystretch}{2em}
+\setlength{\emergencystretch}{4em}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -29,12 +29,12 @@
 \title{\vspace{-1.5em}From Geometric Flux to Magnetic Charge\\[0.4em]\large A Checked Pauli Curvature and an Explicit Physical Bridge}
 \author{Jeromie Beasley \and GPT (OpenAI) \and Claude (Anthropic)}
 \hypersetup{pdfauthor={Jeromie Beasley; GPT (OpenAI); Claude (Anthropic)}}
-\date{Version 4.0 --- 5 November 2026\\\small Research note / draft for review}
+\date{Version 5.0 --- 5 November 2026\\\small Research note / draft for review}
 \begin{document}
 \maketitle
 {\small\noindent\textbf{AI assistance.} Jeromie Beasley, GPT (OpenAI), and Claude (Anthropic) collaborated on the mathematics, drafting, Lean development, review and typesetting. GPT and Claude are AI systems. This draft has not been independently peer reviewed.\par}
 \begin{abstract}
-A parameter-space monopole becomes a magnetic-charge statement only through a map to physical space and an identification of the measured field. We make that distinction concrete for the lower eigenprojector of a two-level Pauli Hamiltonian. A Lean module proves the Pauli commutator, the projector's exact affine increment, six direction-component derivatives, a general entrywise chain rule, both projector derivative specializations, and the curvature built from those actual derivatives, giving $\Omega_{\theta\phi}=\sin\theta/2$. Earlier checked modules integrate this coefficient to unit normalized flux, verify the two local coefficient identities, and prove the axis-extension obstruction. We then state the physical bridge $F_B=\kappa f^*\Omega$, which gives $\Phi_B=2\pi\kappa\deg f$ under the usual degree formula. Simple numerical records expose precisely which implication depends on that bridge. The resulting argument connects the explicit matrix calculation to its flux and keeps the physical coupling visible. Bundle construction, Chern-class identification and the physical pullback remain ordinary written mathematics.
+For the lower eigenprojector of the canonical two-level Pauli Hamiltonian, one Lean library now checks the full calculation from actual entrywise projector derivatives to curvature $\sin\theta/2$ and normalized flux $1$. An equality theorem joins the two matrix encodings, so the curvature derivation and flux integral are connected inside the proof system. Three further results sharpen the geometry: pole obstruction for a scalar primitive with equal pole values, latitude-cut independence for the fixed north and south coefficients, and derived band-flux cancellation for the complementary projector. The unified library contains 56 theorem declarations and rejects 11 deliberately false controls. We distinguish these checked statements from the standard written eigenline-bundle interpretation, general coordinate and gauge invariance, and pullback degree theory. A magnetic-charge conclusion additionally requires a spatial domain map and a physical identification such as $F_B=\kappa f^*\Omega$. The result is a continuous checked chain for this explicit example, with its mathematical and physical boundaries stated separately.
 
 \end{abstract}
 \noindent\textbf{Keywords:} Berry curvature; Pauli projector; magnetic monopole; first Chern number; physical identification; Lean 4.
@@ -42,7 +42,9 @@ A parameter-space monopole becomes a magnetic-charge statement only through a ma
 \section{From a projector to a physical question}
 Start with an eigenline that changes as the Hamiltonian changes. Its curvature records the geometry of that family. Integrating the curvature can retain an integer even though no magnetic field in physical space has yet been specified. The question is what carries that integer from one domain to the other.
 
-The two-level Pauli example lets us follow each step explicitly: matrix, derivative, curvature, flux, and physical interpretation. The new formal step in this revision is the matrix-to-curvature calculation. Its sign and factor of one half follow from checked algebra and trigonometric derivatives. The calculation supplies the coefficient integrated by the earlier development.
+The two-level Pauli example lets us follow each step explicitly: matrix, derivative, curvature, flux, and physical interpretation. This revision closes the earlier written join between the curvature calculation and its integral. Both now live in one pinned Lean library, with a theorem identifying the matrix encodings and a theorem integrating the curvature built from the actual derivatives.
+
+The new results are pole obstruction, latitude-cut independence and derived band-flux cancellation. These names describe what the code proves. Together they explain why the fixed two-chart calculation retains one when the latitude cut moves, and why selecting the other band reverses it. General bundle topology gives the familiar coordinate-independent Chern interpretation; constructing that interpretation is a separate mathematical task.
 
 The underlying geometry is classical. Dirac's construction concerns electromagnetic phase and magnetic charge \cite{dirac}; Berry and Simon describe eigenstate phase and line-bundle geometry \cite{berry,simon}; Wu and Yang explain the global connection picture \cite{wuyang}. The example also appears in the author's IQGT manuscript, Appendix B \cite{iqgt}. This note's contribution is a reproducible formal calculation and a clear account of the physical identification it needs.
 
@@ -109,7 +111,7 @@ Since $\Tr((n\cdot\sigma)(c\cdot\sigma))=2n\cdot c$,
 \]
 Multiplication by $\ii$ proves the first formula. For~\eqref{eq:n}, direct differentiation gives $\partial_\theta n\times\partial_\phi n=\sin\theta\,n$, yielding the second.
 \end{proof}
-The new module \leanname{IqgtGrassmannian/Monopole.lean} checks this calculation in fixed $2\times2$ complex matrices. It proves the commutator for arbitrary real vectors, the exact increment
+The module \leanname{FluxCharge/Monopole.lean} checks this calculation in fixed $2\times2$ complex matrices. It proves the commutator for arbitrary real vectors, the exact increment
 \[
  P(n+ha)-P(n)=hD(a),\qquad D(a)=-\tfrac12a\cdot\sigma,
 \]
@@ -121,7 +123,13 @@ and the trace identity $\ii\Tr(P(n)[D(a),D(b)])=n\cdot(a\times b)/2$. Six \leann
 \]
 These are derivatives of complex-valued entry functions, requiring no choice of a matrix norm. Finally, \leanname{berry_curvature_from_derivatives} builds the two derivative matrices entry by entry using Lean's \leanname{deriv} operator and proves that their matrix-trace curvature equals $\omega(\theta)=\sin\theta/2$. The derivative link and final trace calculation are thus joined by a checked theorem. The table transliterates the Unicode direction characters in the derivative theorem names. An exterior-form construction remains outside the module.
 
-The new and original projects use the same explicit projector entries and the same scalar formula $\omega(\theta)=\sin\theta/2$. They are verified in separately pinned environments. Their identification here is by the displayed formulas; this release does not claim a cross-project Lean import theorem.
+The module \leanname{FluxCharge/Seam.lean} now checks the identification. Its theorem \leanname{lowerProjector_eq_proj} equates the original explicit matrix with the matrix used in the derivative calculation. The theorem \leanname{proj_nvec_idempotent} then proves idempotence along the sphere. Define
+\begin{equation}\label{eq:derived}
+ C_-(\theta,\phi)=\Re\!\left(\ii\Tr\bigl(P_-[V,W]\bigr)\right),\quad
+ V_{ij}=\frac{\dd}{\dd\theta}(P_-)_{ij},\quad
+ W_{ij}=\frac{\dd}{\dd\phi}(P_-)_{ij}.
+\end{equation}
+Here the derivatives are Lean's actual \leanname{deriv} of complex-valued entry functions. The preceding complex trace theorem shows that the expression is already real. The theorem \leanname{derivedCurvature_eq} identifies $C_-$ with the same definition of $\omega$ used by the integral module; no equality between separately built projects is being assumed.
 
 \begin{proposition}[Normalized flux]\label{prop:flux}\checked
 Define the iterated coordinate flux and its normalization by
@@ -138,6 +146,16 @@ For $\omega(\theta)=\sin\theta/2$,
 \begin{proof}
 The first integral equals $[-\cos\theta/2]_0^\pi=1$. Integration in $\phi$ gives $2\pi$, and division by the nonzero number $2\pi$ gives one. Lean uses Mathlib's interval integral of sine and exact real arithmetic.
 \end{proof}
+For functions of two angular variables put
+\begin{equation}\label{eq:coordflux}
+ \mathcal C(F)=\int_0^{2\pi}\!\dd\phi\int_0^\pi F(\theta,\phi)\,\dd\theta.
+\end{equation}
+The theorem \leanname{coordFlux_eq_sphereFlux} identifies $\mathcal C((\theta,\phi)\mapsto f(\theta))$ with $\mathcal F(f)$. The theorem \leanname{derived_curvature_unit_flux} therefore proves
+\begin{equation}\label{eq:derivedflux}
+ \frac{\mathcal C(C_-)}{2\pi}=1.
+\end{equation}
+Finally, \leanname{matrix_to_integer} combines idempotence, the derived curvature coefficient, and~\eqref{eq:derivedflux} in one checked statement. The value one is an exact equality in $\R$. The theorem neither defines a Chern class nor proves that normalized flux is integer-valued for general families.
+
 There is no additional surface Jacobian to insert into~\eqref{eq:fluxdef}: the coefficient in~\eqref{eq:omega} already contains $\sin\theta$. Multiplying it by another $\sin\theta$ would compute a different integral.
 
 \section{Two charts and the meaning of the integer}
@@ -170,16 +188,62 @@ The line bundle assembled from~\eqref{eq:states} has the usual first-Chern inter
 with the specified convention. The transition phase on the equator has winding one. This is the standard eigenline-bundle interpretation, explained in writing using the local charts and classical connection theory \cite{simon,wuyang}. The companion code does not construct that bundle, its transition-function winding, or its Chern class. In particular, its name \leanname{normalizedFlux} denotes the real-valued expression in~\eqref{eq:fluxdef}, not a formal Chern-class definition.
 
 \begin{figure}[t]
-\centering\includegraphics[width=\linewidth]{figures/curvature_and_gauges.pdf}
-\caption{Exact analytic functions in the two-level example. (a) The polar integral of the displayed curvature coefficient is one. (b) The two local connection coefficients have the same derivative and differ by one. The plots illustrate formulas, not measured data; their scalar identities are checked in Lean.}
+\centering\includegraphics[width=\linewidth]{figures/curvature_and_gauges_v5.pdf}
+\caption{Exact analytic functions in the two-level example. (a) The curvatures derived from the two projectors have polar integrals $+1$ and $-1$. (b) The fixed chart coefficients have equal derivatives and differ by one at every latitude. The north coefficient has pole values 0 and 1. These are analytic illustrations, not measured data; their scalar identities are checked in Lean.}
 \label{fig:curvature}
 \end{figure}
 
-The complementary upper eigenline has $P_+=I-P_-$. Its derivatives negate those of $P_-$, and the trace of a commutator is zero. Consequently
+\subsection{Pole obstruction}
+The pole values expose the obstruction at the level actually encoded by the library.
+\begin{theorem}[Pole obstruction]\label{thm:pole}\checked
+There is no $a:\R\to\R$ such that $a'(\theta)=\omega(\theta)$ for every real $\theta$ and $a(0)=a(\pi)$.
+\end{theorem}
+\begin{proof}
+The derivative is continuous. The fundamental theorem of calculus and~\eqref{eq:unit} give
 \[
- \ii\Tr\bigl(P_+[\partial_aP_+,\partial_bP_+]\bigr)=-\Omega_{ab}.
+ a(\pi)-a(0)=\int_0^\pi\omega(\theta)\,\dd\theta=1,
 \]
-Thus the full two-band bundle is trivial and its summed curvature vanishes, while either selected eigenline can have nonzero flux. Lean checks the integral cancellation $\mathcal F(\omega)+\mathcal F(-\omega)=0$. The new module also checks the complement-projector trace identity, \leanname{complement_curvature}; the original integral theorem checks cancellation of the two supplied coefficients. Triviality of an ambient space cannot be substituted for triviality of each subbundle.
+contradicting equal endpoint values. This is \leanname{no_global_regular_gauge}.
+\end{proof}
+For the axisymmetric ansatz $A=a(\theta)\,\dd\phi$, smoothness at each pole requires its angular coefficient to vanish there. One way to see the necessary condition is to integrate a smooth one-form around shrinking latitude circles: the integrals tend to zero, whereas the ansatz gives $2\pi a(\theta)$. Thus a single smooth potential of this form would in particular have equal zero pole values, which the theorem excludes. This regularity argument is written geometry. The checked theorem quantifies over real functions and their derivatives, not arbitrary smooth one-forms on $S^2$.
+
+The scalar functions $a_N$ and $a_S$ themselves are smooth for all real $\theta$. It is the regularity of $a\,\dd\phi$ on the sphere that requires attention. The result supports the two-patch construction; it does not assert that a physical Dirac string must exist. In ordinary bundle language the regular local potentials avoid a singular global-potential representation.
+
+\subsection{Latitude-cut independence}
+\begin{theorem}[Latitude-cut independence]\label{thm:cut}\checked
+For every real cut $\theta_0$,
+\begin{equation}\label{eq:cut}
+ \int_0^{\theta_0}\omega\,\dd\theta+
+ \int_{\theta_0}^{\pi}\omega\,\dd\theta
+ =a_N(\theta_0)-a_S(\theta_0)=1.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Use $a_N'=\omega$, $a_N(0)=0$ for the first integral and $a_S'=\omega$, $a_S(\pi)=0$ for the second. Their sum is $a_N(\theta_0)-a_S(\theta_0)$, which equals one. Lean proves the two equalities as \leanname{flux_is_transition_jump} and \leanname{flux_one_at_every_cut}.
+\end{proof}
+When $0\leq\theta_0\leq\pi$, the two terms are the normalized north- and south-cap contributions after azimuthal integration. Outside that interval, the same theorem is an oriented interval-integral identity. Moving the latitude cut leaves the sum fixed for the stated coefficients. This is narrower than invariance under arbitrary coordinate changes or arbitrary gauge transformations.
+
+The standard topological interpretation comes from the transition phase $e^{\ii\phi}$ and its winding. A general local gauge change need not preserve a pointwise angular coefficient difference of one; the appropriate integrated transition invariant is the object that persists. The library checks the fixed coefficient identity and the cut-independent integral, while the transition map, its winding and the general invariance theorem remain written mathematics.
+
+\section{Derived band-flux cancellation}
+Let $P_+=I-P_-$. Define $C_+$ exactly as in~\eqref{eq:derived}, using the actual entrywise derivatives of $P_+$.
+\begin{theorem}[Derived band-flux cancellation]\label{thm:bands}\checked
+The complementary curvature and the two normalized fluxes satisfy
+\begin{equation}\label{eq:bandflux}
+ C_+(\theta,\phi)=-\frac{\sin\theta}{2},\qquad
+ \frac{\mathcal C(C_+)}{2\pi}=-1,\qquad
+ \frac{\mathcal C(C_-)}{2\pi}+\frac{\mathcal C(C_+)}{2\pi}=0.
+\end{equation}
+\end{theorem}
+\begin{proof}
+The checked theorems \leanname{hasDerivAt_compl_theta} and \leanname{hasDerivAt_compl_phi} differentiate every entry of $I-P_-$: the derivatives are the negatives of those of $P_-$. Their two minus signs cancel in the commutator. Since the trace of a commutator is zero,
+\[
+ \ii\Tr\bigl((I-P_-)[V,W]\bigr)
+ =-\ii\Tr\bigl(P_-[V,W]\bigr).
+\]
+Lean combines the complement trace identity with the actual derivatives to prove \leanname{derivedCurvatureCompl_eq}. Integrating gives \leanname{derived_compl_flux}; combining it with~\eqref{eq:derivedflux} gives \leanname{total_chern_zero}.
+\end{proof}
+The last theorem's historical name is retained for compatibility. Its statement is a zero sum of normalized real integrals, not a theorem about a constructed Chern-class object. Standard bundle theory interprets the selected eigenlines as carrying opposite first Chern numbers in a trivial ambient two-band bundle. Cancellation of the sum leaves each selected-band contribution nonzero. This revision checks that cancellation from both projectors' actual derivatives, rather than merely integrating an independently supplied negative coefficient.
 
 \section{An extension obstruction at the degeneracy}
 At $d=0$, $H(d)$ has no isolated lower eigenline. The obstruction can be seen without any Chern-class machinery. Restricting the normalized direction to the $z$-axis gives
@@ -195,7 +259,7 @@ The real part of its $(0,0)$ entry is zero on the positive half-axis and one on 
 \end{proof}
 Any continuous three-dimensional extension of the normalized family that agrees with these axis values would restrict to such a continuous $F$; hence it cannot exist. That restriction argument and the three-dimensional spectral-family construction are stated in writing, while Theorem~\ref{thm:axis} is the exact checked result. This is a parameter-space degeneracy obstruction, not an electromagnetic source equation.
 
-\section{The electromagnetic bridge}
+\section{The electromagnetic bridge}\label{sec:physical}
 \subsection{A spatial domain and a map}
 Let $\Sigma$ be a closed oriented physical spatial surface. A map $f:\Sigma\to S^2$ specifies how its points sample the Hamiltonian directions. It produces $f^*\Omega$, but this pullback is still an eigenstate-geometric two-form unless it is identified with the electromagnetic field measured by a stated probe.
 
@@ -213,7 +277,7 @@ If $\Sigma\simeq S^2$, $f$ is smooth of degree $d$, and~\eqref{eq:physicalbridge
 More generally, put $n=(2\pi)^{-1}\int_\Sigma f^*\Omega$ whenever this record is justified. Then $\Phi_B=q_\Phi n$ with $q_\Phi=2\pi\kappa$.
 \end{proposition}
 \begin{proof}
-The integral of the pullback of an oriented top-degree form under a smooth sphere map multiplies the integral by its degree. Apply that standard degree formula to~\eqref{eq:unit} and multiply by $\kappa$. The second assertion is substitution. Neither the degree formula nor the pullback construction is formalized in the archive.
+The integral of the pullback of an oriented top-degree form under a smooth sphere map multiplies the integral by its degree. Apply that standard degree formula to~\eqref{eq:unit} and multiply by $\kappa$. The second assertion is substitution. Neither the degree formula nor the pullback construction is formalized in the unified library.
 \end{proof}
 A constant map has $d=0$, even though the original parameter-sphere eigenline has $c_1=1$. An orientation-preserving degree-one map retains the unit normalized flux. Specifying a domain map is therefore essential even before specifying the electromagnetic coupling.
 
@@ -305,26 +369,40 @@ A scalar summary can discard a distinction retained by a selected sector. Here t
 For a light-transport, black-hole or neutrino model, the same discipline applies: specify the base space, retained sector, observable map and coupling before transferring an invariant. The present example supplies a worked template for that step.
 
 \section{Formal verification and reproducibility}\label{sec:formal}
-The evidence comes from two separately pinned developments. The original archive contains 24 theorem declarations: 13 in \leanname{Geometry.lean}, two in \leanname{Extension.lean}, and nine in \leanname{Bridge.lean}. It uses Lean 4.19.0 and Mathlib commit
-\begin{center}\ttfamily\small c44e0c8ee63ca166450922a373c7409c5d26b00b.\end{center}
-Its build, axiom audit and six false controls passed. The controls target zero unit flux, either unconditional magnetic inference, omission of the nonzero flux unit, idempotence of $I/2$, and zero chart-coefficient difference. A separate kernel-replay tool was not run for this original archive.
+The current proof chain is one library, \leanname{FluxCharge}, pinned to Lean 4.34.1 and Mathlib v4.34.1. The repository is separate from the IQGT project. Its inventory is:
+\begin{center}
+\begin{tabular}{lr}
+\toprule Module & Theorem declarations\\\midrule
+\leanname{FluxCharge.Monopole} & 17\\
+\leanname{FluxCharge.Geometry} & 13\\
+\leanname{FluxCharge.Bridge} & 9\\
+\leanname{FluxCharge.Extension} & 2\\
+\leanname{FluxCharge.Seam} & 6\\
+\leanname{FluxCharge.Topology} & 9\\\midrule
+Total & 56\\\bottomrule
+\end{tabular}
+\end{center}
+The 56 count theorem declarations, not definitions or 56 independent discoveries. The original 24 are included through their port. They must not be added again. All declarations retain the namespace \leanname{MonopoleStance}.
 
-The new \leanname{Monopole.lean} module contains 17 theorem declarations in the IQGT repository, branch \leanname{monopole-berry}, pinned to Lean 4.34.1. Its repository-wide check covers 111 declarations across five modules and eight false controls. It builds the modules, replays them using \leanname{leanchecker}, audits every named theorem's axiom dependencies and requires mathematical rejection of each false control. The two Pauli controls attempt to replace $\sin\theta/2$ with $\sin\theta$ and to reverse the sign of the top-left entry's $\theta$ derivative. The checked revision is \href{https://github.com/dicipler-pixel/iqgt-grassmannian-lean/commit/78511277b439ea02e9fb5c292f69503890148e00}{commit \texttt{7851127}}; the \href{https://github.com/dicipler-pixel/iqgt-grassmannian-lean/actions/runs/41979258623}{CI run and evidence} identify the precise build. The module hash and resulting report accompany this revision.
+The check builds the library, independently replays all six modules using \leanname{leanchecker}, and audits every named theorem. Only \leanname{propext}, \leanname{Classical.choice} and \leanname{Quot.sound} are permitted dependencies. A fixed inventory in \leanname{scripts/config.json} requires exactly 56 theorems and 11 false controls. The controls target zero unit flux; either unconditional magnetic inference; a zero bridge unit; idempotence at the origin; zero chart-coefficient difference; the missing curvature factor one half; the wrong derivative sign; doubled derived flux; equal north-coefficient pole values; and a total band flux of two. The script distinguishes mathematical rejection from failures due to missing imports or unknown identifiers. Rejection exercises these attempted false proofs; it is not a general completeness guarantee for the verifier.
 
-Across both developments the allowed foundational dependencies are \leanname{propext}, \leanname{Classical.choice} and \leanname{Quot.sound}. The counts describe declarations; the 111 repository declarations include the new 17 and many IQGT results outside this note. They should not be added to the original 24 as though they were all claims of this paper.
+The proof-source revision is \href{https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/commit/d02b612e508e083e94baaf7d781ef15b76953f68}{\texttt{d02b612}} on branch \leanname{v5-seam}. Its \href{https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/runs/42027723304}{successful CI run} records the build, independent kernel replay, axiom audit and all 11 rejected controls. The source snapshot and verification evidence accompany this paper. From the repository root, reproduce the unified check with \leanname{lake exe cache get}, \leanname{lake build}, and \leanname{python3 scripts/verify.py}; the workflow supplies the independent replay command.
 
-The original archive rebuilds with \leanname{lake exe cache get} and \leanname{python3 scripts/verify.py}. To reproduce the new check, check out the exact IQGT commit recorded with this revision, fetch its pinned dependencies and run its verification workflow. The evidence and instructions distinguish the two environments and preserve the original archive unchanged.
+The unchanged historical project remains under \leanname{monopole_stance/}, pinned separately to Lean 4.19.0 and its original Mathlib lock file. CI also rebuilds and audits that 24-theorem archive with its six controls. This preserves provenance; the archived project is not needed to fill a gap in the current unified chain. The earlier IQGT branch and its unrelated repository-wide counts belong to the development history, not the v5 theorem inventory.
 
 \section{What the checked calculation adds}
-The matrix-to-curvature step is now explicit. The lower Pauli matrix gives the positive coefficient $\sin\theta/2$ in the chosen convention; integrating that coefficient gives unit normalized flux. Selecting the complementary band reverses the curvature. This is the concrete geometric content that a physical application can carry forward.
+The complete checked calculation starts with the explicit projector, differentiates its entries, computes the curvature, identifies that coefficient with the integral module's definition, and obtains normalized flux one. Pole obstruction and latitude-cut independence then expose the fixed local-coefficient structure. Repeating the derivative calculation for the complementary band gives normalized flux minus one and exact cancellation.
 
-The remaining mathematical work has distinct targets. A bundle formalization would connect the normalized integral to a first Chern class. A pullback formalization would carry the form to a specified spatial surface and track its degree. A physical field model would establish the coupling $F_B=\kappa f^*\Omega$ for a stated probe and domain. The checked finite-matrix calculation supports these tasks without supplying their hypotheses.
+The boundaries now have specific mathematical targets. First, construct the global eigenline bundle, its transition map and Chern class, and identify that class with the normalized curvature integral. This would turn the written topological interpretation into a checked one. Second, prove the appropriate invariance under general coordinate and gauge changes; moving the latitude cut alone is not that theorem. Third, construct spatial pullbacks and their degree formula. Finally, derive the physical field identification for a stated system and probe. That last step requires physical input even if all the preceding geometry is formalized.
+
+The present calculation concerns the canonical degree-one Pauli sphere. A general smooth gapped two-level family can wrap that sphere with a different degree, including zero. Nonzero gap alone does not force unit flux. Neither a coordinate value of one nor the numerical bridge records assert the existence or absence of a magnetic particle.
 
 For the transport atlas, the practical rule is precise: keep the invariant with its domain and observation map. Berry flux, Hopf charge, instanton number and an $\ell=0$ transport moment can each be useful while retaining different meanings. A successful bridge identifies the relevant structures and units in a particular system. That is where a geometric calculation becomes a testable magnetic-field claim.
 
+\clearpage
 \appendix
 \section{Complete declaration-to-claim map}\label{sec:map}
-All names below lie in the namespace \leanname{MonopoleStance}. The first table lists every declaration in the original archive. The second lists all 17 declarations in the new module. Local eigenvector chart construction, the Chern-class interpretation, physical pullbacks and Stokes arguments remain written mathematics.
+All names below lie in the namespace \leanname{MonopoleStance}. The first table lists the 24 ported declarations. The second lists the 17 projector-derivation declarations. The final table lists the 15 declarations that join the chain and add the new results. Together these are all 56 theorem declarations in the unified library. Local eigenvector chart construction, the Chern-class interpretation, physical pullbacks and Stokes arguments remain written mathematics.
 
 \begin{longtable}{p{0.49\linewidth}p{0.45\linewidth}}
 \toprule\textbf{Lean declaration} & \textbf{Exact role}\\\midrule\endfirsthead
@@ -358,7 +436,8 @@ All names below lie in the namespace \leanname{MonopoleStance}. The first table 
 \leanname{formal_stance} & Conjunction of unit flux, both assignments and conditional transfer.\\\bottomrule
 \end{longtable}
 
-\subsection*{New matrix-curvature module: 17 declarations}
+\Needspace{6\baselineskip}
+\subsection*{Matrix-curvature module: 17 declarations}
 \begin{longtable}{p{0.49\linewidth}p{0.45\linewidth}}
 \toprule\textbf{Lean declaration} & \textbf{Exact role}\\\midrule\endfirsthead
 \toprule\textbf{Lean declaration} & \textbf{Exact role}\\\midrule\endhead
@@ -383,8 +462,34 @@ All names below lie in the namespace \leanname{MonopoleStance}. The first table 
 
 The eight direction-labelled derivative names use the Unicode characters $\theta$ and $\phi$ in the Lean source; the table transliterates them for PDF font compatibility.
 
+\Needspace{6\baselineskip}
+\subsection*{Unified join and new results: 15 declarations}
+\begin{longtable}{p{0.49\linewidth}p{0.45\linewidth}}
+\toprule\textbf{Lean declaration} & \textbf{Exact role}\\\midrule\endfirsthead
+\toprule\textbf{Lean declaration} & \textbf{Exact role}\\\midrule\endhead
+\multicolumn{2}{l}{\textbf{Seam: 6 declarations}}\\
+\leanname{lowerProjector_eq_proj} & Equality of the two explicit matrix encodings.\\
+\leanname{proj_nvec_idempotent} & Idempotence along the spherical direction map.\\
+\leanname{derivedCurvature_eq} & Actual derivative curvature equals the shared $\omega$.\\
+\leanname{coordFlux_eq_sphereFlux} & Equality of the two coordinate-integral definitions.\\
+\leanname{derived_curvature_unit_flux} & Actual derivative curvature has normalized real flux one.\\
+\leanname{matrix_to_integer} & Conjunction of idempotence, derived coefficient and real flux one.\\
+\midrule\multicolumn{2}{l}{\textbf{Topology: 9 declarations}}\\
+\leanname{continuous_omega} & Continuity of the scalar curvature coefficient.\\
+\leanname{no_global_regular_gauge} & No real primitive of $\omega$ has equal pole endpoint values.\\
+\leanname{flux_is_transition_jump} & Split polar integral equals the fixed coefficient difference.\\
+\leanname{flux_one_at_every_cut} & Split polar integral equals one at every real cut.\\
+\leanname{hasDerivAt_compl_theta} & Actual $\theta$ derivative of every complementary-projector entry.\\
+\leanname{hasDerivAt_compl_phi} & Actual $\phi$ derivative of every complementary-projector entry.\\
+\leanname{derivedCurvatureCompl_eq} & Complementary curvature from actual derivatives equals $-\omega$.\\
+\leanname{derived_compl_flux} & Complementary normalized real flux equals minus one.\\
+\leanname{total_chern_zero} & Sum of normalized real fluxes is zero; no Chern-class object.\\
+\bottomrule
+\end{longtable}
+The two complementary-projector derivative names likewise use Unicode $\theta$ and $\phi$ in the source. Transliteration changes display only; the proof snapshot preserves the exact identifiers.
+
 \section{Combined formal statement}
-The combined theorem, expressed mathematically, is
+The record-language theorem \leanname{formal_stance}, inherited from the original package, is
 \begin{align*}
  &\mathcal N(\omega)=1\\[-0.3em]
  &\quad\land\bigl[(\exists r:\ n(r)=1\land\neg M(r))
@@ -392,18 +497,20 @@ The combined theorem, expressed mathematically, is
  &\quad\land\bigl[\forall q_\Phi\neq0\ \forall r:\
  E(q_\Phi,r)\Rightarrow(M(r)\Longleftrightarrow G(r))\bigr].
 \end{align*}
-The first conjunct concerns a real integral. The second concerns freely assigned records. No formal map from that integral to the integer field of a record is asserted by the conjunction. In the physical application that interpretation is an additional construction, discussed in Sections~4 and~6. The third conjunct is a transfer implication given a bridge. Reading all three as one unconditional physical-existence theorem would erase their different domains and hypotheses.
+The first conjunct concerns a real integral. The second concerns freely assigned records. No formal map from that integral to the integer field of a record is asserted by the conjunction. In the physical application that interpretation is an additional construction, discussed in Section~4 and Section~\ref{sec:physical}. The separate \leanname{matrix_to_integer} theorem now connects the actual matrix derivatives to the real integral, but it still constructs no map to the record's integer field. The third conjunct is a transfer implication given a bridge. Reading all three as one unconditional physical-existence theorem would erase their different domains and hypotheses.
 
 \section*{Data, code and assistance}
-No experimental dataset is introduced. Figure~\ref{fig:curvature} plots analytic formulas. The companion source, locked build configuration, verification script and logs are supplied with this draft. The contributor names and AI disclosure appear above the abstract. The new source snapshot and exact CI evidence accompany the original proof archive.
+No experimental dataset is introduced. Figure~\ref{fig:curvature} plots analytic formulas. The companion source, locked build configuration, verification script and logs are supplied with this draft. The contributor names and AI disclosure appear above the abstract. The unified source snapshot and exact CI evidence accompany the unchanged original proof archive. The independent symbolic checks of the written formulas supplement, rather than replace, the Lean checks.
 
+\clearpage
 \begin{thebibliography}{9}
 \bibitem{dirac} P. A. M. Dirac, ``Quantised singularities in the electromagnetic field,'' \emph{Proc. R. Soc. Lond. A} \textbf{133}, 60--72 (1931). \href{https://doi.org/10.1098/rspa.1931.0130}{doi:10.1098/rspa.1931.0130}.
 \bibitem{berry} M. V. Berry, ``Quantal phase factors accompanying adiabatic changes,'' \emph{Proc. R. Soc. Lond. A} \textbf{392}, 45--57 (1984). \href{https://doi.org/10.1098/rspa.1984.0023}{doi:10.1098/rspa.1984.0023}.
 \bibitem{simon} B. Simon, ``Holonomy, the quantum adiabatic theorem, and Berry's phase,'' \emph{Phys. Rev. Lett.} \textbf{51}, 2167--2170 (1983). \href{https://doi.org/10.1103/PhysRevLett.51.2167}{doi:10.1103/PhysRevLett.51.2167}.
 \bibitem{wuyang} T. T. Wu and C. N. Yang, ``Concept of nonintegrable phase factors and global formulation of gauge fields,'' \emph{Phys. Rev. D} \textbf{12}, 3845--3857 (1975). \href{https://doi.org/10.1103/PhysRevD.12.3845}{doi:10.1103/PhysRevD.12.3845}.
 \bibitem{iqgt} J. Beasley, \emph{Intrinsic Quantum Geometric Tensor on the Grassmannian and Spectral Lower Bounds on Dissipation}, version 7.3.1, author manuscript (2026), Appendix B. Supplied manuscript source; no archival identifier is asserted here.
-\bibitem{lean} Lean development team, \emph{Lean 4}, version 4.19.0 (2025), \url{https://github.com/leanprover/lean4/releases/tag/v4.19.0}. Exact compiler identification is recorded in the companion verification log.
-\bibitem{mathlib} Mathlib contributors, \emph{Mathlib}, revision \texttt{c44e0c8ee63ca166450922a373c7409c5d26b00b}, \url{https://github.com/leanprover-community/mathlib4/tree/v4.19.0}. The companion lock file specifies the complete dependency graph.
+\bibitem{lean} Lean development team, \emph{Lean 4}, version 4.34.1, \url{https://github.com/leanprover/lean4/releases/tag/v4.34.1}. Exact compiler identification is recorded in the companion verification log.
+\bibitem{mathlib} Mathlib contributors, \emph{Mathlib}, version v4.34.1, \url{https://github.com/leanprover-community/mathlib4/tree/v4.34.1}. The companion lock file specifies the complete dependency graph.
 \end{thebibliography}
 \end{document}
+
