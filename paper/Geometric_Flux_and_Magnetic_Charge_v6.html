@@ -1042,14 +1042,24 @@ pole values; and a total band flux of two. The script distinguishes
 mathematical rejection from failures due to missing imports or unknown
 identifiers. Rejection exercises these attempted false proofs; it is not
 a general completeness guarantee for the verifier.</p>
-<p>The proof-source revision is <a href="https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/commit/d02b612e508e083e94baaf7d781ef15b76953f68"><code>d02b612</code></a>
-on branch <code>v5-seam</code>. Its <a href="https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/runs/42027723304">successful
-CI run</a> records the build, independent kernel replay, axiom audit and
-all 11 rejected controls. The source snapshot and verification evidence
-accompany this paper. From the repository root, reproduce the unified
-check with <code>lake exe cache get</code>, <code>lake build</code>, and
-<code>python3 scripts/verify.py</code>; the workflow supplies the
-independent replay command.</p>
+<p>Version 5’s proof-source revision was <a href="https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/commit/d02b612e508e083e94baaf7d781ef15b76953f68"><code>d02b612</code></a>
+on branch <code>v5-seam</code>; its <a href="https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/runs/42027723304">CI
+run</a> records the build, independent kernel replay, axiom audit and
+all 11 rejected controls <em>for the 56-declaration inventory of that
+version</em>. The present draft is not covered by that run.</p>
+<p>Version 6 was checked on 23 November 2026 by the same script on Lean
+4.34.1 with Mathlib <code>d13f23b723b8</code>, as a local run:
+<code>lake build</code> completed on all seven modules and
+<code>python3 scripts/verify.py</code> reported
+<code>OK: 99 theorems, axioms used: [Classical.choice, Quot.sound, propext], 11 false controls rejected</code>.
+The build log, the axiom audit, the eleven control logs, the pinned
+dependency lock and per-module source hashes are supplied in
+<code>verification_v6/</code>. A continuous-integration run for the
+pushed revision should replace this local record; until one exists, this
+draft is verified locally, not by continuous integration. From the
+repository root the check reproduces with
+<code>lake exe cache get</code>, <code>lake build</code> and
+<code>python3 scripts/verify.py</code>.</p>
 <p>The unchanged historical project remains under
 <code>monopole_stance/</code>, pinned separately to Lean 4.19.0 and its
 original Mathlib lock file. CI also rebuilds and audits that 24-theorem
