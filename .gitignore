@@ -5,3 +5,8 @@ __pycache__/
 .scratch/
 .ultramath/
 .skill/
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/html_source.tex
+paper/*.synctex.gz
