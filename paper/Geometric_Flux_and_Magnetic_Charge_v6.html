@@ -1079,17 +1079,18 @@ on branch <code>v5-seam</code>; its <a href="https://github.com/dicipler-pixel/g
 run</a> records the build, independent kernel replay, axiom audit and
 all 11 rejected controls <em>for the 56-declaration inventory of that
 version</em>. The present draft is not covered by that run.</p>
-<p>Version 6 was checked on 23 November 2026 by the same script on Lean
-4.34.1 with Mathlib <code>d13f23b723b8</code>, as a local run:
-<code>lake build</code> completed on all seven modules and
-<code>python3 scripts/verify.py</code> reported
-<code>OK: 99 theorems, axioms used: [Classical.choice, Quot.sound, propext], 11 false controls rejected</code>.
+<p>Version 6 is checked by continuous integration on the proof-source
+revision <a href="https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/commit/70903e6940f8886700c46329616f3ee0f8e9159b"><code>70903e6</code></a>
+of branch <code>main</code>: its <a href="https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/runs/45299889323">CI
+run 45299889323</a> builds the library on Lean 4.34.1, replays the
+modules in the kernel checker, audits every named theorem and requires
+all eleven false controls to fail. The same line was produced locally
+before the push:
+<code>OK: 99 theorems + 161 adjacent, axioms used: [Classical.choice, Quot.sound, propext], 11 false controls rejected</code>.
 The build log, the axiom audit, the eleven control logs, the pinned
 dependency lock and per-module source hashes are supplied in
-<code>verification_v6/</code>. A continuous-integration run for the
-pushed revision should replace this local record; until one exists, this
-draft is verified locally, not by continuous integration. From the
-repository root the check reproduces with
+<code>verification</code><br>
+<code>_v6/</code>. From the repository root the check reproduces with
 <code>lake exe cache get</code>, <code>lake build</code> and
 <code>python3 scripts/verify.py</code>.</p>
 <p>The unchanged historical project remains under

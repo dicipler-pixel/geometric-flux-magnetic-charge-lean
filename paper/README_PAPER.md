@@ -22,8 +22,8 @@ unchanged `monopole_stance/` project preserves the original Lean 4.19.0 archive.
 
 `scripts/verify.py` builds the library, audits every named theorem against the three permitted
 standard axioms, and requires all 11 controls to fail for a mathematical reason. `verification_v6/`
-records the run used for this draft. The proof commit and CI run are filled in on push; this draft
-was verified locally.
+records the local run; the same inventory is checked by CI run 45299889323 on proof commit
+`70903e6` (branch `main`).
 
 ## Exact boundaries
 

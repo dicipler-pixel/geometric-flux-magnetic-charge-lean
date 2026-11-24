@@ -11,6 +11,8 @@ New in v6: FluxCharge/Bundle.lean — the two local sections of the lower eigenl
 function of winding one, and the Berry connections computed from the sections, giving the gauge
 difference 1, curvature sin(theta)/2 and normalized flux 1.
 Historical archive: monopole_stance/, Lean 4.19.0, unchanged.
-Evidence: verification_v6/ (local run of scripts/verify.py on 2026-11-23; no CI run yet).
+Evidence: verification_v6/ and CI run 45299889323
+(https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/runs/45299889323)
+on proof commit 70903e6.
 The supplied root lake-manifest.json is the resolved dependency lock used for that run.
 Earlier paper versions (v4, v5) remain in the repository and in GitHub history.

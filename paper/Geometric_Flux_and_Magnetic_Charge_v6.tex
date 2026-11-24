@@ -450,7 +450,14 @@ The check builds the library, independently replays the modules using \leanname{
 
 Version 5's proof-source revision was \href{https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/commit/d02b612e508e083e94baaf7d781ef15b76953f68}{\texttt{d02b612}} on branch \leanname{v5-seam}; its \href{https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/runs/42027723304}{CI run} records the build, independent kernel replay, axiom audit and all 11 rejected controls \emph{for the 56-declaration inventory of that version}. The present draft is not covered by that run.
 
-Version 6 was checked on 23 November 2026 by the same script on Lean 4.34.1 with Mathlib \texttt{d13f23b723b8}, as a local run: \leanname{lake build} completed on all seven modules and \leanname{python3 scripts/verify.py} reported \leanname{OK: 99 theorems, axioms used: [Classical.choice, Quot.sound, propext], 11 false controls rejected}. The build log, the axiom audit, the eleven control logs, the pinned dependency lock and per-module source hashes are supplied in \leanname{verification_v6/}. A continuous-integration run for the pushed revision should replace this local record; until one exists, this draft is verified locally, not by continuous integration. From the repository root the check reproduces with \leanname{lake exe cache get}, \leanname{lake build} and \leanname{python3 scripts/verify.py}.
+Version 6 is checked by continuous integration on the proof-source revision
+\href{https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/commit/70903e6940f8886700c46329616f3ee0f8e9159b}{\texttt{70903e6}} of branch \leanname{main}: its
+\href{https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/runs/45299889323}{CI run
+45299889323} builds the library on Lean 4.34.1, replays the modules in the kernel checker, audits every
+named theorem and requires all eleven false controls to fail. The same line was produced locally before
+the push: \leanname{OK: 99 theorems + 161 adjacent, axioms used: [Classical.choice, Quot.sound, propext],
+11 false controls rejected}. The build log, the axiom audit, the eleven control logs, the pinned
+dependency lock and per-module source hashes are supplied in \leanname{verification\_v6/}. From the repository root the check reproduces with \leanname{lake exe cache get}, \leanname{lake build} and \leanname{python3 scripts/verify.py}.
 
 The unchanged historical project remains under \leanname{monopole_stance/}, pinned separately to Lean 4.19.0 and its original Mathlib lock file. CI also rebuilds and audits that 24-theorem archive with its six controls. This preserves provenance; the archived project is not needed to fill a gap in the current unified chain. The earlier IQGT branch and its unrelated repository-wide counts belong to the development history, not the v5 theorem inventory.
 

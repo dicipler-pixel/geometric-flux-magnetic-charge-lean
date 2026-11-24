@@ -59,8 +59,8 @@
     "topology_total_chern_two.lean"
   ],
   "validation_scope": "Exact symbolic checks and document checks supplement Lean CI; this script does not run Lean.",
-  "proof_commit": "local: not pushed; verified with scripts/verify.py on 2026-11-23",
-  "proof_CI": "pending push; see verification_v6/",
+  "proof_commit": "70903e6940f8886700c46329616f3ee0f8e9159b",
+  "proof_CI": "https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/runs/45299889323",
   "source_sha256": {
     "FluxCharge/Monopole.lean": "ae938dc3dfa720c2b7f57f0e6869d9b2ffeb7f0ef9061058077af1aae6805561",
     "FluxCharge/Geometry.lean": "3d2e08f0441eb5ca33fc4521d26599c44ccfad23acfe9dd049b827d6165de860",
