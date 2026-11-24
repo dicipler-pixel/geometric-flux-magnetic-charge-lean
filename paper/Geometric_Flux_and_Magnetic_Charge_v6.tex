@@ -427,14 +427,20 @@ The current proof chain is one library, \leanname{FluxCharge}, pinned to Lean 4.
 Total & 99\\\bottomrule
 \end{tabular}
 \end{center}
-The repository also carries three adjacent modules, \leanname{FluxCharge.SpectralWall} (56
-declarations), \leanname{FluxCharge.TwoLevelWall} (26) and \leanname{FluxCharge.JordanWall} (32).
+The repository also carries four adjacent modules, \leanname{FluxCharge.SpectralWall} (56
+declarations), \leanname{FluxCharge.TwoLevelWall} (26), \leanname{FluxCharge.JordanWall} (32) and
+\leanname{FluxCharge.PeelWall} (47), 161 declarations in all.
 They formalize statements from the author's black-hole manuscript --- the innermost stable circular
 orbit as a spectral wall of the circular-orbit generator, the non-Hermitian two-level Hamiltonian
 $\sigma_x+\ii\gamma\sigma_z$, and the Jordan-block statements about propagators and single
 projectors --- and they are \emph{not} part of the chain this note reports. They import Mathlib only,
 depend on nothing above, are counted separately in \leanname{scripts/config.json} and are audited by
-the same axiom check. One of them corrects a statement current in draft form: the hand-written
+the same axiom check. The peel wall is the family obtained by composing two equal perpendicular
+boosts; its determinant is one, the trace at the wall is minus two, the centred matrix at the wall is
+a nonzero nilpotent of Frobenius norm eight, the discriminant is $128\delta(1+2\delta)^2/(1-2\delta)^4$
+exactly, and the two separate limits $\sqrt\delta\,\|P_+\|_F\to1/\sqrt2$ and
+$\sqrt\delta\,\kappa_2(V)\to\sqrt2$ hold for the spectral projector and for the eigenvector basis.
+One of them corrects a statement current in draft form: the hand-written
 projector formula for $\sigma_x+\ii\gamma\sigma_z$ is idempotent on $|\gamma|<1$, not for every
 $\gamma\neq1$, since the real square root vanishes for $|\gamma|\ge1$.
 

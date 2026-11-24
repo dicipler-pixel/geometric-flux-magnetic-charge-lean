@@ -1,5 +1,5 @@
 {
-  "adjacent_theorems": 114,
+  "adjacent_theorems": 161,
   "axiom_union": [
     "Classical.choice",
     "Quot.sound",
@@ -661,6 +661,241 @@
       "Quot.sound",
       "propext"
     ],
+    "PeelWall.a_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.continuousAt_W_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.continuousAt_entryNormSq_wall": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.continuous_entryNormSq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.denom_ne_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.det_W": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.discriminant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.entryNormSq_Phi": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.entryNormSq_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.entryNormSq_real_smul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.entryNormSq_spectralProjector": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.g_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.g_zero_four": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.g_zero_six": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.g_zero_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.g_zero_sq_complex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.gap_normalized": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.kappa_limit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.kappa_limit_of_projector_norm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.one_sub_g_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.overlapFromNormSq_condition_identity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.overlapFromNormSq_lt_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.overlapFromNormSq_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.overlapFromNormSq_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.overlap_identity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.projector_limit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.projector_norm_limit_of_frobenius": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.projector_sq_limit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.projector_sq_limit_of_frobenius": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.spectralCentredNormSq_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.spectralCentredNormSq_tendsto_of_wall": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.spectral_kappa_limit_of_centred_norm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.spectral_kappa_limit_of_wall": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.tendsto_inv_normSq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.tendsto_sqrt_wallDisc": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.tendsto_wallDisc": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.trace_W": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.trace_W_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.wall_denominator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.wall_entryNormSq_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.wall_frobNorm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.wall_frobenius": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.wall_frobenius_tendsto": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.wall_matrix": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.wall_nilpotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.wall_nonzero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "PeelWall.wall_top_left": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
     "SpectralWall.DW_six": [
       "Classical.choice",
       "Quot.sound",
@@ -1117,6 +1352,12 @@
       "file": "FluxCharge/Monopole.lean",
       "sha256": "ae938dc3dfa720c2b7f57f0e6869d9b2ffeb7f0ef9061058077af1aae6805561",
       "theorems": 17
+    },
+    "FluxCharge.PeelWall": {
+      "file": "FluxCharge/PeelWall.lean",
+      "group": "adjacent",
+      "sha256": "a4fec44003eec884aa9f7eefa75b316bffdf8b48207b6b5cbd2515d0949a4a05",
+      "theorems": 47
     },
     "FluxCharge.Seam": {
       "file": "FluxCharge/Seam.lean",

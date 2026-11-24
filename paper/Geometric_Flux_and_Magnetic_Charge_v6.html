@@ -1025,20 +1025,31 @@ from the IQGT project. Its inventory is:</p>
 </tbody>
 </table>
 </div>
-<p>The repository also carries three adjacent modules,
+<p>The repository also carries four adjacent modules,
 <code>FluxCharge.SpectralWall</code> (56 declarations),
-<code>FluxCharge.TwoLevelWall</code> (26) and
-<code>FluxCharge.JordanWall</code> (32). They formalize statements from
-the author’s black-hole manuscript — the innermost stable circular orbit
-as a spectral wall of the circular-orbit generator, the non-Hermitian
-two-level Hamiltonian
+<code>FluxCharge.TwoLevelWall</code> (26),
+<code>FluxCharge.JordanWall</code> (32) and
+<code>FluxCharge.PeelWall</code> (47), 161 declarations in all. They
+formalize statements from the author’s black-hole manuscript — the
+innermost stable circular orbit as a spectral wall of the circular-orbit
+generator, the non-Hermitian two-level Hamiltonian
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>x</mi></msub><mo>+</mo><mi mathvariant="normal">i</mi><mi>γ</mi><msub><mi>σ</mi><mi>z</mi></msub></mrow><annotation encoding="application/x-tex">\sigma_x+\mathrm{i}\gamma\sigma_z</annotation></semantics></math>,
 and the Jordan-block statements about propagators and single projectors
 — and they are <em>not</em> part of the chain this note reports. They
 import Mathlib only, depend on nothing above, are counted separately in
 <code>scripts/config.json</code> and are audited by the same axiom
-check. One of them corrects a statement current in draft form: the
-hand-written projector formula for
+check. The peel wall is the family obtained by composing two equal
+perpendicular boosts; its determinant is one, the trace at the wall is
+minus two, the centred matrix at the wall is a nonzero nilpotent of
+Frobenius norm eight, the discriminant is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>128</mn><mi>δ</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mn>2</mn><mi>δ</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mn>2</mn><mi>δ</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">128\delta(1+2\delta)^2/(1-2\delta)^4</annotation></semantics></math>
+exactly, and the two separate limits
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mi>δ</mi></msqrt><mspace width="0.167em"></mspace><mo stretchy="false" form="postfix">∥</mo><msub><mi>P</mi><mo>+</mo></msub><msub><mo stretchy="false" form="postfix">∥</mo><mi>F</mi></msub><mo>→</mo><mn>1</mn><mi>/</mi><msqrt><mn>2</mn></msqrt></mrow><annotation encoding="application/x-tex">\sqrt\delta\,\|P_+\|_F\to1/\sqrt2</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mi>δ</mi></msqrt><mspace width="0.167em"></mspace><msub><mi>κ</mi><mn>2</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>V</mi><mo stretchy="false" form="postfix">)</mo><mo>→</mo><msqrt><mn>2</mn></msqrt></mrow><annotation encoding="application/x-tex">\sqrt\delta\,\kappa_2(V)\to\sqrt2</annotation></semantics></math>
+hold for the spectral projector and for the eigenvector basis. One of
+them corrects a statement current in draft form: the hand-written
+projector formula for
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>x</mi></msub><mo>+</mo><mi mathvariant="normal">i</mi><mi>γ</mi><msub><mi>σ</mi><mi>z</mi></msub></mrow><annotation encoding="application/x-tex">\sigma_x+\mathrm{i}\gamma\sigma_z</annotation></semantics></math>
 is idempotent on
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>γ</mi><mo stretchy="false" form="prefix">|</mo><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">|\gamma|&lt;1</annotation></semantics></math>,

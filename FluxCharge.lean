@@ -12,3 +12,4 @@ import FluxCharge.Bundle
 import FluxCharge.SpectralWall
 import FluxCharge.TwoLevelWall
 import FluxCharge.JordanWall
+import FluxCharge.PeelWall

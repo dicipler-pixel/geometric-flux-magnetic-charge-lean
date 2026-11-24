@@ -72,9 +72,13 @@ Three modules were added after the v6 draft was written. They are *not* part of 
 groups under the same axiom rule and prints `OK: 99 theorems + 114 adjacent, …`. The pinned Lean 4.34.1 run
 recorded in `verification_v6/` is exactly that line.
 
-The peel wall (Jeromie Beasley, *What the Peel Keeps* v1.2.2 §2.6) arrived after this commit and is held back:
-`FluxCharge/PeelWall.lean` compiles but is not in the audited inventory yet, so it will be added in a second
-commit with its own build and audit rather than inflating the number reported here. Two statements in the
+The peel wall (Jeromie Beasley, *What the Peel Keeps* v1.2.2 §2.6) is included in a second commit:
+`FluxCharge.PeelWall`, 47 declarations, from the two equal perpendicular boosts `W = Bx By Bx^{-1} By^{-1}`.
+`det W = 1`; `trace W(0) = -2`; `W(0) + 1` is a nonzero nilpotent with top-left entry `4 I` and Frobenius norm
+`8`; `(tr W)^2 - 4 det W = 128 delta (1+2 delta)^2/(1-2 delta)^4` exactly; and the two limits are proved
+separately — `sqrt delta * ||P_+||_F -> 1/sqrt 2` for the spectral projector and `sqrt delta * kappa_2(V) -> sqrt 2`
+for `V` the matrix whose columns are the two unit Euclidean right eigenvectors. The second commit's audit line
+is `OK: 99 theorems + 161 adjacent, …`. Two statements in the
 working brief for it were wrong and the corrected forms are the ones proved: the printed closed form of the
 trace (it gives `-6` at the wall, not `-2`) and the literal `√δ·‖Φ‖^2` limit (it diverges; the correct pair is
 `√δ‖Φ‖ → 1/√2` and `δ‖Φ‖^2 → 1/2`).

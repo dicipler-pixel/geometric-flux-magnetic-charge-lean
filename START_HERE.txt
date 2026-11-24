@@ -5,7 +5,7 @@ Read paper/Geometric_Flux_and_Magnetic_Charge_v6.pdf or the same-named self-cont
 Rebuild instructions: paper/README_PAPER.md.
 Current Lean project: repository root, Lean 4.34.1; ten modules.
   Flux-charge chain: 99 theorem declarations, 11 controls (the paper's inventory).
-  Adjacent spectral-wall modules: 114 theorem declarations (SpectralWall 56, TwoLevelWall 26, JordanWall 32),
+  Adjacent spectral-wall modules: 161 theorem declarations (SpectralWall 56, TwoLevelWall 26, JordanWall 32, PeelWall 47),
   audited by the same script and counted separately.
 New in v6: FluxCharge/Bundle.lean — the two local sections of the lower eigenline, the transition
 function of winding one, and the Berry connections computed from the sections, giving the gauge

@@ -1,12 +1,13 @@
 {
   "adjacent_wall_modules": {
-    "expected": 114,
+    "expected": 161,
     "modules": {
       "FluxCharge.JordanWall": 32,
+      "FluxCharge.PeelWall": 47,
       "FluxCharge.SpectralWall": 56,
       "FluxCharge.TwoLevelWall": 26
     },
-    "theorems": 114
+    "theorems": 161
   },
   "axiom_union": [
     "Classical.choice",
@@ -14,19 +15,6 @@
     "propext"
   ],
   "date": "2026-11-23",
-  "false_controls": [
-    "monopole_wrong_derivative_sign",
-    "monopole_wrong_factor",
-    "seam_flux_two",
-    "stance_01_UnitFluxZero",
-    "stance_02_ExistenceWithoutBridge",
-    "stance_03_AbsenceWithoutBridge",
-    "stance_04_ZeroUnitTransfersCharge",
-    "stance_05_OriginStillProjector",
-    "stance_06_GaugeDifferenceZero",
-    "topology_global_gauge",
-    "topology_total_chern_two"
-  ],
   "false_controls_count": 11,
   "flux_charge_chain": {
     "expected": 99,
@@ -49,15 +37,17 @@
     "FluxCharge.Geometry": "3d2e08f0441eb5ca33fc4521d26599c44ccfad23acfe9dd049b827d6165de860",
     "FluxCharge.JordanWall": "c0daaa524469f9f941fe4cce5812166ca967fc2ada3f10f1b48f15f9712a273b",
     "FluxCharge.Monopole": "ae938dc3dfa720c2b7f57f0e6869d9b2ffeb7f0ef9061058077af1aae6805561",
+    "FluxCharge.PeelWall": "a4fec44003eec884aa9f7eefa75b316bffdf8b48207b6b5cbd2515d0949a4a05",
     "FluxCharge.Seam": "62dc125cc67fb6c78e8bc9beac302b8ca798adfad56a5fba86e5ae2323349614",
     "FluxCharge.SpectralWall": "85771d90c0666e10e2d489368ab351411002a6e2f4758550e3ea33b1320ef282",
     "FluxCharge.Topology": "33d80b1e8a9d24f155721aa43be5533d76e0f7be4884215a0b51e860643887c1",
     "FluxCharge.TwoLevelWall": "461cf55b35f301d4020c97d1849cb40bc74ab022b9a88dd16a46b92401284180"
   },
   "notes": [
-    "Mathlib at the pinned revision was supplied from a local build of the same commit; lake reused its oleans.",
+    "Mathlib at the pinned revision came from a local build of the same commit; lake reused its oleans.",
     "No CI run corresponds to this evidence: the commits are local and have not been pushed.",
-    "The wall modules import Mathlib only and are counted separately from the flux-charge chain the paper reports."
+    "The wall modules import Mathlib only, are counted separately from the flux-charge chain, and are audited by the same axiom rule.",
+    "PeelWall's substantive results are declared as theorems so that the audit names them (47 declarations)."
   ],
   "toolchain": "leanprover/lean4:v4.34.1",
   "verified_by": "python3 scripts/verify.py (local run; not CI)"

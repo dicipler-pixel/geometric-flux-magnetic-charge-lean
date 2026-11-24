@@ -46,8 +46,12 @@
     {
       "module": "FluxCharge.JordanWall",
       "path": "FluxCharge/JordanWall.lean"
+    },
+    {
+      "module": "FluxCharge.PeelWall",
+      "path": "FluxCharge/PeelWall.lean"
     }
   ],
-  "expected_adjacent_theorems": 114,
+  "expected_adjacent_theorems": 161,
   "adjacent_note": "Modules from the spectral-wall work: the ISCO wall of the circular-orbit generator, the non-Hermitian two-level wall, and the Jordan/projector statements. They import Mathlib only and are outside the flux-charge chain counted by expected_theorems."
 }

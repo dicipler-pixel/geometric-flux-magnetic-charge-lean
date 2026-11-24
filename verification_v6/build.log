@@ -1,33 +1,21 @@
-=== rebuild start Mon Nov 23 23:34:34 UTC 2026
-Hint: Omit it from the simp argument list.
-  [apply] simp [Wm, modelEigenvector, Matrix.mulVec] at h1
+HTML verified: 24 labelled equations; 288 MathML nodes; embedded figure; Lean names present.
+check=0
+failed: [] pages 19
+=== build+verify Tue Nov 24 00:18:04 UTC 2026
+info: FluxCharge/PeelWall.lean:701:0: 'PeelWall.spectralCentredNormSq_tendsto_of_wall' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FluxCharge/PeelWall.lean:702:0: 'PeelWall.spectral_kappa_limit_of_centred_norm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FluxCharge/PeelWall.lean:703:0: 'PeelWall.spectral_kappa_limit_of_wall' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FluxCharge/PeelWall.lean:704:0: 'PeelWall.kappa_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8935/8936] Built FluxCharge (3.1s)
+Build completed successfully (8936 jobs).
 
-Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-warning: FluxCharge/JordanWall.lean:292:49: This simp argument is unused:
-  Fin.sum_univ_two
-
-Hint: Omit it from the simp argument list.
-  [apply] simp [Wm, modelEigenvector, Matrix.mulVec]
-
-Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-warning: FluxCharge/JordanWall.lean:293:49: This simp argument is unused:
-  Fin.sum_univ_two
-
-Hint: Omit it from the simp argument list.
-  [apply] simp [Wm, modelEigenvector, Matrix.mulVec]
-
-Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-✔ [8934/8935] Built FluxCharge (245s)
-Build completed successfully (8935 jobs).
-
-real	8m12.697s
-user	0m25.347s
-sys	1m24.484s
-=== BUILD OK Mon Nov 23 23:42:47 UTC 2026
+real	0m50.703s
+user	0m13.106s
+sys	0m9.035s
 === verify
-OK: 99 theorems + 114 adjacent, axioms used: ['Classical.choice', 'Quot.sound', 'propext'], 11 false controls rejected
+OK: 99 theorems + 161 adjacent, axioms used: ['Classical.choice', 'Quot.sound', 'propext'], 11 false controls rejected
 
-real	29m26.821s
-user	0m36.353s
-sys	4m19.227s
+real	0m38.865s
+user	0m24.033s
+sys	0m14.729s
 verify_exit=0

@@ -4,7 +4,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-99%20%2B%20114-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-99%20%2B%20161-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -40,7 +40,8 @@ paper and the v4 before it remain in the repository as the earlier record.
 | `FluxCharge.SpectralWall` | *adjacent:* the ISCO spectral wall, and the partial/total derivative certificate | 56 |
 | `FluxCharge.TwoLevelWall` | *adjacent:* the non-Hermitian two-level wall, and the corrected projector statement | 26 |
 | `FluxCharge.JordanWall` | *adjacent:* Jordan propagator, projector divergence, wall normal form | 32 |
-| | **adjacent total**, outside the flux-charge chain | **114** |
+| `FluxCharge.PeelWall` | *adjacent:* the peel wall — exact discriminant, square-zero wall, both square-root limits | 47 |
+| | **adjacent total**, outside the flux-charge chain | **161** |
 
 ### The spectral-wall modules (adjacent)
 
