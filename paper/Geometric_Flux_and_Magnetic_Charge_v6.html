@@ -5,8 +5,6 @@
   <meta name="generator" content="pandoc 3.12">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Jeromie Beasley">
-  <meta name="author" content="GPT (OpenAI)">
-  <meta name="author" content="Claude (Anthropic)">
   <title>From Geometric Flux to Magnetic Charge</title>
   <style>
 
@@ -34,14 +32,14 @@ vertical-align: middle;
 <header id="title-block-header">
 <h1 class="title">From Geometric Flux to Magnetic Charge</h1>
 <p class="author">Jeromie Beasley</p>
-<p class="author">GPT (OpenAI)</p>
-<p class="author">Claude (Anthropic)</p>
 <p class="date">Version 6.0 — 23 November 2026<br>
 Research note / draft for review</p>
-<p><strong>AI assistance.</strong> Jeromie Beasley, GPT (OpenAI), and
-Claude (Anthropic) collaborated on the mathematics, drafting, Lean
-development, review and typesetting. GPT and Claude are AI systems. This
-draft has not been independently peer reviewed.</p>
+<p><strong>AI assistance.</strong> The mathematics, drafting, Lean
+development and typesetting were prepared by the author with AI
+assistance (OpenAI GPT, Anthropic Claude, and the Open Math OS agent),
+under the authorś direction. The AI systems are not authors. Every Lean
+statement was checked by the machine, not taken on trust. This draft has
+not been independently peer reviewed.</p>
 <div class="abstract">
 <div class="abstract-title">Abstract</div>
 <p>For the lower eigenprojector of the canonical two-level Pauli
@@ -1057,23 +1055,30 @@ not for every
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mo>≠</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\gamma\neq1</annotation></semantics></math>,
 since the real square root vanishes for
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>γ</mi><mo stretchy="false" form="prefix">|</mo><mo>≥</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">|\gamma|\ge1</annotation></semantics></math>.</p>
-<p>The 99 count theorem declarations, not definitions or 99 independent
-discoveries. The original 24 are included through their port. They must
+<p>The 99 count theorem declarations, not definitions, not lemmas and
+not 99 independent discoveries; the 46 lemmas of these modules are
+compiled and audited as well, and counted on their own line because a
+reader comparing inventories should be able to tell which keyword
+carries what. The original 24 are included through their port. They must
 not be added again. All declarations retain the namespace
 <code>MonopoleStance</code>.</p>
 <p>The check builds the library, independently replays the modules using
-<code>leanchecker</code>, and audits every named theorem. Only
-<code>propext</code>, <code>Classical.choice</code> and
+<code>leanchecker</code>, and audits every named declaration — theorems
+<em>and</em> lemmas, since a lemma is a theorem written with another
+keyword. Only <code>propext</code>, <code>Classical.choice</code> and
 <code>Quot.sound</code> are permitted dependencies. A fixed inventory in
-<code>scripts/config.json</code> requires exactly 99 theorems and 11
-false controls. The controls target zero unit flux; either unconditional
-magnetic inference; a zero bridge unit; idempotence at the origin; zero
-chart-coefficient difference; the missing curvature factor one half; the
-wrong derivative sign; doubled derived flux; equal north-coefficient
-pole values; and a total band flux of two. The script distinguishes
-mathematical rejection from failures due to missing imports or unknown
-identifiers. Rejection exercises these attempted false proofs; it is not
-a general completeness guarantee for the verifier.</p>
+<code>scripts/config.json</code> requires exactly 99 theorems and 46
+lemmas in the chain, 161 theorems and 6 lemmas in the adjacent modules,
+and 11 false controls; the two groups are reported apart so this note’s
+own count keeps its meaning. The controls target zero unit flux; either
+unconditional magnetic inference; a zero bridge unit; idempotence at the
+origin; zero chart-coefficient difference; the missing curvature factor
+one half; the wrong derivative sign; doubled derived flux; equal
+north-coefficient pole values; and a total band flux of two. The script
+distinguishes mathematical rejection from failures due to missing
+imports or unknown identifiers. Rejection exercises these attempted
+false proofs; it is not a general completeness guarantee for the
+verifier.</p>
 <p>Version 5’s proof-source revision was <a href="https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/commit/d02b612e508e083e94baaf7d781ef15b76953f68"><code>d02b612</code></a>
 on branch <code>v5-seam</code>; its <a href="https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/runs/42027723304">CI
 run</a> records the build, independent kernel replay, axiom audit and

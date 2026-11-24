@@ -1,6 +1,0 @@
-C1 gradient only between P and its complement: worst 3.8e-14
-C2 range of the gradient is a projector that commutes with P: worst 6.9e-15
-C3 inside and outside pieces each no bigger than min(r, N-r): violations 0 of 300
-C4 down the ladder the inside rank never grows: violations 0 of 300
-C5 |dP|^2 = 2 Tr(P dP dP): worst 3.7e-13
-dP itself idempotent? example |dP^2 - dP| = 57.833 (it is not a projector; its range is)

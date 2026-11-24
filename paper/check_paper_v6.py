@@ -46,8 +46,11 @@ pdf=fitz.open(root/(stem+'.pdf'));text='\n'.join(page.get_text() for page in pdf
 display=lambda name:name.replace('θ','theta').replace('φ','phi')
 checks['all_99_theorem_names_in_HTML']=all(display(name) in visible for name in names)
 checks['all_99_theorem_names_in_PDF']=all(display(name) in text for name in names)
-checks['all_three_in_HTML_byline']=all(name in D.xpath('//header')[0].text_content() for name in ['Jeromie Beasley','GPT (OpenAI)','Claude (Anthropic)'])
-checks['all_three_in_PDF_byline']=all(name in pdf[0].get_text() for name in ['Jeromie Beasley','GPT (OpenAI)','Claude (Anthropic)'])
+# Byline policy: the author alone; the AI systems are named in the assistance note, not as authors.
+checks['HTML_byline_is_author_alone']='Jeromie Beasley' in D.xpath('//header')[0].text_content() and not any(n in D.xpath('//header')[0].text_content() for n in ['GPT (OpenAI)','Claude (Anthropic)'])
+checks['HTML_assistance_names_AI']=all(n in visible for n in ['AI assistance','GPT','Claude'])
+checks['PDF_byline_is_author_alone']='Jeromie Beasley' in pdf[0].get_text() and 'GPT (OpenAI)' not in pdf[0].get_text()
+checks['PDF_assistance_names_AI']=all(n in text for n in ['AI assistance','GPT','Claude'])
 checks['HTML_assistance_before_abstract']=visible.index('AI assistance')<visible.index('Abstract')
 checks['PDF_assistance_before_abstract']=text.index('AI assistance')<text.index('Abstract')
 checks['embedded_figure']=len(D.xpath('//img[starts-with(@src,"data:image/")]'))==1

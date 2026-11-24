@@ -27,12 +27,12 @@
 \newcommand{\written}{\textnormal{\small[Written proof; not formalized here]}\ }
 \newcommand{\leanname}[1]{\texttt{\small\detokenize{#1}}}
 \title{\vspace{-1.5em}From Geometric Flux to Magnetic Charge\\[0.4em]\large A Checked Pauli Curvature and an Explicit Physical Bridge}
-\author{Jeromie Beasley \and GPT (OpenAI) \and Claude (Anthropic)}
-\hypersetup{pdfauthor={Jeromie Beasley; GPT (OpenAI); Claude (Anthropic)}}
+\author{Jeromie Beasley}
+\hypersetup{pdfauthor={Jeromie Beasley}}
 \date{Version 5.0 --- 5 November 2026\\\small Research note / draft for review}
 \begin{document}
 \maketitle
-{\small\noindent\textbf{AI assistance.} Jeromie Beasley, GPT (OpenAI), and Claude (Anthropic) collaborated on the mathematics, drafting, Lean development, review and typesetting. GPT and Claude are AI systems. This draft has not been independently peer reviewed.\par}
+{\small\noindent\textbf{AI assistance.} The mathematics, drafting, Lean development and typesetting were prepared by the author with AI assistance (OpenAI GPT, Anthropic Claude, and the Open Math OS agent), under the author\'s direction. The AI systems are not authors. Every Lean statement was checked by the machine, not taken on trust. This draft has not been independently peer reviewed.\par}
 \begin{abstract}
 For the lower eigenprojector of the canonical two-level Pauli Hamiltonian, one Lean library now checks the full calculation from actual entrywise projector derivatives to curvature $\sin\theta/2$ and normalized flux $1$. An equality theorem joins the two matrix encodings, so the curvature derivation and flux integral are connected inside the proof system. Three further results sharpen the geometry: pole obstruction for a scalar primitive with equal pole values, latitude-cut independence for the fixed north and south coefficients, and derived band-flux cancellation for the complementary projector. The unified library contains 56 theorem declarations and rejects 11 deliberately false controls. We distinguish these checked statements from the standard written eigenline-bundle interpretation, general coordinate and gauge invariance, and pullback degree theory. A magnetic-charge conclusion additionally requires a spatial domain map and a physical identification such as $F_B=\kappa f^*\Omega$. The result is a continuous checked chain for this explicit example, with its mathematical and physical boundaries stated separately.
 

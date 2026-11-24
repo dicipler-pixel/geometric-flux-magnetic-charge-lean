@@ -1,3 +1,0 @@
-  600 pairs: real 4.8580 ; arms shuffled 4.8321 to 5.2669 -> inside   | after the first 20 steps: real 2.6649 ; shuffled 2.6425 to 2.7368 -> inside
- 2400 pairs: real 5.8476 ; arms shuffled 5.8162 to 6.2823 -> inside   | after the first 20 steps: real 3.6544 ; shuffled 3.6311 to 3.7368 -> inside
- 9600 pairs: real 6.8062 ; arms shuffled 6.7811 to 7.2515 -> inside   | after the first 20 steps: real 4.6131 ; shuffled 4.5894 to 4.6890 -> inside

@@ -4,12 +4,13 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-99%20%2B%20161-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-260-2EA043)
+![Lemmas](https://img.shields.io/badge/lemmas-52-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
 
-Jeromie Beasley · GPT (OpenAI) · Claude (Anthropic)
+Jeromie Beasley  —  *prepared with AI assistance; the AI systems are not authors*
 
 </div>
 
@@ -125,12 +126,6 @@ changes, pullbacks with their degree formula, and a system-specific physical fie
 identification such as `F_B = κ f*Ω`. No physical Dirac string or magnetic particle is
 inferred from the parameter-space calculation.
 
-* **A separate note in this tree.** [`One_Tree_Every_Shape_v2_rebuild/`](One_Tree_Every_Shape_v2_rebuild/REBUILD.md)
-  is Jeromie Beasley's interactive page *One Tree, Every Shape* v2 (23 November 2026, built with AI
-  assistance), with its rebuild kit and the computational records behind its eyes
-  (`records/what-bends/`, `records/poincare-diamond/`). It is not part of the Lean library, is not
-  counted in any inventory here, and `lake build` ignores it: `FluxCharge/` is the only Lean root.
-
 * **The original archive.** [`monopole_stance/`](monopole_stance/) keeps the original Lean v4.19.0
   package exactly as it was verified, with its own pinned Mathlib, `verify.py` and evidence. The
   port in `FluxCharge/` changes content in one place only: `Geometry` takes `omega` from
@@ -182,7 +177,11 @@ Every push runs [the proof check](.github/workflows/build.yml), with one job per
    derivative sign; doubled derived flux; equal north-coefficient values at both poles;
    and a total two-band flux of 2.
 
-The verification script checks the fixed inventory of **99 theorem declarations and 11 controls**.
+The verification script checks the fixed inventory of **99 theorem declarations plus 46 lemmas** in the
+flux-charge chain, **161 theorems plus 6 lemmas** in the adjacent modules, and **11 controls**. Lemmas are
+audited too: a `lemma` is a theorem written with another keyword, and until 24 November 2026 the checker
+discovered only `theorem`, which left 46 compiled declarations (40 in `Bundle`, 6 in `SpectralWall`)
+outside the axiom audit.
 It also rejects control failures caused by broken imports or missing identifiers. The archived
 24 declarations are already included through their port in the 56; they are not 24 additional
 results of the unified library.
