@@ -29,7 +29,11 @@ checks['lower_normalized_flux']=s.simplify(s.integrate(curv(P),(t,0,s.pi)))==1
 checks['upper_normalized_flux']=s.simplify(s.integrate(curv(Q),(t,0,s.pi)))==-1
 checks['derived_band_flux_cancellation']=s.simplify(s.integrate(curv(P)+curv(Q),(t,0,s.pi)))==0
 checks['curvature_flux_2pi']=s.simplify(s.integrate(w,(t,0,s.pi))*2*s.pi)==2*s.pi
-config=json.loads((root.parent/'scripts/config.json').read_text());inventory={};names=[]
+# Version 5 documents its own frozen inventory: the six modules of that proof commit, 56 theorems.
+# The live config.json has moved on (99 theorems, 40 lemmas, plus adjacent modules), so this
+# validator must not read it or it would assert yesterday's count against tomorrow's tree.
+V5_MODULES=[{'module':'FluxCharge.Monopole','path':'FluxCharge/Monopole.lean'},{'module':'FluxCharge.Geometry','path':'FluxCharge/Geometry.lean'},{'module':'FluxCharge.Bridge','path':'FluxCharge/Bridge.lean'},{'module':'FluxCharge.Extension','path':'FluxCharge/Extension.lean'},{'module':'FluxCharge.Seam','path':'FluxCharge/Seam.lean'},{'module':'FluxCharge.Topology','path':'FluxCharge/Topology.lean'}]
+config={'expected_theorems':56,'expected_false_controls':11,'modules':V5_MODULES};inventory={};names=[]
 for mod in config['modules']:
  src=(root.parent/mod['path']).read_text()
  src=re.sub(r'/\-.*?\-/','',src,flags=re.S)
@@ -46,8 +50,11 @@ pdf=fitz.open(root/(stem+'.pdf'));text='\n'.join(page.get_text() for page in pdf
 display=lambda name:name.replace('θ','theta').replace('φ','phi')
 checks['all_56_theorem_names_in_HTML']=all(display(name) in visible for name in names)
 checks['all_56_theorem_names_in_PDF']=all(display(name) in text for name in names)
-checks['all_three_in_HTML_byline']=all(name in D.xpath('//header')[0].text_content() for name in ['Jeromie Beasley','GPT (OpenAI)','Claude (Anthropic)'])
-checks['all_three_in_PDF_byline']=all(name in pdf[0].get_text() for name in ['Jeromie Beasley','GPT (OpenAI)','Claude (Anthropic)'])
+# Byline policy: the author alone; the AI systems are named in the assistance note, not as authors.
+checks['HTML_byline_is_author_alone']='Jeromie Beasley' in D.xpath('//header')[0].text_content() and not any(n in D.xpath('//header')[0].text_content() for n in ['GPT (OpenAI)','Claude (Anthropic)'])
+checks['HTML_assistance_names_AI']=all(n in visible for n in ['AI assistance','GPT','Claude'])
+checks['PDF_byline_is_author_alone']='Jeromie Beasley' in pdf[0].get_text() and 'GPT (OpenAI)' not in pdf[0].get_text()
+checks['PDF_assistance_names_AI']=all(n in text for n in ['AI assistance','GPT','Claude'])
 checks['HTML_assistance_before_abstract']=visible.index('AI assistance')<visible.index('Abstract')
 checks['PDF_assistance_before_abstract']=text.index('AI assistance')<text.index('Abstract')
 checks['embedded_figure']=len(D.xpath('//img[starts-with(@src,"data:image/")]'))==1

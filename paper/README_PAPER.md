@@ -1,6 +1,6 @@
 # From Geometric Flux to Magnetic Charge — version 6 (draft)
 
-Jeromie Beasley · GPT (OpenAI) · Claude (Anthropic) · 23 November 2026 · Research draft
+Jeromie Beasley · 23 November 2026 · Research draft (prepared with AI assistance; the AI systems are not authors)
 
 Open `Geometric_Flux_and_Magnetic_Charge_v6.pdf` or the self-contained HTML with the same stem.
 Version 5 files remain as the earlier paper record; version 4 files before that.

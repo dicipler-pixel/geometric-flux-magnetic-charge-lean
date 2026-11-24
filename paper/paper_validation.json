@@ -1,0 +1,32 @@
+{
+  "checks": {
+    "unit_direction": true,
+    "projector_idempotence_on_sphere": true,
+    "written_Berry_curvature_derivation": true,
+    "north_lower_eigenvector": true,
+    "south_transition_phase": true,
+    "north_connection": true,
+    "south_connection": true,
+    "curvature_flux": true,
+    "html_internal_links": true,
+    "three_contributors_in_HTML_byline": true,
+    "html_assistance_before_abstract": true,
+    "all_24_Lean_names_in_HTML": true,
+    "all_17_new_names_in_HTML": true,
+    "embedded_figure": true,
+    "all_17_new_names_in_PDF": true,
+    "three_contributors_in_PDF_byline": true,
+    "pdf_references_resolved": true,
+    "pdf_page_count_reasonable": true,
+    "no_Type_3_fonts": true,
+    "assistance_before_abstract": true,
+    "no_overfull_boxes": true,
+    "all_24_Lean_names_in_PDF": true
+  },
+  "failed_internal_links": [],
+  "symbolic_checks_scope": "Additional exact symbolic checks of written derivations; not Lean formalization.",
+  "pdf_pages": 11,
+  "original_project_declarations": 24,
+  "new_module_declarations": 17,
+  "iqgt_repository_declarations": 111
+}

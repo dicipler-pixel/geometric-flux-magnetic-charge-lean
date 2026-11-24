@@ -39,14 +39,22 @@ ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
 CONFIG = json.loads((pathlib.Path(__file__).resolve().parent / "config.json").read_text())
 MODULES = [(m["module"], m["path"]) for m in CONFIG["modules"]]
 EXPECTED_THEOREMS = CONFIG["expected_theorems"]
+EXPECTED_LEMMAS = CONFIG.get("expected_lemmas", 0)
 ADJACENT = [(m["module"], m["path"]) for m in CONFIG.get("adjacent_modules", [])]
 EXPECTED_ADJACENT = CONFIG.get("expected_adjacent_theorems", 0)
+EXPECTED_ADJACENT_LEMMAS = CONFIG.get("expected_adjacent_lemmas", 0)
 EXPECTED_FALSE_CONTROLS = CONFIG["expected_false_controls"]
 ROOT_IMPORTS = CONFIG["root_imports"]
 # Private helper lemmas cannot be named from another file, so they are not listed; their
 # axioms are audited through every public theorem that uses them.
 THEOREM_RE = re.compile(
     r"^\s*(?:@\[[^\]]*\]\s*)?(?:protected\s+)?theorem\s+([^\s:({\[]+)", re.M)
+# A `lemma` is a theorem written with another keyword. Counting only `theorem` silently left 46
+# compiled declarations out of the axiom audit (40 in FluxCharge.Bundle, 6 in FluxCharge.SpectralWall),
+# so both keywords are discovered and audited. `private` declarations are skipped: their names are not
+# reachable from another file, and their axioms reach the audit through the public ones that use them.
+LEMMA_RE = re.compile(
+    r"^\s*(?:@\[[^\]]*\]\s*)?(?:protected\s+)?lemma\s+([^\s:({\[]+)", re.M)
 NAMESPACE_RE = re.compile(r"^namespace\s+(\S+)", re.M)
 MATH_FAILURE = re.compile(
     r"unsolved goals|proved that the proposition.*false|tactic '.*' failed|"
@@ -81,12 +89,19 @@ def theorems_in(path: pathlib.Path) -> list[str]:
     return [f"{spaces[0]}.{name}" for name in THEOREM_RE.findall(text)]
 
 
+def lemmas_in(path: pathlib.Path) -> list[str]:
+    text = strip_comments(path.read_text())
+    spaces = sorted(set(NAMESPACE_RE.findall(text)))
+    return [f"{spaces[0]}.{name}" for name in LEMMA_RE.findall(text)]
+
+
 def main() -> int:
     OUT.mkdir(exist_ok=True)
     report: dict = {"lean": run(["lean", "--version"]).stdout.strip(), "modules": {}}
 
     # Inventory and hashes.
     names: list[str] = []
+    lemmas: list[str] = []
     for module, rel in MODULES:
         path = ROOT / rel
         found = theorems_in(path)
@@ -98,14 +113,21 @@ def main() -> int:
             "theorems": len(found),
         }
         names += found
+        lem = lemmas_in(path)
+        report["modules"][module]["lemmas"] = len(lem)
+        lemmas += lem
     total = sum(v["theorems"] for v in report["modules"].values())
     if total != EXPECTED_THEOREMS:
         raise SystemExit(f"inventory changed: {total} theorems, expected {EXPECTED_THEOREMS}")
+    if len(lemmas) != EXPECTED_LEMMAS:
+        raise SystemExit(f"lemma inventory changed: {len(lemmas)}, expected {EXPECTED_LEMMAS}")
     report["theorems"] = total
+    report["lemmas"] = len(lemmas)
 
     # Adjacent modules (spectral-wall work): audited by the same rules, counted separately so the
     # flux-charge inventory quoted by the paper keeps its own meaning.
     adjacent: list[str] = []
+    adjacent_lemmas: list[str] = []
     for module, rel in ADJACENT:
         path = ROOT / rel
         found = theorems_in(path)
@@ -118,14 +140,21 @@ def main() -> int:
             "group": "adjacent",
         }
         adjacent += found
+        adj_lem = lemmas_in(path)
+        report["modules"][module]["lemmas"] = len(adj_lem)
+        adjacent_lemmas += adj_lem
     if EXPECTED_ADJACENT and len(adjacent) != EXPECTED_ADJACENT:
         raise SystemExit(f"adjacent inventory changed: {len(adjacent)} theorems, expected {EXPECTED_ADJACENT}")
+    if EXPECTED_ADJACENT_LEMMAS and len(adjacent_lemmas) != EXPECTED_ADJACENT_LEMMAS:
+        raise SystemExit(f"adjacent lemma inventory changed: {len(adjacent_lemmas)}, expected {EXPECTED_ADJACENT_LEMMAS}")
     report["adjacent_theorems"] = len(adjacent)
+    report["adjacent_lemmas"] = len(adjacent_lemmas)
 
     # Axiom audit.
     audit = OUT / "AxiomAudit.lean"
     lines = [f"import {m}" for m in ROOT_IMPORTS] + [""]
-    lines += [f"#print axioms {name}" for name in names + adjacent]
+    audited = names + lemmas + adjacent + adjacent_lemmas
+    lines += [f"#print axioms {name}" for name in audited]
     audit.write_text("\n".join(lines) + "\n")
     proc = run(["lake", "env", "lean", str(audit.relative_to(ROOT))])
     log = proc.stdout + proc.stderr
@@ -134,7 +163,7 @@ def main() -> int:
         print(log)
         raise SystemExit("axiom audit file did not compile")
     axioms: dict[str, list[str]] = {}
-    for name in names + adjacent:
+    for name in audited:
         dep = re.search(re.escape(f"'{name}' depends on axioms: [") + r"([^\]]*)\]", log, re.S)
         none = f"'{name}' does not depend on any axioms" in log
         if dep:
@@ -168,9 +197,10 @@ def main() -> int:
     report["false_controls"] = controls
 
     (OUT / "report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
-    print(f"OK: {total} theorems"
-          + (f" + {len(adjacent)} adjacent" if adjacent else "")
-          + f", axioms used: {report['axiom_union']}, {len(controls)} false controls rejected")
+    print(f"OK: {total} theorems + {len(lemmas)} lemmas (flux-charge chain), "
+          f"{len(adjacent)} theorems + {len(adjacent_lemmas)} lemmas (adjacent), "
+          f"{len(audited)} declarations audited, axioms used: {report['axiom_union']}, "
+          f"{len(controls)} false controls rejected")
     return 0
 
 

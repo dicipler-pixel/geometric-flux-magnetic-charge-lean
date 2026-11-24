@@ -82,3 +82,32 @@ is `OK: 99 theorems + 161 adjacent, …`. Two statements in the
 working brief for it were wrong and the corrected forms are the ones proved: the printed closed form of the
 trace (it gives `-6` at the wall, not `-2`) and the literal `√δ·‖Φ‖^2` limit (it diverges; the correct pair is
 `√δ‖Φ‖ → 1/√2` and `δ‖Φ‖^2 → 1/2`).
+
+## Corrections from the author's review, 24 November 2026
+
+Six of the seven findings were mine to fix and are fixed on branch `openmath/audit-fixes`:
+
+1. **The audit skipped 46 declarations.** `scripts/verify.py` discovered `theorem` and not `lemma`,
+   which left 40 declarations in `FluxCharge.Bundle` and 6 in `FluxCharge.SpectralWall` compiled but
+   never axiom-audited — the same gap Open Math closed in the peeling repository. `LEMMA_RE` and
+   `lemmas_in()` are added; both keywords are audited and reported apart
+   (`expected_lemmas = 40`, `expected_adjacent_lemmas = 6`). The v6 text now says the audit covers
+   "every named declaration — theorems *and* lemmas", and the README states the counts on their own line.
+2. **The two v5s.** `paper/V5_RECONCILIATION.md` records the byte comparison: the v5 `.tex`, `.pdf`,
+   `.html`, all six proof modules, `monopole_stance/`, `verification_v5/` and the workflow are
+   **identical** between `main` and branch `v5-seam` (tip `ea61635`). The only real difference was
+   `verification_v5/lean-evidence.zip`, present only on the author's branch; it is restored here.
+   `main` stays canonical; `v5-seam` is kept as history without a merge, because there is nothing on it
+   that `main` lacks.
+3. **The v4 paper is back**, beside v5 and v6: `Geometric_Flux_and_Magnetic_Charge_v4.{tex,pdf,html}`,
+   its `build_html.py`, `check_paper.py`, `plot_functions.py`, `paper_validation.json`, the v1 figure and
+   `CHECKSUMS.sha256`, all restored from `a1cef49`. v4 keeps its original byline: it is a historical
+   record, and restoring it means restoring it as it was.
+4. **The shape kit left this repository.** `One_Tree_Every_Shape_v2_rebuild/` is removed; its home is
+   `votkp-lean`. It remains in this repository's history (`99c0098`, `3431cda`) so nothing is lost, and
+   this session has no connection to `votkp-lean`, so the copy there is the author's to make.
+5. **Byline.** v5 and v6 now read `\author{Jeromie Beasley}` with `pdfauthor={Jeromie Beasley}`; the
+   co-authorship line is replaced by an AI-assistance paragraph that names the systems and says they are
+   not authors and that every Lean statement was machine-checked. README and `paper/README_PAPER.md`
+   likewise. `paper/html_source.tex` follows the v5 source it is generated from.
+6. **v6 remains a draft** until the author reads it, and the tensor question in it is the author's call.
