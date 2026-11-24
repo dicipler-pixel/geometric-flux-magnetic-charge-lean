@@ -125,6 +125,12 @@ changes, pullbacks with their degree formula, and a system-specific physical fie
 identification such as `F_B = κ f*Ω`. No physical Dirac string or magnetic particle is
 inferred from the parameter-space calculation.
 
+* **A separate note in this tree.** [`One_Tree_Every_Shape_v2_rebuild/`](One_Tree_Every_Shape_v2_rebuild/REBUILD.md)
+  is Jeromie Beasley's interactive page *One Tree, Every Shape* v2 (23 November 2026, built with AI
+  assistance), with its rebuild kit and the computational records behind its eyes
+  (`records/what-bends/`, `records/poincare-diamond/`). It is not part of the Lean library, is not
+  counted in any inventory here, and `lake build` ignores it: `FluxCharge/` is the only Lean root.
+
 * **The original archive.** [`monopole_stance/`](monopole_stance/) keeps the original Lean v4.19.0
   package exactly as it was verified, with its own pinned Mathlib, `verify.py` and evidence. The
   port in `FluxCharge/` changes content in one place only: `Geometry` takes `omega` from

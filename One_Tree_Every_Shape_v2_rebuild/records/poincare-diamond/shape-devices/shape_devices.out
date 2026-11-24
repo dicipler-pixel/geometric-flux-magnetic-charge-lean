@@ -1,0 +1,25 @@
+H0  The face-book reading equals the shape's own cross-ratio distance (Hilbert)
+   triangle     faces  3  worst 1.8e-15
+   square       faces  4  worst 2.2e-15
+   pentagon     faces  5  worst 1.6e-15
+   hexagon      faces  6  worst 2.7e-15
+   tetrahedron  faces  4  worst 2.2e-15
+   cube         faces  6  worst 1.3e-15
+   octahedron   faces  8  worst 2.7e-15
+   dodecahedron faces 12  worst 2.2e-15
+   icosahedron  faces 20  worst 1.8e-15
+H1  On an interval the reading is the peel step: the ball's physical (Klein) map
+   worst 4.4e-16  (coordinate = tanh of distance, the Klein / admittance reading)
+H2  Which shapes are flat and which bend: the midline test, done along each shape's OWN straight moves
+   triangle     midline/half from 1.000000000000 to 1.000000000000
+   tetrahedron  midline/half from 1.000000000000 to 1.000000000000
+   disk         midline/half from 0.4286 to 1.0000
+   ball         midline/half from 0.5002 to 0.9992
+H3  The simplex shapes read moves straight and in any order
+   triangle     worst change under a common book move 6.8e-14
+   tetrahedron  worst change under a common book move 1.1e-13
+H4  Fork: the diamond's per-edge reading vs the square's own reading
+   square own reading / diamond per-edge sum: from 0.505 to 1.000 (own = max over axes when the cross pairs stay quiet)
+H5  Fork, part two: are the square and cube flat under their own natural moves?
+   square  own reading, worst change: different move per axis 1.2731 ; same move on every axis 1.4759
+   cube    own reading, worst change: different move per axis 1.4896 ; same move on every axis 2.3035

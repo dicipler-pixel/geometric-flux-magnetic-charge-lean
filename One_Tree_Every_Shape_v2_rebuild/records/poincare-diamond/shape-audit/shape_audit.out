@@ -1,0 +1,54 @@
+A1  The angle-keeping face chart ON the rim itself (the earlier test stood 1e-6 inside the rim, where corners cannot be reached).
+    Kill: any rim point, more than 1e-6 of a turn away from a corner, lands off the polygon's edge by more than 1e-10
+   3-gon  rim to edge worst 6.9e-31   pass
+   4-gon  rim to edge worst 2.0e-31   pass
+   5-gon  rim to edge worst 3.9e-31   pass
+   6-gon  rim to edge worst 3.9e-31   pass
+
+A2  The angle-keeping chart keeps angles (the earlier test used a one-sided step of 1e-6 and read 2.5e-6, over its own 1e-6 line).
+    Kill: angle between the images of two right-angle steps off 90 degrees by more than 1e-10 rad, 200 points each
+   3-gon  worst angle error 1.3e-19 rad   pass
+   4-gon  worst angle error 7.8e-20 rad   pass
+   5-gon  worst angle error 9.3e-20 rad   pass
+   6-gon  worst angle error 5.6e-20 rad   pass
+
+A3  Same from every point?  Pentagon faces (untested until now) and the five solids, by a measure no stretch or shear can change
+    (volume of the local yardstick times volume of its dual).  Prediction written first: constant ONLY for triangle and tetrahedron.
+    Kill: triangle or tetrahedron not constant to 1e-9 ; or any other shape constant to 1e-6
+   triangle      measure 9.000000 to 9.000000   same from every point  pass
+   square        measure 8.389201 to 9.235781   changes with the point pass
+   pentagon      measure 8.746548 to 9.514351   changes with the point pass
+   hexagon       measure 8.902019 to 9.521003   changes with the point pass
+   tetrahedron   measure 13.333333 to 13.333333   same from every point  pass
+   cube          measure 12.581195 to 14.016458   changes with the point pass
+   octahedron    measure 12.874541 to 14.803521   changes with the point pass
+   dodecahedron  measure 13.838544 to 15.512999   changes with the point pass
+   icosahedron   measure 14.048673 to 16.035675   changes with the point pass
+
+A4  One Tree, Every Shape: the tree is carried in along rays (rim onto faces).  Measured in each solid's OWN reading:
+    every edge is ln 5 = 1.6094 in the ball.  Is it still one step length in the solid?  Are the carried edges straight in the solid?
+    Not a kill test: a measurement of how much of the ball's tree survives the carry.
+   solid         own length of an edge: level-1 edges      level-2 edges      level-3 edges      worst sideways bend / chord
+   tetrahedron                1.609 to 1.609     1.609 to 1.965     0.719 to 2.840      0.044
+   cube                       1.609 to 1.609     1.134 to 1.609     0.641 to 1.609      0.036
+   octahedron                 1.609 to 1.609     1.609 to 1.965     0.719 to 2.840      0.044
+   dodecahedron               1.609 to 1.609     1.609 to 2.124     0.739 to 2.613      0.049
+   icosahedron                1.609 to 1.609     1.191 to 1.609     0.752 to 2.383      0.047
+
+A5  The tetrahedron's own moves.  A peel step by ratio z on one face book: multiply that book by z, keep the point in the solid.
+    Kill (a): the step changes any own distance by more than 1e-11 (then it is not the solid's own motion)
+    Kill (b): step length is not 1/2 ln z, or two steps on one book do not add, to 1e-11
+    Kill (c): the loop A B A^-1 B^-1 on two different books fails to close by more than 1e-11 at any z (then the tetrahedron HAS a wall)
+   (a) worst change of a distance under a step 2.3e-13   pass
+   (b) worst step-length / adding error        9.7e-12   pass
+   (c) worst loop gap, z = 2, 3, 5, wall, 7, 50  5.3e-13   pass  -> the loop always closes: no wall in the tetrahedron
+       same loop in the ball: gap 1.1863 at z = 3, 3.4487 at z = 5, 4.1894 at the wall, 5.0591 at z = 7
+   places reached by 0..4 steps:  ball tree, three arms [1, 7, 37, 187, 937]   tetrahedron, four books [1, 9, 35, 91, 189]
+
+A6  Two books in every shape: the own reading is the average of a forward and a backward one-way reading.
+    Kill: average differs from the own reading by more than 1e-12.  Also reported: where forward and backward disagree.
+   tetrahedron   worst 0.0e+00  pass ; from the centre toward a face: out 0.9163, back 0.1823
+   cube          worst 0.0e+00  pass ; from the centre toward a face: out 0.9163, back 0.4700
+   octahedron    worst 0.0e+00  pass ; from the centre toward a face: out 0.9163, back 0.4700
+   dodecahedron  worst 0.0e+00  pass ; from the centre toward a face: out 0.9163, back 0.4700
+   icosahedron   worst 0.0e+00  pass ; from the centre toward a face: out 0.9163, back 0.4700

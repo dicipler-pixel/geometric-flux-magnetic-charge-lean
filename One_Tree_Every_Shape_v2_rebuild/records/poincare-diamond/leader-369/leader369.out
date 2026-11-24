@@ -1,0 +1,52 @@
+=== BUILD ===
+B1  The model: three modes, rates 3, 6, 9, sun feeds galaxy feeds universe with coupling c
+   eigenvalues fixed at 3, 6, 9 for every coupling: True
+   time for the universe mode to hold 99%% of the direction, c = 0, 1, 5, 50, 500: [None, np.float64(1.256), np.float64(0.749), np.float64(0.20500000000000002), np.float64(0.028)]
+B2  The 3-6-9 spectrum is Plato's chord: ratios 2, 3/2, 3; peels 1/3, 1/5, 1/2; and x3, x6, x9 closed mod 9
+   HOLDS (exact arithmetic)
+
+=== BREAK: real rates ===
+   sun      rotation, equator sidereal                     2.19e+06 to 2.19e+06 s
+   sun      rotation, Carrington                           2.36e+06 to 2.36e+06 s
+   sun      sunspot cycle                                  3.31e+08 to 3.63e+08 s
+   sun      magnetic (Hale) cycle                          6.63e+08 to 7.26e+08 s
+   sun      5-minute oscillation                           300 to 300 s
+   sun      dynamical 1/sqrt(G rho), rho 1408 kg/m3        3.26e+03 to 3.26e+03 s
+   galaxy   Sun's orbit (V 229 to 251 km/s)                6.36e+15 to 6.98e+15 s
+   galaxy   bar pattern (33.29 +- 1.81 km/s/kpc)           5.52e+15 to 6.16e+15 s
+   galaxy   dynamical, M 0.8-1.5e12 Msun within 200-300 kpc 7.03e+16 to 1.77e+17 s
+   universe 1/H0, H0 67.4 to 73.0 km/s/Mpc                 4.23e+17 to 4.58e+17 s
+   universe dynamical of the Hubble density 3H0^2/8piG     1.22e+18 to 1.33e+18 s
+K1  Kill if no sun/galaxy/universe triple of periods sits on 3 : 6 : 9 (either reading) within 10%
+   hits: none
+   galaxy/sun period ratios span 7.6e+06 to 5.9e+14 ; universe/galaxy span 2.39 to 240 (targets 1.5 to 2)
+K2  Straw-man at full strength: ANY two candidates from ANY two scales on 2, 3/2 or 3, then a look-elsewhere control
+   real hits: 1 [('dynamical, M 0.8-1.5e12 Msun within 200-300 kpc', '1/H0, H0 67.4 to 73.0 km/s/Mpc', 3)]
+   random 95th percentile: 4 ; real above it: False
+K3  Same physics at each scale (dynamical rate sqrt(G rho)): kill if the three rates are not 1 : 2 : 3 within 10%
+   rates relative to the slowest: [3.75046029e+14 1.01650000e+01 1.00000000e+00]
+
+=== BREAK: following the leader in direction ===
+K4  Sun follows the galaxy: kill if the Sun's spin is no closer to the galaxy's than chance (p > 0.3)
+   angle 67.2 deg ; chance of a random axis being this close or closer p = 0.61
+K5  Galaxy follows the Local Sheet (spin lying in the sheet, as tidal torques give): kill if p > 0.3
+   spin to sheet-normal angle 83.7 deg ; chance of a random axis lying this flat in the sheet p = 0.11 (one galaxy only)
+
+=== STRAW-MAN the number games ===
+K6  'Measured numbers reduce to 3, 6, 9 by digital root': kill if the root changes with the units
+   sun rotation  days 25 -> 7 ; hours 609 -> 6 ; seconds 2192832 -> 9
+   Sun orbit     days 80809894551 -> 3 ; hours 1939437469218 -> 3 ; seconds 6981974889184525 -> 4
+K7  'Peel of the real scale ratios lands on the chord': kill if no real ratio peels to within 0.02 of 1/3, 1/5 or 1/2
+   peels: ['1.000000', '1.000000', '0.409964', '0.991698'] (the extreme ratios of each span)
+   the universe/galaxy span (2.39 to 240) does pass through 3 (peel 1/2), but only because the span is wide; K2's random control is the fair test
+
+=== WHAT HOLDS ===
+   B1 model                             HOLDS
+   B2 chord + mod 9                     HOLDS (exact arithmetic)
+   K1 direct 3:6:9 rates                KILLED
+   K2 any-pair chord                    KILLED (no more than chance)
+   K3 dynamical rates                   KILLED
+   K4 sun follows galaxy (spin)         KILLED (chance level)
+   K5 galaxy follows sheet (spin)       survives (one galaxy; surveys carry the statistics)
+   K6 digital roots of measurements     KILLED (unit artifact)
+   K7 peel of raw ratios                KILLED (a wide span covers any target; chance level per K2)

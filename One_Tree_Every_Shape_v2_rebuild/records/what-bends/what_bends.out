@@ -1,0 +1,19 @@
+B1  Is the BALL doing the bending, or the order of the primes?  The twin chain is walked in the ball exactly as on the page
+    (step = ratio of one twin start to the next, along the arm of its end digit).  Then the same steps are walked in shuffled order.
+    Kill for -the order of the primes bends-: the real chain ends inside the middle 95 percent of the shuffled chains.
+     600 pairs: path length 8.229 ; flat reader end 4.792 (any order) ; ball end, real order 4.858 ; shuffled 4.865 to 5.064  -> OUTSIDE: the order matters
+    2400 pairs: path length 9.941 ; flat reader end 5.773 (any order) ; ball end, real order 5.848 ; shuffled 5.852 to 6.074  -> OUTSIDE: the order matters
+    9600 pairs: path length 11.601 ; flat reader end 6.728 (any order) ; ball end, real order 6.806 ; shuffled 6.803 to 7.033  -> inside: the order adds nothing here
+
+B2  Is the end-digit record flat?  Consecutive twin starts end in 1, 7 or 9.  If each end digit were drawn on its own, every
+    cell below would read 1.000.  Kill for -the end digits carry a covariance-: all nine cells within 1 percent of 1.
+   twin pairs counted: 239099
+   from 1  to 1: 0.9196   to 7: 1.0948   to 9: 0.9858
+   from 7  to 1: 0.9945   to 7: 0.9125   to 9: 1.0934
+   from 9  to 1: 1.0864   to 7: 0.9925   to 9: 0.9206
+   largest departure from 1: 9.5 percent ; one-sigma counting noise about 0.62 percent -> NOT flat
+
+B3  Do the zeros behave like steps that commute (free to sit anywhere) or steps that do not (they push each other apart)?
+    Share of neighbouring gaps smaller than 0.3 of the average: 26 percent if free, about 3 percent if they push.
+    Kill for -the zeros push-: share of 15 percent or more.
+   zeros used: 400 ; share of small gaps 1.0 percent -> they push
