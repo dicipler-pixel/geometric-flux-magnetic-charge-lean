@@ -4,7 +4,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-99-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-99%20%2B%20114-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -36,7 +36,34 @@ paper and the v4 before it remain in the repository as the earlier record.
 | `FluxCharge.Seam` | **the join** (below) | 6 |
 | `FluxCharge.Topology` | pole obstruction, latitude-cut independence and derived band-flux cancellation | 9 |
 | `FluxCharge.Bundle` | **the eigenline bundle in two charts** (below) | 43 |
-| | **total**, with 11 false controls | **99** |
+| | **total for the flux-charge chain**, with 11 false controls | **99** |
+| `FluxCharge.SpectralWall` | *adjacent:* the ISCO spectral wall, and the partial/total derivative certificate | 56 |
+| `FluxCharge.TwoLevelWall` | *adjacent:* the non-Hermitian two-level wall, and the corrected projector statement | 26 |
+| `FluxCharge.JordanWall` | *adjacent:* Jordan propagator, projector divergence, wall normal form | 32 |
+| | **adjacent total**, outside the flux-charge chain | **114** |
+
+### The spectral-wall modules (adjacent)
+
+Three modules import Mathlib only and depend on nothing in the flux-charge chain; they formalize
+statements from the author's black-hole manuscript rather than from this note. `scripts/config.json`
+counts them separately (`expected_adjacent_theorems`) and `scripts/verify.py` audits their axioms by
+the same rules.
+
+* `SpectralWall` — the circular-orbit generator `M r = !![0, 1; -W r, 0]` with
+  `W r = (r - 6)/(r^3 (r - 3))`: `M^2 = -W • 1`, nonzero nilpotent at `r = 6`, the sign dichotomy
+  `0 < W ↔ 6 < r`, eigenvalues `± i sqrt W` outside and `± sqrt (-W)` inside, both one-sided limits
+  of `2 sqrt |W| / sqrt |r - 6|` to `2 / sqrt 648`, the growing eigenvector `(1, sqrt (-W))` and
+  `deriv sqrt (-W) → atBot` at the wall, `p 6 = 3`. It also certifies the derivative ambiguity:
+  the second **partial** at fixed `L^2` gives `2W`, while the second derivative **along** the family
+  gives `1/81` at `r = 6`, so the wall exists for one reading and not the other.
+* `TwoLevelWall` — `H g = σx + i g σz`: `H^2 = (1 - g^2) • 1`, the nilpotent at `g = 1`, the
+  counterexample showing the hand-written projector formula is **not** idempotent for `|g| ≥ 1`,
+  its repair on `|g| < 1`, and the proof that no orthogonal idempotent resolution exists at `g = 1`.
+* `JordanWall` — the Jordan propagator `exp (lam t) • (1 + t N)` with its linear-in-time entry and
+  entrywise derivative; the single-projector divergence `‖P+‖ * gap → ‖b‖` with the pair projector
+  staying finite (determinant 1); and the wall normal form: `trace W = 2 lam`, `det W = lam^2` gives
+  `(W - lam • 1)^2 = 0`, with a model whose gap unfolds as `2 sqrt |d|`. The peel wall
+  (`trace (W+1) = 0`, `(W+1)^2 = 0`) is that normal form at `lam = -1`.
 
 ### The eigenline bundle (`FluxCharge/Bundle.lean`)
 

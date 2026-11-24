@@ -1,4 +1,13 @@
 {
+  "adjacent_wall_modules": {
+    "expected": 114,
+    "modules": {
+      "FluxCharge.JordanWall": 32,
+      "FluxCharge.SpectralWall": 56,
+      "FluxCharge.TwoLevelWall": 26
+    },
+    "theorems": 114
+  },
   "axiom_union": [
     "Classical.choice",
     "Quot.sound",
@@ -19,51 +28,37 @@
     "topology_total_chern_two"
   ],
   "false_controls_count": 11,
-  "lean_version": "Lean (version 4.34.1, x86_64-unknown-linux-gnu, commit 5045d0056413266e57c625dcd7c365b10e377c52, Release)",
+  "flux_charge_chain": {
+    "expected": 99,
+    "modules": {
+      "FluxCharge.Bridge": 9,
+      "FluxCharge.Bundle": 43,
+      "FluxCharge.Extension": 2,
+      "FluxCharge.Geometry": 13,
+      "FluxCharge.Monopole": 17,
+      "FluxCharge.Seam": 6,
+      "FluxCharge.Topology": 9
+    },
+    "theorems": 99
+  },
   "mathlib_rev": "d13f23b723b8a846827a245b89c10fc7d3f11612",
-  "modules": {
-    "FluxCharge.Bridge": {
-      "file": "FluxCharge/Bridge.lean",
-      "sha256": "b97c48ab61b037a77ae48a0a9496762a887eeb80d37d256e3ba1689e6e78ee0c",
-      "theorems": 9
-    },
-    "FluxCharge.Bundle": {
-      "file": "FluxCharge/Bundle.lean",
-      "sha256": "31f6893fdfa61b41e947f61a06e65028ef5f2ed57557a6249d7662632ca04025",
-      "theorems": 43
-    },
-    "FluxCharge.Extension": {
-      "file": "FluxCharge/Extension.lean",
-      "sha256": "bb1b2edb9fdf42c446ae65873e0f1901c0e8aaf84b40a865f04de0b85e1bc101",
-      "theorems": 2
-    },
-    "FluxCharge.Geometry": {
-      "file": "FluxCharge/Geometry.lean",
-      "sha256": "3d2e08f0441eb5ca33fc4521d26599c44ccfad23acfe9dd049b827d6165de860",
-      "theorems": 13
-    },
-    "FluxCharge.Monopole": {
-      "file": "FluxCharge/Monopole.lean",
-      "sha256": "ae938dc3dfa720c2b7f57f0e6869d9b2ffeb7f0ef9061058077af1aae6805561",
-      "theorems": 17
-    },
-    "FluxCharge.Seam": {
-      "file": "FluxCharge/Seam.lean",
-      "sha256": "62dc125cc67fb6c78e8bc9beac302b8ca798adfad56a5fba86e5ae2323349614",
-      "theorems": 6
-    },
-    "FluxCharge.Topology": {
-      "file": "FluxCharge/Topology.lean",
-      "sha256": "33d80b1e8a9d24f155721aa43be5533d76e0f7be4884215a0b51e860643887c1",
-      "theorems": 9
-    }
+  "module_sha256": {
+    "FluxCharge.Bridge": "b97c48ab61b037a77ae48a0a9496762a887eeb80d37d256e3ba1689e6e78ee0c",
+    "FluxCharge.Bundle": "31f6893fdfa61b41e947f61a06e65028ef5f2ed57557a6249d7662632ca04025",
+    "FluxCharge.Extension": "bb1b2edb9fdf42c446ae65873e0f1901c0e8aaf84b40a865f04de0b85e1bc101",
+    "FluxCharge.Geometry": "3d2e08f0441eb5ca33fc4521d26599c44ccfad23acfe9dd049b827d6165de860",
+    "FluxCharge.JordanWall": "c0daaa524469f9f941fe4cce5812166ca967fc2ada3f10f1b48f15f9712a273b",
+    "FluxCharge.Monopole": "ae938dc3dfa720c2b7f57f0e6869d9b2ffeb7f0ef9061058077af1aae6805561",
+    "FluxCharge.Seam": "62dc125cc67fb6c78e8bc9beac302b8ca798adfad56a5fba86e5ae2323349614",
+    "FluxCharge.SpectralWall": "85771d90c0666e10e2d489368ab351411002a6e2f4758550e3ea33b1320ef282",
+    "FluxCharge.Topology": "33d80b1e8a9d24f155721aa43be5533d76e0f7be4884215a0b51e860643887c1",
+    "FluxCharge.TwoLevelWall": "461cf55b35f301d4020c97d1849cb40bc74ab022b9a88dd16a46b92401284180"
   },
   "notes": [
     "Mathlib at the pinned revision was supplied from a local build of the same commit; lake reused its oleans.",
-    "No CI run corresponds to this evidence: the commit is local and has not been pushed.",
-    "The 43 FluxCharge.Bundle declarations are included in the axiom audit; supporting lemmas are audited through the theorems that use them."
+    "No CI run corresponds to this evidence: the commits are local and have not been pushed.",
+    "The wall modules import Mathlib only and are counted separately from the flux-charge chain the paper reports."
   ],
   "toolchain": "leanprover/lean4:v4.34.1",
-  "total_theorems": 99,
   "verified_by": "python3 scripts/verify.py (local run; not CI)"
 }

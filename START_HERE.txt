@@ -3,7 +3,10 @@ Jeromie Beasley · GPT (OpenAI) · Claude (Anthropic)
 
 Read paper/Geometric_Flux_and_Magnetic_Charge_v6.pdf or the same-named self-contained HTML.
 Rebuild instructions: paper/README_PAPER.md.
-Current Lean project: repository root, Lean 4.34.1; seven modules, 99 theorem declarations and 11 controls.
+Current Lean project: repository root, Lean 4.34.1; ten modules.
+  Flux-charge chain: 99 theorem declarations, 11 controls (the paper's inventory).
+  Adjacent spectral-wall modules: 114 theorem declarations (SpectralWall 56, TwoLevelWall 26, JordanWall 32),
+  audited by the same script and counted separately.
 New in v6: FluxCharge/Bundle.lean — the two local sections of the lower eigenline, the transition
 function of winding one, and the Berry connections computed from the sections, giving the gauge
 difference 1, curvature sin(theta)/2 and normalized flux 1.

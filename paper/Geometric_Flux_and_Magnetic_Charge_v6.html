@@ -1025,12 +1025,33 @@ from the IQGT project. Its inventory is:</p>
 </tbody>
 </table>
 </div>
+<p>The repository also carries three adjacent modules,
+<code>FluxCharge.SpectralWall</code> (56 declarations),
+<code>FluxCharge.TwoLevelWall</code> (26) and
+<code>FluxCharge.JordanWall</code> (32). They formalize statements from
+the author’s black-hole manuscript — the innermost stable circular orbit
+as a spectral wall of the circular-orbit generator, the non-Hermitian
+two-level Hamiltonian
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>x</mi></msub><mo>+</mo><mi mathvariant="normal">i</mi><mi>γ</mi><msub><mi>σ</mi><mi>z</mi></msub></mrow><annotation encoding="application/x-tex">\sigma_x+\mathrm{i}\gamma\sigma_z</annotation></semantics></math>,
+and the Jordan-block statements about propagators and single projectors
+— and they are <em>not</em> part of the chain this note reports. They
+import Mathlib only, depend on nothing above, are counted separately in
+<code>scripts/config.json</code> and are audited by the same axiom
+check. One of them corrects a statement current in draft form: the
+hand-written projector formula for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>x</mi></msub><mo>+</mo><mi mathvariant="normal">i</mi><mi>γ</mi><msub><mi>σ</mi><mi>z</mi></msub></mrow><annotation encoding="application/x-tex">\sigma_x+\mathrm{i}\gamma\sigma_z</annotation></semantics></math>
+is idempotent on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>γ</mi><mo stretchy="false" form="prefix">|</mo><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">|\gamma|&lt;1</annotation></semantics></math>,
+not for every
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mo>≠</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\gamma\neq1</annotation></semantics></math>,
+since the real square root vanishes for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>γ</mi><mo stretchy="false" form="prefix">|</mo><mo>≥</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">|\gamma|\ge1</annotation></semantics></math>.</p>
 <p>The 99 count theorem declarations, not definitions or 99 independent
 discoveries. The original 24 are included through their port. They must
 not be added again. All declarations retain the namespace
 <code>MonopoleStance</code>.</p>
-<p>The check builds the library, independently replays all seven modules
-using <code>leanchecker</code>, and audits every named theorem. Only
+<p>The check builds the library, independently replays the modules using
+<code>leanchecker</code>, and audits every named theorem. Only
 <code>propext</code>, <code>Classical.choice</code> and
 <code>Quot.sound</code> are permitted dependencies. A fixed inventory in
 <code>scripts/config.json</code> requires exactly 99 theorems and 11

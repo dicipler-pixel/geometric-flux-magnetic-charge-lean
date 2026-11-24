@@ -427,9 +427,20 @@ The current proof chain is one library, \leanname{FluxCharge}, pinned to Lean 4.
 Total & 99\\\bottomrule
 \end{tabular}
 \end{center}
+The repository also carries three adjacent modules, \leanname{FluxCharge.SpectralWall} (56
+declarations), \leanname{FluxCharge.TwoLevelWall} (26) and \leanname{FluxCharge.JordanWall} (32).
+They formalize statements from the author's black-hole manuscript --- the innermost stable circular
+orbit as a spectral wall of the circular-orbit generator, the non-Hermitian two-level Hamiltonian
+$\sigma_x+\ii\gamma\sigma_z$, and the Jordan-block statements about propagators and single
+projectors --- and they are \emph{not} part of the chain this note reports. They import Mathlib only,
+depend on nothing above, are counted separately in \leanname{scripts/config.json} and are audited by
+the same axiom check. One of them corrects a statement current in draft form: the hand-written
+projector formula for $\sigma_x+\ii\gamma\sigma_z$ is idempotent on $|\gamma|<1$, not for every
+$\gamma\neq1$, since the real square root vanishes for $|\gamma|\ge1$.
+
 The 99 count theorem declarations, not definitions or 99 independent discoveries. The original 24 are included through their port. They must not be added again. All declarations retain the namespace \leanname{MonopoleStance}.
 
-The check builds the library, independently replays all seven modules using \leanname{leanchecker}, and audits every named theorem. Only \leanname{propext}, \leanname{Classical.choice} and \leanname{Quot.sound} are permitted dependencies. A fixed inventory in \leanname{scripts/config.json} requires exactly 99 theorems and 11 false controls. The controls target zero unit flux; either unconditional magnetic inference; a zero bridge unit; idempotence at the origin; zero chart-coefficient difference; the missing curvature factor one half; the wrong derivative sign; doubled derived flux; equal north-coefficient pole values; and a total band flux of two. The script distinguishes mathematical rejection from failures due to missing imports or unknown identifiers. Rejection exercises these attempted false proofs; it is not a general completeness guarantee for the verifier.
+The check builds the library, independently replays the modules using \leanname{leanchecker}, and audits every named theorem. Only \leanname{propext}, \leanname{Classical.choice} and \leanname{Quot.sound} are permitted dependencies. A fixed inventory in \leanname{scripts/config.json} requires exactly 99 theorems and 11 false controls. The controls target zero unit flux; either unconditional magnetic inference; a zero bridge unit; idempotence at the origin; zero chart-coefficient difference; the missing curvature factor one half; the wrong derivative sign; doubled derived flux; equal north-coefficient pole values; and a total band flux of two. The script distinguishes mathematical rejection from failures due to missing imports or unknown identifiers. Rejection exercises these attempted false proofs; it is not a general completeness guarantee for the verifier.
 
 Version 5's proof-source revision was \href{https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/commit/d02b612e508e083e94baaf7d781ef15b76953f68}{\texttt{d02b612}} on branch \leanname{v5-seam}; its \href{https://github.com/dicipler-pixel/geometric-flux-magnetic-charge-lean/actions/runs/42027723304}{CI run} records the build, independent kernel replay, axiom audit and all 11 rejected controls \emph{for the 56-declaration inventory of that version}. The present draft is not covered by that run.
 

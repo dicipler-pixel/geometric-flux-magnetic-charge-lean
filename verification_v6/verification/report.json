@@ -1,10 +1,171 @@
 {
+  "adjacent_theorems": 114,
   "axiom_union": [
     "Classical.choice",
     "Quot.sound",
     "propext"
   ],
   "axioms": {
+    "JordanWall.A_mul_Pminus": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.A_mul_Pplus": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.N_ne_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.N_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.Phi_deriv": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.Phi_linear_term": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.Phi_not_exponential_only": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.Pminus_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.Pminus_idem": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.Pplus_add_Pminus": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.Pplus_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.Pplus_idem": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.Pplus_mul_Pminus": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.divergence_constant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.eigenvalues": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.gap_sqrt_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.model_eigenvector_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.model_eigenvector_ne_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.model_gap_neg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.model_gap_pos": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.model_roots_neg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.model_roots_pos": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.model_roots_pos_distinct": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.model_wall": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.model_wall_basic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.pair_det": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.pair_finite": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.pair_frobeniusNorm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.projector_frobeniusNorm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.projector_norm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.wall_dichotomy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "JordanWall.wall_nilpotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
     "MonopoleStance.admissibility_is_restriction": [
       "Classical.choice",
       "Quot.sound",
@@ -499,6 +660,416 @@
       "Classical.choice",
       "Quot.sound",
       "propext"
+    ],
+    "SpectralWall.DW_six": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.H_one_ne_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.H_one_no_idempotent_decomposition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.H_one_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.H_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.H_sq_scale": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.H_sub_smul_one_det": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.MC_mulVec_eigen_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.M_mulVec_eigen_real_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.M_ne_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.M_six_ne_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.M_six_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.M_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.M_sq_eq_zero_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.M_sub_smul_one_det": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.Pminus_idempotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.Pplus_idempotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.W_eq_zero_iff_of_three_lt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.W_neg_iff_of_three_lt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.W_pos_iff_of_three_lt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.W_six": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.abs_W_div_abs_sub_six": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.deriv_V_r": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.deriv_V_rr": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.deriv_V_rr_circular": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.deriv_growingEigenvalue": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.formal_projectors_of_between": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.formal_projectors_of_ne": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.formal_projectors_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.growingEigenvector_eigen": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.growing_eigenvalue_pos": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.growth_eigenvalues_nonzero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.growth_eigenvectors": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.growth_gap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.half_deriv_V_rr_circular": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.half_second_partial_V_circular": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.hasDerivAt_V_r": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.hasDerivAt_V_rr": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.hasDerivAt_W": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.hasDerivAt_growingEigenvalue": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.oscillation_eigenvalues_nonreal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.oscillation_eigenvectors": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.oscillation_gap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.p_six": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.partial_ne_total_at_ISCO": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.scale_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.scale_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.second_partial_V": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.second_partial_V_at_ISCO": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.second_partial_V_circular": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.second_total_family_at_ISCO": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.tendsto_deriv_growingEigenvalue_from_below": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.tendsto_gap_sqrt_from_above": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.tendsto_gap_sqrt_from_below": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.two_level_eigenvalue_squares": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "SpectralWall.two_level_eigenvalues_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.H_eigenvalue_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.H_eigenvalues_pm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.H_one_ne_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.H_one_nilpotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.H_one_no_idempotent_resolution": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.H_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.H_sub_smul_det": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.Pminus_idempotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.Pminus_not_idempotent_of_unit_degenerate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.Pminus_of_unit_degenerate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.Pminus_one_not_idempotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.Pplus_idempotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.Pplus_not_idempotent_of_unit_degenerate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.Pplus_of_unit_degenerate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.Pplus_one_not_idempotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.Pplus_two_not_idempotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.half_add_idempotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.half_sub_idempotent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.projectors_add": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.projectors_idempotent_not_forall_ne_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.sq_eq_one_of_idempotent_resolution": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.sqrt_at_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.sqrt_unit_degenerate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.sqrt_unit_pos": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.sqrt_unit_sq_complex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "TwoLevelWall.unit_radical_pos": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
     ]
   },
   "false_controls": {
@@ -536,6 +1107,12 @@
       "sha256": "3d2e08f0441eb5ca33fc4521d26599c44ccfad23acfe9dd049b827d6165de860",
       "theorems": 13
     },
+    "FluxCharge.JordanWall": {
+      "file": "FluxCharge/JordanWall.lean",
+      "group": "adjacent",
+      "sha256": "c0daaa524469f9f941fe4cce5812166ca967fc2ada3f10f1b48f15f9712a273b",
+      "theorems": 32
+    },
     "FluxCharge.Monopole": {
       "file": "FluxCharge/Monopole.lean",
       "sha256": "ae938dc3dfa720c2b7f57f0e6869d9b2ffeb7f0ef9061058077af1aae6805561",
@@ -546,10 +1123,22 @@
       "sha256": "62dc125cc67fb6c78e8bc9beac302b8ca798adfad56a5fba86e5ae2323349614",
       "theorems": 6
     },
+    "FluxCharge.SpectralWall": {
+      "file": "FluxCharge/SpectralWall.lean",
+      "group": "adjacent",
+      "sha256": "85771d90c0666e10e2d489368ab351411002a6e2f4758550e3ea33b1320ef282",
+      "theorems": 56
+    },
     "FluxCharge.Topology": {
       "file": "FluxCharge/Topology.lean",
       "sha256": "33d80b1e8a9d24f155721aa43be5533d76e0f7be4884215a0b51e860643887c1",
       "theorems": 9
+    },
+    "FluxCharge.TwoLevelWall": {
+      "file": "FluxCharge/TwoLevelWall.lean",
+      "group": "adjacent",
+      "sha256": "461cf55b35f301d4020c97d1849cb40bc74ab022b9a88dd16a46b92401284180",
+      "theorems": 26
     }
   },
   "theorems": 99

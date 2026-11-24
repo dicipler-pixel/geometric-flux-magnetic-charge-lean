@@ -57,3 +57,24 @@ Evidence: `verification_v6/`.
 `plot_functions_v6.py`, `build_html_v6.py`, `check_paper_v6.py`,
 `figures/curvature_and_gauges_v6.{pdf,png}`, `paper_validation_v6.json` (32 checks, none failed),
 `CHECKSUMS_v6.sha256`, `README_PAPER.md`. Version 5 files and version 4 files remain unchanged.
+
+## Adjacent spectral-wall modules (after the review of v6 prose)
+
+Three modules were added after the v6 draft was written. They are *not* part of the paper's count:
+
+| module | declarations | what it proves |
+| --- | --- | --- |
+| `FluxCharge.SpectralWall` | 56 | the ISCO wall of the circular-orbit generator `M r = !![0,1;-W r,0]`, `W r = (r-6)/(r^3(r-3))`: `M^2 = -W 1`, nonzero nilpotent at `r = 6`, sign dichotomy, eigenvalues `±i√W` / `±√(-W)`, both one-sided limits to `2/√648`, growing eigenvector, `deriv √(-W) → atBot`, `p 6 = 3`; plus the certificate that the second *partial* at fixed `L^2` gives `2W` while the *total* derivative along the family gives `1/81` at `r = 6` |
+| `FluxCharge.TwoLevelWall` | 26 | `σx + iγσz`: `H^2 = (1-γ^2)1`, nilpotent at `γ = 1`, the counterexample showing the hand-written projector is *not* idempotent for `|γ| ≥ 1`, its repair on `|γ| < 1`, and no orthogonal idempotent resolution at the wall |
+| `FluxCharge.JordanWall` | 32 | Jordan propagator `e^{λt}(1+tN)` with entrywise derivative and the linear-in-time entry; single-projector divergence `‖P‖·gap → ‖b‖` with the pair projector finite (determinant 1); wall normal form `tr W = 2λ, det W = λ^2 ⟹ (W-λ1)^2 = 0` and the model with gap `2√|d|` |
+
+`scripts/config.json` counts them under `expected_adjacent_theorems: 114`; `scripts/verify.py` audits both
+groups under the same axiom rule and prints `OK: 99 theorems + 114 adjacent, …`. The pinned Lean 4.34.1 run
+recorded in `verification_v6/` is exactly that line.
+
+The peel wall (Jeromie Beasley, *What the Peel Keeps* v1.2.2 §2.6) arrived after this commit and is held back:
+`FluxCharge/PeelWall.lean` compiles but is not in the audited inventory yet, so it will be added in a second
+commit with its own build and audit rather than inflating the number reported here. Two statements in the
+working brief for it were wrong and the corrected forms are the ones proved: the printed closed form of the
+trace (it gives `-6` at the wall, not `-2`) and the literal `√δ·‖Φ‖^2` limit (it diverges; the correct pair is
+`√δ‖Φ‖ → 1/√2` and `δ‖Φ‖^2 → 1/2`).

@@ -9,3 +9,6 @@ import FluxCharge.Extension
 import FluxCharge.Seam
 import FluxCharge.Topology
 import FluxCharge.Bundle
+import FluxCharge.SpectralWall
+import FluxCharge.TwoLevelWall
+import FluxCharge.JordanWall

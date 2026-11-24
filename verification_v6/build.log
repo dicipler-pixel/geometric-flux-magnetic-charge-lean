@@ -1,46 +1,33 @@
-=== build start Mon Nov 23 16:19:27 UTC 2026
-Note: This linter can be disabled with `set_option linter.unusedTactic false`
-warning: FluxCharge/Bundle.lean:204:4: Unused tactic linter: `push_cast` does nothing
-
-Note: This linter can be disabled with `set_option linter.unusedTactic false`
-warning: FluxCharge/Bundle.lean:208:63: Variable name `hp` is not explicitly referenced.
-
-Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
-  [apply] _hp
-
-Note: This linter can be disabled with `set_option linter.unusedVariables false`
-warning: FluxCharge/Bundle.lean:215:22: This simp argument is unused:
-  Complex.sub_im
-
+=== rebuild start Mon Nov 23 23:34:34 UTC 2026
 Hint: Omit it from the simp argument list.
-  [apply] simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Complex.add_re, Complex.add_im, Complex.sub_re,
-    Complex.mul_re, Complex.mul_im, Complex.neg_re, Complex.neg_im, Complex.ofReal_re, Complex.ofReal_im, Complex.I_re,
-    Complex.I_im]
+  [apply] simp [Wm, modelEigenvector, Matrix.mulVec] at h1
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-warning: FluxCharge/Bundle.lean:221:6: This simp argument is unused:
-  Complex.sub_re
+warning: FluxCharge/JordanWall.lean:292:49: This simp argument is unused:
+  Fin.sum_univ_two
 
 Hint: Omit it from the simp argument list.
-  [apply] simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Complex.add_re, Complex.add_im, Complex.sub_im,
-    Complex.mul_re, Complex.mul_im, Complex.neg_re, Complex.neg_im, Complex.ofReal_re, Complex.ofReal_im, Complex.I_re,
-    Complex.I_im]
+  [apply] simp [Wm, modelEigenvector, Matrix.mulVec]
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-warning: FluxCharge/Bundle.lean:217:4: Unused tactic linter: `push_cast` does nothing
+warning: FluxCharge/JordanWall.lean:293:49: This simp argument is unused:
+  Fin.sum_univ_two
 
-Note: This linter can be disabled with `set_option linter.unusedTactic false`
-warning: FluxCharge/Bundle.lean:223:4: Unused tactic linter: `push_cast` does nothing
+Hint: Omit it from the simp argument list.
+  [apply] simp [Wm, modelEigenvector, Matrix.mulVec]
 
-Note: This linter can be disabled with `set_option linter.unusedTactic false`
-warning: FluxCharge/Bundle.lean:534:2: try 'simp' instead of 'simpa'
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+✔ [8934/8935] Built FluxCharge (245s)
+Build completed successfully (8935 jobs).
 
-Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
-✔ [8930/8932] Built FluxCharge.Topology (8.9s)
-✔ [8931/8932] Built FluxCharge (3.6s)
-Build completed successfully (8932 jobs).
+real	8m12.697s
+user	0m25.347s
+sys	1m24.484s
+=== BUILD OK Mon Nov 23 23:42:47 UTC 2026
+=== verify
+OK: 99 theorems + 114 adjacent, axioms used: ['Classical.choice', 'Quot.sound', 'propext'], 11 false controls rejected
 
-real	10m24.613s
-user	0m33.950s
-sys	1m43.924s
-=== BUILD OK Mon Nov 23 16:29:51 UTC 2026
+real	29m26.821s
+user	0m36.353s
+sys	4m19.227s
+verify_exit=0
