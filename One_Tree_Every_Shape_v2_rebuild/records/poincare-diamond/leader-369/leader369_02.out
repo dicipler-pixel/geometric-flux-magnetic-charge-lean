@@ -1,4 +1,0 @@
-identity worst relative error 2.7e-14
-aligned inertia: tau = 8.7e-17, commutator = 3.4e-16
-tau thresholds reported (high-mass bin, z=0): t2->t3 at 0.15-0.25, perp->parallel t1 at 0.13-0.15, t2->t1 at 0.05-0.11
-ratios of threshold midpoints: 1.43 and 1.75 (ranges too wide to pin; kept for later, not a 3-6-9 claim)
