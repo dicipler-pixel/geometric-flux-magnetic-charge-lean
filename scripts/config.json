@@ -30,7 +30,7 @@
     }
   ],
   "expected_theorems": 99,
-  "expected_false_controls": 11,
+  "expected_false_controls": 12,
   "root_imports": [
     "FluxCharge"
   ],
@@ -50,11 +50,23 @@
     {
       "module": "FluxCharge.PeelWall",
       "path": "FluxCharge/PeelWall.lean"
+    },
+    {
+      "module": "FluxCharge.Gauge",
+      "path": "FluxCharge/Gauge.lean"
+    },
+    {
+      "module": "FluxCharge.GaugeBenchmark",
+      "path": "FluxCharge/GaugeBenchmark.lean"
+    },
+    {
+      "module": "FluxCharge.GaugeAudit",
+      "path": "FluxCharge/GaugeAudit.lean"
     }
   ],
-  "expected_adjacent_theorems": 161,
+  "expected_adjacent_theorems": 170,
   "adjacent_note": "Modules from the spectral-wall work: the ISCO wall of the circular-orbit generator, the non-Hermitian two-level wall, and the Jordan/projector statements. They import Mathlib only and are outside the flux-charge chain counted by expected_theorems.",
   "expected_lemmas": 40,
-  "expected_adjacent_lemmas": 6,
+  "expected_adjacent_lemmas": 115,
   "lemma_note": "`lemma` is a proof of a theorem written with another keyword. Before 24 Nov 2026 the checker discovered only `theorem`, which left 46 compiled declarations unaudited (40 in FluxCharge.Bundle, 6 in FluxCharge.SpectralWall). Both keywords are audited now; the counts are reported apart so the paper's theorem count keeps its meaning."
 }

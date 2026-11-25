@@ -13,3 +13,6 @@ import FluxCharge.SpectralWall
 import FluxCharge.TwoLevelWall
 import FluxCharge.JordanWall
 import FluxCharge.PeelWall
+import FluxCharge.Gauge
+import FluxCharge.GaugeBenchmark
+import FluxCharge.GaugeAudit
